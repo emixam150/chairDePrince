@@ -1,0 +1,27 @@
+//le fichier un tableau qui contient les objets représentants des serveur virtuels
+//
+[
+    {
+	"port":8080,
+	"protocol":"http",
+	"hosts":{
+//parametre pour une connexion locale
+	    "localhost:8080":{
+		"name":"Elements",
+		"root":"/home/creations/nodejs/server/www/mathaoeil/views/index.html",
+		"env":"dev"
+		},
+//connexion depuis le nom de domaine
+//	    "www.website.com:8080":{
+//		"name":"Website",
+//		"root":"C:/home/framework/home/website/web/index.js",
+//		"env":"prod"
+//            },
+	    "default":{
+		"name":"Demo",
+		"root":"/home/creations/nodejs/server/www/mathaoeil/views/index.html",
+		"env":"prod"
+	    }
+	}
+    }
+]
