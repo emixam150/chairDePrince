@@ -1,0 +1,70 @@
+{
+   "index":{
+      "type":"html",
+      "format":"^/$",
+      "mime":"text/html",
+      "method":"GET",
+      "ressource":"index.html",
+      "controller":"index.js",
+      "url":"/",
+      "query":{
+	"name":"$1"
+      },
+      "preloading": true
+   },
+    "img-jpg":{
+      "type":"image",
+      "format":"images/([-_/a-z0-9]+)\\.jpg$",
+      "mime":"image/jpeg",
+      "method":"GET",
+      "ressource":"[file].jpg",
+      "controller":"image.js",
+      "url":"images/[file].jpg",
+      "query":{
+	  "file":"$1"
+      },
+      "preloading": false
+   },
+   "favicon":{
+      "type":"image",
+      "format":"/favicon\\.ico$",
+      "mime":"image/x-icon",
+      "method":"GET",
+      "ressource":"favicon.ico",
+      "controller":"image.js",
+      "url":"/favicon.ico",
+      "preloading": true
+   },
+   "contact":{
+      "type":"html",
+      "format":"/contact$",
+      "mime":"text/html",
+      "method":"GET,POST",
+      "ressource":"contact.html",
+      "controller":"contact.js",
+      "url":"/contact.html",
+       "preloading": true
+   },
+   "hello":{
+      "type":"html",
+      "format":"/hello/?([-a-zA-Z]*)/?([-a-zA-Z]*)$",
+      "mime":"text/html",
+      "method":"GET",
+      "ressource":"hello.html",
+      "controller":"hello.js",
+      "url":"/hello/[name]/[cri]",
+      "query":{
+         "name":"$1",
+	 "cri": "$2"
+      },
+      "preloading":true
+   },
+   "error404":{
+      "type":"html",
+      "mime":"text/html",
+      "method":"GET,POST",
+      "ressource":"error404.html",
+      "controller":"error404.js",
+      "preloading": true
+   }
+}

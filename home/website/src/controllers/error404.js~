@@ -1,0 +1,1 @@
+console.log('Controller error404.js');

@@ -1,0 +1,8 @@
+exports.exec = function(res, content,query) {
+    var mustache = $.require('mustache');
+    var isEmpty = (query.name == '' || query.cri =='')? true: false;
+    var output = mustache.render(content, {'empty': isEmpty,'name': query.name , 'cri' : query.cri });
+
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(output,'utf8');
+} ;

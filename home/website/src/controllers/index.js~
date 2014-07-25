@@ -1,0 +1,7 @@
+exports.exec = function(res, content,query) {
+    var mustache = $.require('mustache');
+    var output = mustache.render(content, {'name': query.name });
+
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(output,'utf8');
+} ;
