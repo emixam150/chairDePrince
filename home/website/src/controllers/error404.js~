@@ -1,1 +1,12 @@
-console.log('Controller error404.js');
+/*
+* Error404 Controller
+*/
+
+exports.exec = function(support, errorType) {
+    var mustache = $.require('mustache');
+    //var output = mustache.render(content, {'name': query.name });
+
+    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
+    support.res.setHeader("Content-Type", "text/html");
+    $.require('makeTextResponse').send(support.content, support.headers, support.res);
+} ;

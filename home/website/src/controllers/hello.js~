@@ -1,8 +1,15 @@
-exports.exec = function(res, content,query) {
-    var mustache = $.require('mustache');
-    var isEmpty = (query.name == '' || query.cri =='')? true: false;
-    var output = mustache.render(content, {'empty': isEmpty,'name': query.name , 'cri' : query.cri });
+/*
+ * Hello Controller
+*/
+var mustache = $.require('mustache');
 
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(output,'utf8');
+exports.exec = function(res, ressourcePath ,content, page, headers, session) {
+    var isEmpty = (page.query.name == '' || page.query.cri =='')? true: false;
+    var output = mustache.render(content, {'empty': isEmpty,'name': page.query.name , 'cri' : page.query.cri });
+
+    res.setHeader('Content-Type', 'text/html');
+    
+    res.setHeader('Cache-Control','max-age=' + page.maxAge );
+
+    $.require('makeTextResponse').send(output, headers, res);
 } ;

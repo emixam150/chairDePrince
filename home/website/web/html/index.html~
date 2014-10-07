@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-</head>
-<body>
+<section>
 
 <h1>Chair de prince</h1>
 
@@ -12,11 +7,13 @@
 <ul>
   <li> <a href="hello">Hello Word</a> </li>
   <li> <a href="contact">Contact</a> </li>
+  <li> <a href="session">Votre session</a> </li>
   <li> <a href="images/mona_lisa.jpg">TRES grosse image de Mona Lisa</a> </li>
+  <li> <a href="images/why-so-asynchronous.jpg">La question que l'on se pose lorque l'on commence en Node.js</a></li>
+  <li> <a href="images/la_grande_odalisque_1814_prog.jpg">Jpeg progessif et allégé</a></li>
+  
 </ul>
+<img src="images/un_verre_de_scoth.jpg" width="200" /><br/>
+<i> un verre de scoth</i> 
 
-<img src="images/un_verre_de_scoth.jpg" width="200" />
-<i> un verre de scoth</i>
-
-</body>
-</html>
+</section>

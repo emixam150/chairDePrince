@@ -1,0 +1,16 @@
+{
+    "1485428730": {
+        "client": {
+            "sessionIndex": 1485428730,
+            "ip": "127.0.0.1",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:29.0) Gecko/20100101 Firefox/29.0",
+            "nbReq": 0
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    }
+}

@@ -1,38 +1,52 @@
-exports.exec = function(res, path, content, page){
+/*
+ * Image Controller
+*/
+
+exports.exec = function(support){
     var fs = require('fs');
-    if(content !== null){
-	res.end(content, 'binary');
-	res.writeHead(200, {
-		   'Content-Type': page.mime
-		});
+    if(support.content !== null){
+	support.res.setHeader('Cache-Control','public, max-age=' + support.page.maxAge );
+	support.res.writeHead(200, {
+	    'Content-Type': support.page.mime,
+	    'Content-Length': support.content.length
+	});
+	support.res.end(support.content, 'binary');
+	
 
     }else{
-	fs.stat(path, function(err, stat){
+	fs.stat(support.ressourcePath, function(err, stat){
 	    if(err){
 		if('ENOENT' == err.code){
-		    res.statusCode = 404;
-		    res.end('Not Found');
+		    support.res.statusCode = 404;
+		    support.res.end('Not Found');
 		}else {
-		    res.statusCode = 500;
-		    res.end('Internal Server Error');
+		    support.res.statusCode = 500;
+		    support.res.end('Internal Server Error');
 		}
 	    }else{
 		//creer un acces lecture vers l'image
-		var stream = fs.createReadStream(path),
+		var stream = fs.createReadStream(support.ressourcePath),
 		    contentLength = 0;
 		
 
-		res.writeHead(200, {
-		    'Content-Type': page.mime,
-		    'Content-Length': stat.size
-		});
+		support.res.setHeader('Content-Type', support.page.mime);
+		support.res.setHeader('Content-Length', stat.size);
+		support.res.setHeader('Cache-Control','public, max-age=' + support.page.maxAge);
 		
-
-		stream.pipe(res);
+		if(support.page.type =="svg"){
+		    var svg = '';
+		    stream.on('data',function(chunk){
+			svg += chunk;
+		    })
+		    stream.on('end',function(){
+			$.require('makeTextResponse').send(svg, support.headers, support.res);
+		    })
+		}else
+		    stream.pipe(support.res);
 
 		stream.on('error', function(err){
-		    res.statCode = 500;
-	    	    res.end('Internal Server Error');
+		    support.res.statCode = 500;
+	    	    support.res.end('Internal Server Error');
 		});
 	    }    
 	});

@@ -1,33 +1,34 @@
 
 [
     {
-	"port":8080,
+	"port":8042,
 	"protocol":"http",
 	"hosts":{
-	    "localhost:8080":{
+	    "localhost:10":{
 		"name":"ChairDePrince",
-		"root":"/home/napoleon/creations/nodejs/server/home/website/web/index.js",
+		"index":"/opt/nodejs/home/website/web/index.js",
 		"env":"dev"
 		},
 	    "default":{
 		"name":"Demo",
-		"root":"/home/napoleon/creations/nodejs/server/home/website/web/index.js",
+		"index":"/opt/nodejs/home/website/web/index.js",
+		"paths":"/opt/nodejs/home/website/app/config/paths.js",
 		"env":"prod"
 	    }
 	    }
     },
     {
-      "port":8081,
+      "port":8043,
       "protocol":"http",
       "hosts":{
          "localhost:8081":{
             "name":"Partage",
-            "root":"/home/napoleon/creations/nodejs/server/home/partage/web/index.js",
+            "index":"/opt/nodejs/home/partage/web/index.js",
             "env":"prod"
          },
          "default":{
             "name":"Default",
-            "root":"/home/napoleon/creations/nodejs/server/home/partage/web/index.js",
+            "index":"/opt/nodejs/home/partage/web/index.js",
             "env":"dev"
          }
       }

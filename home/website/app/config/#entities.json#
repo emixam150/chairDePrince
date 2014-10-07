@@ -1,0 +1,7 @@
+({
+    "user":{
+	"connection":"main",
+	"base": "becasse",
+	"collection":"user"
+    }
+}

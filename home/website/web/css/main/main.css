@@ -1,0 +1,185 @@
+/* body */
+body{
+    margin:0;
+    padding:0;
+    min-width:320px;    
+    font-family: "Playfair Display", serif;
+}
+
+h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+img {
+    width:100%;
+    height: auto;
+}
+
+input, select{
+    max-width:100%;
+}
+/* header */
+header{
+    display:block;
+    margin:2px;
+    font-size:1em;
+    font-family: Georgia, serif;
+} 
+
+#header_top:before{
+    background: none;
+    border-bottom: 2px solid orangered;
+    content: "";
+    display: block;
+    position: absolute;
+    left:1em;
+    right: 1em;
+    bottom: 0.2em;  
+}
+
+header #header_top{
+    display: block;
+    padding-bottom: 1em; 
+    position: relative;
+    border-bottom: 1px solid orangered; 
+}
+
+header #header_toptop{
+    display: block;
+    height: 50px;
+    padding-bottom: 2px;
+}
+header svg{
+    width: inherit;
+    height: 100%;
+}
+
+header #fig_title{
+  display: inline-block;
+    vertical-align: top;
+	   width:74px;
+    height:100%;
+    padding-right: 3%;
+    border-right: 2px black solid;
+}
+
+
+
+nav{
+    display: inline-block;
+    height: 100%;
+    width:65%;
+    padding-left: 5%;
+}
+
+nav ul{
+    list-style-type: none;
+    padding: 0;
+    width:100%;
+}
+nav li{
+    display: inline;
+    text-align: center;
+    margin-left:3%;
+}
+nav a {
+    text-decoration: underline;
+    color: black; 
+}
+
+
+header #header_quote{
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+    padding-left: 100px;
+    width: 65%;
+    
+    font-size: 0.65em;
+}
+
+blockquote{
+    font-style: italic;
+    margin: 0.25em 0;
+    line-height: 1;
+    text-indent: 2em;
+}
+
+blockquote cite{
+    display: block;
+    font-size:0.85em;
+    text-indent: 4em;
+    margin-top: 1px;
+    color: black;    
+}
+
+#header_bottom{
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#fig_present {
+    display: block;
+}
+
+#fig_present img{
+    width:100%;
+    height:300px;
+}
+@media screen and (max-width:450px) {
+    body{
+	font-size:0.85em;
+    }
+}
+@media screen and (max-width:640px) {
+    #fig_present img{
+	height:200px;
+    }
+}
+@media screen and (min-width:640px) {
+    #header_toptop{
+	padding-left:2%;
+	padding-top:2%;
+    }
+}
+@media screen and (min-width:900px) {
+    body{
+	font-size:1.2em;
+    }
+}
+
+
+
+/*
+ * footer
+*/
+
+footer{
+    height: 200px;
+
+}
+
+/*
+header #session_info {
+    display: inline-block;
+    vertical-align: top;
+        margin-left: 3%;
+    width:25%;
+    border-left:1px black solid;
+}
+
+header #session_info ul{
+    list-style: none;
+    padding: 0;
+    margin:0;
+}
+
+header form{
+    display:inline;
+}
+*/

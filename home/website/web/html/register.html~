@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+
+    <h1>Incription au près de la becasse</h1>
+
+    <p> Rejoins-nous !</p>
+    <form action="register" method="post">
+      <p>Nom*</p>
+      <input name="name"/>
+      <p>Email</p>
+      <input name="email"/>
+      <p>Mot de passe*</p>
+      <input name="password"/>
+      <input type="submit" value="inscription"/>
+    </form>
+  </body>
+</html>

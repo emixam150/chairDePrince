@@ -1,0 +1,66 @@
+{
+    "head": {
+	"id": "head",
+	"type": "common",
+	"file":"common/head.html",
+	"children":["header","footer"],
+	"queries":{
+	    "title": "",
+	    "lang": "",
+	    "jsLinked": [
+		{"path": "/js/main.js"}
+	    ],
+	    "cssLinked": [
+		{"path": "main.css"}
+	    ],
+	    "jsSpe": "",
+	    "cssSpe": ""
+	}
+    },
+    "header": {
+	"id": "header",
+	"type": "header",
+	"file":"common/header.html",
+	"children":["nav","sessionInfo"],
+	"queries":{
+		"figTitle": "",
+		"topHeaderBar": "",
+		"banniereHeader": "undefined"
+	}
+    },
+    "nav": {
+	"id": "nav",
+	"type": "nav",
+	"file":"common/nav.html",
+	"children":[],
+	"queries":{
+	    "links":[ {"name": "Accueil",
+		  "link": "/"},
+			{"name": "Math",
+		  "link": "/math-browser"},
+			{"name": "Blog",
+		  "link": "#"},
+		 {"name": "Contact",
+		  "link": "/contact"}
+		    ]
+			}
+    },
+    "sessionInfo": {
+	"id": "sessionInfo",
+	"type": "sessionInfo",
+	"file":"common/sessionInfo.html",
+	"children":[],
+	"queries":{
+	    "userName": "",
+	    "sessionDisplay": false
+	}
+    },
+    "footer": {
+	"id": "footer",
+	"type": "footer",
+	"file":"common/footer.html",
+	"children":[],
+	"queries":{
+	}
+    }
+}

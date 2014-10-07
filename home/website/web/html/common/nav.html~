@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    {{#links}}
+    <li> <a href="{{link}}"> {{name}} </a> </li>
+   {{/links}}
+    {{#sessionDisplay}}
+    <li> {{&sessionInfo}} </li>
+    {{/sessionDisplay}}
+  </ul>
+</nav>

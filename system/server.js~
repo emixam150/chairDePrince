@@ -7,24 +7,29 @@ global.$ = require('framework');
 ** method of HTTP Server 
 */
 httpServer = function(server) {
-    var http = require('http');
-   
-    http.createServer(function (req, res) {
+    var http = require('http'),    io.configure('production', function () {
+        io.enable('browser client minification');
+        io.enable('browser client etag');
+        io.enable('browser client gzip');
+        io.set('log level', 1);    
+    var app = require(server.hosts['default'].index);
+    
+    var srv = http.createServer(function (req, res) {
         /** 3 **/
-        var host = req.headers.host;
-        //console.log(host)
+       /* var host = req.headers.host;console.log(host);
         
         if (typeof server.hosts[host] !== 'undefined') {
-            var app = require(server.hosts[host].root);
+            var app = require(server.hosts[host].index);
         } else {
-            //console.log('default used');
-            var app = require(server.hosts['default'].root);
-        }
+            var app = require(server.hosts['default'].index);
+	}*/
        
-       app.run(req, res, server.hosts[host]);
-        //res.writeHead(200, {'Content-Type': 'text/plain'});
-        //res.end('Hello World\n');
+       app.run(req, res, server.hosts['default']);
     }).listen(server.port);
+var ioServer = io.listen(srv);
+ioServer.sockets.on('connection', function(socket){
+    app.execSocket(socket);
+});
 }
 /*
 ** method of HTTPS Server
@@ -48,9 +53,9 @@ httpsServer = function(server) {
         var host = req.headers.host;
         
         if(typeof server.host[host] !== 'undefined') {
-            var app = require(server.hosts[host].root);
+            var app = require(server.hosts[host].index);
         } else {
-            var app = require(server.hosts['default'].root);
+            var app = require(server.hosts['default'].index);
         }
         
         res.writeHead(200,{'Content-Type' : 'text/plain'});

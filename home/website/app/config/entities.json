@@ -1,0 +1,12 @@
+{
+    "user":{
+	"connection":"main",
+	"base": "becasse",
+	"collection":"user"
+    },
+    "math":{
+	"connection":"main",
+	"base":"becasse",
+	"collection":"math"
+    }
+}

@@ -1,0 +1,63 @@
+<h2 class="title_admin">Gestion</h2>
+<ul>
+  <li>
+    <input type="button" value="Nouveau" id="nouveau_button"/>
+    <br/>
+    Chargement: 
+    <input type="text" list="list_namestoload" id="nametoload" />
+     <datalist id="list_namestoload">
+      </datalist>
+    <input type="button" value="Ouvrir" id="ouvrir_button"/>
+    </li>
+  <li>
+    Type :
+    <select id="type">
+      <option value="">--</option>
+      <option value="prop">proprièté</option>
+      <option value="th">théorème</option>
+      <option value="lem">lemme</option>
+      <option value="cor">corollaire</option>
+      <option value="def">définition</option>
+      <option value="axiom">axiome</option>
+      <option value="conj">conjecture</option>
+    </select>
+    <br/>
+    Parents:
+    <input type="text" list="list_namestoload" id="parentselector"/>
+    <input type="button" value="ajouter" id="add_parent_button"/>
+    <ul id="list_of_parents">
+      </ul>
+  </li>
+  <li>
+    <span>Templates: </span>
+    <ul>
+      <li id="figure">figure</li>
+      <li id="refin">ref interne</li>
+      <li id="refout">ref externe</li>
+    </ul>
+  </li>
+  <li>
+    <span>Latex: </span>
+    <ul>
+      <ul class="inline_list">
+	<li id="inline_latex">latex</li>
+	<li id="newline_latex">&#9166;latex</li>
+      </ul>
+    </ul>
+  </li>
+  <li id="adcont">
+    <span>Contenu</span>
+  </li>
+  <li id="addem">
+    <span>Démonstration</span>
+  </li>
+  <li id="adrem">
+    <span>Remarques</span>
+  </li>
+  <li id= "adex">
+    <span>Exemples</span>
+  </li>
+  <li id= "adexo">
+    <span>Exercices</span>
+  </li>
+</ul>

@@ -1,0 +1,55 @@
+
+#math_elt {
+    display:block;
+    width:95%;
+    margin: 15px auto;
+}
+
+#math_elt .type_container{
+    font-size:0.8em;
+    font-family: sans;
+    padding-left: 15px;
+}
+
+#math_elt .title_elt_math{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
+#math_elt #math_section{
+    display:block;
+    width:95%;
+    margin: 0 auto;
+    
+}
+
+#math_elt .cont{
+    padding-bottom: 5px;
+    border-bottom: 1px #27ffff solid;
+}
+
+#math_elt .generation_list{
+    display:inline;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#math_elt .generation_list li{
+    display:inline;
+    padding-left:2px;
+}
+#math_elt .ident_part{
+    font-size:0.9em;
+    text-decoration: underline;
+    font-family:sans;
+}
+
+#math_elt .ident_part::after{
+    content: ":";
+}
+
+#math_elt .container{
+    text-align: justify;
+    font-family: serif;
+}

@@ -1,0 +1,21 @@
+/*
+ * Session Controller
+*/
+var mustache = $.require('mustache');
+
+exports.exec = function(support) {
+
+    if(typeof support.post.name != "undefined" && support.post.name != ''){
+	support.session.client.name = support.post.name; 
+    }
+
+    var output = mustache.render(support.content, {'name': support.session.client.name,
+					  'ip': support.session.client.ip,
+					  'userAgent': support.session.client.userAgent,
+					  'nbReq': support.session.client.nbReq});
+
+    support.res.setHeader('Content-Type', 'text/html');
+    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
+
+    $.require('makeTextResponse').send(output, support.headers, support.res);
+} ;

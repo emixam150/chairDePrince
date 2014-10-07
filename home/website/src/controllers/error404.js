@@ -2,10 +2,11 @@
 * Error404 Controller
 */
 
-exports.exec = function(res, content, ressourcePath, page, post) {
+exports.exec = function(support, errorType) {
     var mustache = $.require('mustache');
     //var output = mustache.render(content, {'name': query.name });
 
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(content,'utf8');
+    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
+    support.res.setHeader("Content-Type", "text/html");
+    $.require('makeTextResponse').send(support.file.html.error404, support.headers, support.res);
 } ;

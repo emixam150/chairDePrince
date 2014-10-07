@@ -1,0 +1,157 @@
+/*
+ *Math Controller
+ */
+var paths = require($.paths),
+commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
+tempModel = require(paths.models + '/template.js'),
+Math = require(paths.models + '/math.js'),
+mathEltDisplay = require('./math-elt-display.js');
+
+exports.exec = function(support) {
+    //    console.log(support.file.html);
+    var mathElt = new Math();
+    mathElt.getByName(support.page.query.eltName, function(result){
+	if(typeof result != 'undefined'){
+
+
+	    mathEltDisplay.exec(mathElt, support.file.html['math-elt'], function(section){
+		// var mathElt = new Math();
+		// mathElt.getByName(support.page.query.eltName, function(result){
+		// 	if(typeof result != 'undefined'){
+
+		var queriesTemp = {
+		    title : mathElt.content.title + " - Math - Chere de prince",
+		    lang: "fr",
+		    figTitle: support.file.svg.figTitle_webCommon,
+		    topHeaderBar: support.file.svg.top_header_barCommon,
+		    banniereHeader: {
+			link:"/svg/common/pimp_my_math_banniere.svg",
+			alt:"Pimp My Math"
+		    },
+		    links: [
+		    ],
+		    sessionDisplay: typeof support.session.user != "undefined",
+		    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
+		    cssLinked:[{path:'math.css'}],
+		    jsLinked:[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
+		    jsSpe:'</script><script type="application/javascript"></script>'
+		};
+
+		// 	recupParentChild((typeof mathElt.content.parents != 'undefined')? mathElt.content.parents:[],(typeof  mathElt.content.children != 'undefined')? mathElt.content.children: [] , function(parentsDisplay, childrenDisplay){
+
+		// 	    var section ={
+		// 		id: "section",
+		// 		type: "part",
+		// 		children:mathElt.content.tree.children,
+		// 		queries: {
+		// 		    title: mathElt.content.title,
+		// 		    type: translateTypeName(mathElt.content.type),
+		// 		    typeColor : translateTypeColor(mathElt.content.type),
+		// 		    parents: parentsDisplay,
+		// 		    parentsVisibility: parentsDisplay.length !=0,
+		// 		    children: childrenDisplay,
+		// 		    childrenVisibility: childrenDisplay.length !=0
+		// 		},
+		// 		content: support.file.html['math-elt']
+		// 	    };
+
+		commonTreeTemplate.constructTree( queriesTemp, function(tree){
+		    tree.children.push(section);
+		    tempModel.constructOutput(tree, function(output){
+			support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
+			support.res.setHeader('Content-Type', 'text/html');
+			$.require('makeTextResponse').send(output, support.headers, support.res);
+		    });
+		});
+	    });
+	    //	});
+	}else{
+	    require(paths.controllers +'/error404.js').exec(support);
+	}
+	//    });
+    }); // end of matheltDisplay
+} ;
+
+// var translateTypeName = function(type){
+//     var result = '';
+//     switch(type){
+//     case 'prop': result = 'propriété'
+// 	break;
+//     case 'th': result = 'théorème'
+// 	break;
+//     case 'lem': result = 'lemme'
+// 	break;
+//     case 'cor': result = 'corollaire'
+// 	break;
+//     case 'def': result = 'définition'
+// 	break;
+//     case 'axiom': result = 'axiome'
+// 	break;
+//     case 'conj': result = 'conjecture'
+// 	break;
+//     default: result = ''
+// 	break;
+//     }
+//     return result;
+// };
+
+// var translateTypeColor = function(type){
+//     var result = 'black';
+//     switch(type){
+//     case 'prop': result = '#0D0FB6'
+// 	break;
+//     case 'th': result = '#C20707'
+// 	break;
+//     case 'lem': result = '#610DB6'
+// 	break;
+//     case 'cor': result = '#0D0FB6'
+// 	break;
+//     case 'def': result = '#0D0FB6'
+// 	break;
+//     case 'axiom': result = '#CADC09'
+// 	break;
+//     case 'conj': result = '#2C2C2C'
+// 	break;
+//     default: result = 'pink'
+// 	break;
+//     }
+//     return result;
+// };
+
+// var recupParentChild = function(parents, children, cb){
+//     var cpt = 0,
+//     parentsDisplay =[],
+//     childrenDisplay =[];
+
+//     function next(){
+// 	cpt ++;
+// 	if(cpt == parents.length + children.length)
+// 	    cb(parentsDisplay, childrenDisplay);
+//     };
+
+//     if(parents.length + children.length == 0)
+// 	cb(parentsDisplay, childrenDisplay);
+
+//     parents.forEach(function(parentName){
+// 	var MathRecup = new Math();
+// 	MathRecup.getByName(parentName,function(result){
+// 	    parentsDisplay.push({
+// 		name: parentName,
+// 		title: MathRecup.content.title,
+// 		colorOfType: translateTypeColor(MathRecup.content.type)
+// 	    });
+// 	    next();
+// 	});
+//     })
+//     children.forEach(function(childName){
+// 	var MathRecup = new Math();
+// 	MathRecup.getByName(childName,function(result){
+// 	    childrenDisplay.push({
+// 		name: childName,
+// 		title: MathRecup.content.title,
+// 		colorOfType: translateTypeColor(MathRecup.content.type)
+// 	    });
+// 	    next();
+// 	});
+//     });
+// }

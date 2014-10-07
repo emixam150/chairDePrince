@@ -9,12 +9,17 @@
 
   <p>Je suis tout ouïe</p>
   <form action="contact" method="post">
-    <textarea name="message" ></textarea>
+    <p>Nom</p>
+    <input name="name"/>
+    <p>Sujet</p>
+    <input name="subject"/>
+    <p>Message</p>
+    <textarea rows="4" cols="50"  name="message" ></textarea>
     <input type="submit"/>
   </form>
   <h3>Lire les messages</h3>
   <p>
-    {{messages}}
+    {{&messages}}
   </p>
 </body>
 </html>

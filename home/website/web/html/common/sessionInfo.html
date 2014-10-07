@@ -1,0 +1,18 @@
+	<div id="session_info">
+		<ul>
+		{{^sessionDisplay}}
+			 <li> <a href="/login">Connection </a> </li>
+			<li> <a href="/register">Inscription</a> </li>
+			{{/sessionDisplay}}
+
+			{{#sessionDisplay}}
+		 <li>
+			<a href="/session">{{userName}}</a>
+			<form method="post" action="/session">
+				<input type="submit" value="Déconnexion"/>
+				<input type="hidden" name="deco"/>
+			</form>
+		</li>
+			{{/sessionDisplay}}
+		</ul>
+	</div>

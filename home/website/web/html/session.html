@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+
+  <h1>Votre session, noble client</h1>
+
+  <p> Quel est votre nom, sire?</p>
+
+    <p>
+      Toute vos données personnelles seront supprimées au bout de deux jours d'inactivités de votre part, cher client.
+    </p>
+  <form action="session" method="post">
+    <input type="submit" value="Mise à jour"/>
+    <h3>Votre nom :</h3>
+    <p>
+      <input name="name" value="{{name}}"/>
+    </p>
+    <h3>Votre email :</h3>
+    <p>
+      <input name="email" value="{{email}}"/>
+    </p>
+    <h3>Votre mot de passe :</h3>
+    <p>
+      Nouveau mot de passe:
+      <input name="password" />
+    </p>
+    <p>
+    Confirmation:
+      <input name="confirmPass"/>
+    </p>
+    <p>
+      Ancien mot de passe:
+      <input name="oldPassword" />
+    </p>
+
+    <h3>Votre IP :</h3>
+    <p>
+      {{ip}}
+    </p>
+    <h3>Vos infos navigateur :</h3>
+    <p>
+      {{userAgent}}
+    </p>
+    <h3>Le nombre de vos requêtes :</h3> 
+    <p>
+      {{nbReq}}
+    </p>
+  </form>
+</body>
+</html>

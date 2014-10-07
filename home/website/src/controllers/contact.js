@@ -5,21 +5,15 @@ var fs = require('fs'),
     stream  = require('stream'),
     mustache = $.require('mustache');
 
-var messagePath = __dirname + "/../../web/html/message.txt";
+var messagePath = "message.txt";
 
-exports.exec = function(res, ressourcePath, content, page, post) {
+exports.exec = function(support) {
 
-    if(isValidPost(post)){
-	fs.appendFile(messagePath, writeHtmlMessage(post), function(){
-	    constructReponse(res, ressourcePath, content, page, post);
-	});
-    }else{
-	constructReponse(res, ressourcePath, content, page, post);
-    }   
+    post(support, get);
 };
 
-function constructReponse(res, ressourcePath, content, page, post){
-    var streammessage = fs.createReadStream(messagePath),
+function get(support){
+    var streammessage = fs.createReadStream(support.paths.html+ '/' + messagePath),
 	messages = '';
     streammessage.setEncoding('utf8');
 
@@ -29,11 +23,22 @@ function constructReponse(res, ressourcePath, content, page, post){
 
     streammessage.on('end', function(){
 
-	var output = mustache.to_html(content, {'messages': messages });
-
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.end(output,'utf8');
+	var output = mustache.to_html(support.content, {'messages': messages });
+	
+	support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
+	support.res.setHeader('Content-Type', 'text/html');
+	$.require('makeTextResponse').send(output, support.headers, support.res);
     });
+}
+
+function post(support, getcall){
+    if(isValidPost(support.post)){
+	fs.appendFile(support.paths.html +'/'+ messagePath, writeHtmlMessage(support.post), function(){
+	    getcall(support);
+	});
+    }else{
+	getcall(support);
+    }   
 }
 
 function isValidPost(post){
@@ -50,6 +55,6 @@ function writeHtmlMessage(post){
     return "<p>	<h5>"+ post.subject + " de " + post.name + 
 	" le " + now.getDate() +"/"+ now.getMonth() +"/"+ now.getFullYear() +
 	" à " + now.getHours()+ "h" + now.getMinutes() +" :</h5>" +
-    post.message
+	post.message
 	+"</p>";
 }

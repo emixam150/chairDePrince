@@ -1,0 +1,11 @@
+<div>
+  <p>
+    <a href="/session">
+    <span>Name: {{userName}}</span>
+  </a>
+  <form method="post" action="/session">
+    <input type="submit" value="Déconnexion"/>
+    <input type="hidden" name="deco"/>
+  </form>
+  </p>
+</div>

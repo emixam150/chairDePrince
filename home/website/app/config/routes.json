@@ -10,7 +10,38 @@
       "query":{
 	"name":"$1"
       },
-      "preloading": true
+      "preloading": true,
+      "maxAge": -1
+   },
+   "math-elt":{
+      "type":"html",
+      "format":"^/math/([-_/a-z0-9]+)$",
+      "mime":"text/html",
+      "method":"GET",
+      "ressource":"math/math-elt.html",
+      "controller":"math/math-elt.js",
+      "url":"/math/[eltName]",
+      "query":{
+	"eltName":"$1"
+      },
+      "preloading": true,
+      "maxAge": -1
+   },
+   "mathBrowser":{
+      "type":"html",
+      "format":"^/math-browser(/(list|graph)/([-_a-z0-9]+))?$",
+      "mime":"text/html",
+      "method":"GET",
+      "ressource":"math/math-browser.html",
+      "controller":"math/math-browser.js",
+      "url":"/math-browser/[displayType]/[classification]",
+      "query":{
+      "inutile":"$0",
+      "displayType": "$1",
+      "classification":"$2"
+      },
+      "preloading": true,
+      "maxAge": -1
    },
     "img-jpg":{
       "type":"image",
@@ -23,9 +54,24 @@
       "query":{
 	  "file":"$1"
       },
-      "preloading": false
+      "preloading": false,
+      "maxAge": 2592000
    },
-   "favicon":{
+    "svg":{
+      "type":"svg",
+      "format":"svg/([-_/a-z0-9]+)\\.svg$",
+      "mime":"image/svg+xml",
+      "method":"GET",
+      "ressource":"[file].svg",
+      "controller":"image.js",
+      "url":"svg/[file].svg",
+      "query":{
+	  "file":"$1"
+      },
+      "preloading": false,
+      "maxAge": -1
+   },
+    "favicon":{
       "type":"image",
       "format":"/favicon\\.ico$",
       "mime":"image/x-icon",
@@ -33,7 +79,8 @@
       "ressource":"favicon.ico",
       "controller":"image.js",
       "url":"/favicon.ico",
-      "preloading": true
+      "preloading": true,
+      "maxAge": 86400
    },
    "contact":{
       "type":"html",
@@ -43,7 +90,41 @@
       "ressource":"contact.html",
       "controller":"contact.js",
       "url":"/contact.html",
-       "preloading": true
+       "preloading": true,
+      "maxAge": -1
+   },
+   "session":{
+      "type":"html",
+      "format":"^/session/?$",
+      "mime":"text/html",
+      "method":"GET,POST",
+      "ressource":"session.html",
+      "controller":"session.js",
+      "url":"/session.html",
+       "preloading": true,
+      "maxAge": -1
+   },
+    "register":{
+      "type":"html",
+      "format":"^/register/?$",
+      "mime":"text/html",
+      "method":"GET,POST",
+      "ressource":"register.html",
+      "controller":"register.js",
+      "url":"/register.html",
+       "preloading": true,
+      "maxAge": -1
+   },
+    "login":{
+      "type":"html",
+      "format":"^/login/?$",
+      "mime":"text/html",
+      "method":"GET,POST",
+      "ressource":"login.html",
+      "controller":"login.js",
+      "url":"/login.html",
+       "preloading": true,
+      "maxAge": -1
    },
    "hello":{
       "type":"html",
@@ -57,7 +138,60 @@
          "name":"$1",
 	 "cri": "$2"
       },
-      "preloading":true
+      "preloading":true,
+      "maxAge": 86400
+   },
+   "mainJs":{
+      "type":"js",
+      "format":"/js/main.js$",
+      "mime":"application/javascript",
+      "method":"GET",
+      "ressource":"main.js",
+      "controller":"main-js.js",
+      "url":"/js/main.js",
+      "query":{
+      },
+      "preloading":false,
+      "maxAge": -1
+   },
+   "sigmaJs":{
+      "type":"js",
+      "format":"/js/sigma.min.js$",
+      "mime":"application/javascript",
+      "method":"GET",
+      "ressource":"sigma.min.js",
+      "controller":"main-js.js",
+      "url":"/js/sigma.min.js",
+      "query":{
+      },
+      "preloading":true,
+      "maxAge": -1
+   },
+    "mainCss":{
+      "type":"css",
+      "format":"/css/main.css$",
+      "mime":"text/css",
+      "method":"GET",
+      "ressource":"main/main.css",
+      "controller":"main-js.js",
+      "url":"/css/main.css",
+      "query":{
+      },
+      "preloading":true,
+      "maxAge": 1
+   },
+   "mathCss":{
+      "type":"css",
+      "format":"/css/math.css$",
+      "mime":"text/css",
+      "method":"GET",
+      "ressource":"math.css",
+      "controller":"main-js.js",
+      "url":"/css/math.css",
+      "query":{
+      },
+      "preloading":true,
+      "maxAge": 1
    },
    "error404":{
       "type":"html",
@@ -65,6 +199,34 @@
       "method":"GET,POST",
       "ressource":"error404.html",
       "controller":"error404.js",
-      "preloading": true
+      "preloading": true,
+      "maxAge" : 86400
+   },
+    "admin":{
+	"type":"html",
+	"format":"^/admin/?([-a-zA-Z]*)$",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"admin.html",
+	"controller":"admin.js",
+	"url":"/admin/[page]",
+	"query":{
+            "page":"$1"
+	},
+	"preloading": true,
+	"maxAge" : -1
+    },
+    "adminCss":{
+      "type":"css",
+      "format":"^/css/admin.css$",
+      "mime":"text/css",
+      "method":"GET",
+      "ressource":"admin.css",
+      "controller":"main-js.js",
+      "url":"/css/admin.css",
+      "query":{
+      },
+      "preloading":true,
+      "maxAge": 1
    }
 }

@@ -1,0 +1,52 @@
+{
+    "head": {
+	"name": "head",
+	"type": "common",
+	"file":"common/head.html",
+	"children":[":section", "header"],
+	"query":{
+	    "title": "",
+	    "lang": "",
+	    "jsLinked": [
+		{"path": "main.js"}
+	    ],
+	    "cssLinked": [
+		{"path": "main.css"}
+	    ]
+	}
+    },
+    "index": {
+	"name": "index",
+	"type": "section",
+	"file":"index.html",
+	"children":[],
+	"query":{
+	    "name": ""
+	}
+    },
+    "header": {
+	"name": "header",
+	"type": "header",
+	"file":"common/header.html",
+	"children":["nav","sessionInfo"],
+	"query":{
+	}
+    },
+    "nav": {
+	"name": "nav",
+	"type": "nav",
+	"file":"common/nav.html",
+	"children":[],
+	"query":{
+	    "links":[]
+	}
+    },
+    "sessionInfo": {
+	"name": "sessionInfo",
+	"type": "sessionInfo",
+	"file":"common/sessionInfo.html",
+	"children":[],
+	"query":{
+	}
+    }
+}
