@@ -289,6 +289,10 @@ window.onload =function() {
 		e.preventDefault();
 		actionKeyDown = true;
 		break;
+	    case 176 : 
+		e.preventDefault();
+		actionKeyDown = true;
+		break;
 	    case 68:
 		if(actionKeyDown){
 		    e.preventDefault();
@@ -349,7 +353,7 @@ window.onload =function() {
 	}
 
 	document.onkeyup = function(e){
-	    if(e.keyCode == 222)
+	    if(e.keyCode == 222 || e.keyCode == 176)
 		actionKeyDown = false;
 	}
 /*
