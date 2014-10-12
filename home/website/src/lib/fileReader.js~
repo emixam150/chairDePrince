@@ -1,0 +1,35 @@
+
+/*
+* File's Reader 
+*
+* Lit un fichier texte et le charge en une variable, 
+requiert le : * un lien vers le fichier
+              * un type pour l'encodage
+*/
+
+var fs = require('fs');
+
+exports.exec = function(path, type, cb) {
+    var option = (type !== 'image') ? 'utf8' : 'binary',
+    file = '';
+    
+    fs.stat(path, function (err,stat) {
+	if(err) {
+	    if('ENOENT' == err.code) 
+		console.log(path+ ' not found');
+	    else 
+                console.log(path + ' error while finding');
+	}else{ 
+	    var stream = fs.createReadStream(path);
+	    stream.setEncoding(option);
+	    
+	    stream.on('data', function(chunk) {
+   		file += chunk; 
+	    });
+	    
+	    stream.on('end', function(){
+		cb(file,stat);
+	    });
+        }
+    });
+};

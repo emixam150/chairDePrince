@@ -143,11 +143,11 @@
    },
    "mainJs":{
       "type":"js",
-      "format":"/js/main.js$",
+      "format":"/js/text-control.js$",
       "mime":"application/javascript",
       "method":"GET",
       "ressource":"main.js",
-      "controller":"main-js.js",
+      "controller":"text-control.js",
       "url":"/js/main.js",
       "query":{
       },
@@ -160,7 +160,7 @@
       "mime":"application/javascript",
       "method":"GET",
       "ressource":"sigma.min.js",
-      "controller":"main-js.js",
+      "controller":"text-control.js",
       "url":"/js/sigma.min.js",
       "query":{
       },
@@ -173,7 +173,7 @@
       "mime":"text/css",
       "method":"GET",
       "ressource":"main/main.css",
-      "controller":"main-js.js",
+      "controller":"text-control.js",
       "url":"/css/main.css",
       "query":{
       },
@@ -186,7 +186,7 @@
       "mime":"text/css",
       "method":"GET",
       "ressource":"math.css",
-      "controller":"main-js.js",
+      "controller":"text-control.js",
       "url":"/css/math.css",
       "query":{
       },
@@ -222,11 +222,27 @@
       "mime":"text/css",
       "method":"GET",
       "ressource":"admin.css",
-      "controller":"main-js.js",
+      "controller":"text-control.js",
       "url":"/css/admin.css",
       "query":{
       },
       "preloading":true,
       "maxAge": 1
+   },
+   "share":{
+      "type":"share",
+      "format":"/share/(([_-a-zA-Z0-9]*)/([_-a-zA-Z0-9]*)\\.([a-z0-9]*))$",
+      "method":"GET",
+      "ressource":"[file]",
+      "controller":"share.js",
+      "url":"/share/$1/$2.$3",
+      "query":{
+	"file":"$0",	
+      	"dir":"$1",
+      	"fileName":"$2",
+      	"extension":"$3"
+      },
+      "preloading":false,
+      "maxAge": -1
    }
 }

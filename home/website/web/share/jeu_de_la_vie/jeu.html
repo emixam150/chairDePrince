@@ -1,0 +1,101 @@
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Jeu de la vie</title>
+        <link rel="stylesheet" href="jeu.css"/>
+            <script src="life.js"></script>
+        <meta charset="utf-8" />
+        </head>
+        <body>
+            <div id="fixe" class="inline">
+            <div id="logo" class="inline">
+                <span id="site_name">Chair de Prince</span>
+            </div>
+          <div id="control" class="inline" >
+           <div id="first" class="inline">
+            <div class="inline">
+                <div class="block" id="play_input" >
+                   <p class="button">▶</p>
+               </div>
+               <div  class="block aff">
+               <p class="title_block">Numéro de génération</p>
+               <p id="generation" class="value_block">0</p>
+            </div>
+          </div>
+          <div class="inline">
+            <div class="block" id="stop_input">
+              <p class="button">■</p>
+            </div>
+            <div  class="block aff">
+              <p class="title_block">Nombre de cellules</p>
+              <p id="nombre" class="value_block">0</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div id="variable" class="inline">
+      <div id="sec" >
+            <div id="vitesse" class="block">
+               <span class="label">Vitesse : </span>
+               <input value="4" type="range" min="0.5" max="30" step="0.5" id="vitesse_input"/>
+                </div>
+                <div class="block">
+           <span class="label">Plateau :</span>
+           <input type="text" id="plateau_input"/>
+           <input value="OBTENIR" type="button" id="obtenir_input"/>
+           <input value="AFFICHER" type="button" id="afficher_input"/>
+            </div>
+            <div class="block">
+            <span class="label">Exemples:</span>
+            <select id="exemple_select">
+
+            </select>
+            <input value="GO!" type="button" id="exemple_input"/>
+          </div>
+          </div>
+
+
+        </div>
+            <div id="ter" class="inline">
+             <div id="option" class="inline">
+                <span class="button">OPTIONS & DOCS ↬ </span>
+            </div>
+
+          </div>
+    </div>
+            <div id="panneau" class="hidden">
+                <span id="titre_panneau" >
+                    <span id="input_close" class="button left">➔</span>
+                    <span id="input_opts" class="dead button">Options</span> ⧸
+                    <span id="input_docs" class="button">Docs</span>
+                </span>
+                <div id="place_option">
+                    <div class="block">
+                    <span>Remplissage aléatoire de coef: </span>
+                    <input id="input_coef"/>
+                    <span id="input_random" class="button" >DRAW CONTOUR</span>
+                        </div>
+                    <div class="block">
+                     <span>Affichage life file: </span><br/>
+                    <textarea id="input_filelife" rows="4" cols="50"></textarea>
+                    <span id="input_afflife" class="button" >AFFICHER</span>
+                        </div>
+                </div>
+                <div id="place_docs" class="hidden" >
+                    	<h3>Les règles</h3>
+	                   <p>
+	  Les voisines d'une case sont les huit cases les plus proches de cette dernière.
+	       <ul>
+	           <li>Chaque cellule vivante (réprésentée par une boule) ne le reste à condition d'avoir deux ou trois voisines, sinon elle meurt (disparaît). </li>
+	           <li> Chaque cellule morte ne revit qu'à condition d'avoir exactement 3 voisines.</li>
+	       </ul>
+	               </p>
+                </div>
+            </div>
+          <div id="canvas">
+            <canvas id="mon_canvas" >
+                Message pour les navigateurs ne supportant pas encore canvas.
+            </canvas>
+          </div>
+        </body>
+    </html>

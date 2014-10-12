@@ -180,7 +180,7 @@ exports.start = function(req, res, server,body) {
     support.res = res;
     support.req = req;
     support.paths = paths;
-    //console.log(file.js);
+    console.log(support.page);
     //var truc = new User("becasse");
     //truc.find({},function(tab){console.log(tab);});
     //truc.removeThis();
@@ -210,6 +210,7 @@ exports.start = function(req, res, server,body) {
 
 
 };
+
 
 function constructContent(page){
     var content = null;
@@ -244,10 +245,12 @@ function constructRessourcePath(page){
 	    ressourcePath = null;
 	}*/
 	break;
+    case 'share':
+	ressourcePath = join(paths['share'], page.file);
+	break;
     default:
 	break;
     }
-
     return ressourcePath;
 }
 

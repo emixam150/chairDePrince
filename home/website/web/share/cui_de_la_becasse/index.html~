@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="click-container">
+<img src="becasse-click.png" id="click"/>
+<img src="becasse-close.png" id="close" style="display:none;"/>
+<img src="becasse-open.png" id="open" style="display:none;"/>
+</div>
+<audio id='sound'>
+  <source src="cui.mp3" type="audio/mpeg">
+</audio>
+<script>
+  var click = document.getElementById('click'),
+  close = document.getElementById('close'),
+  open = document.getElementById('open'),
+  sound = document.getElementById('sound');
+document.getElementById('click-container').addEventListener('click',function(){
+
+sound.pause();
+sound.currentTime = 0;
+sound.play();
+  if(click.style.display !='none'){
+     click.style.display ='none';
+     open.style.display ='block';
+     setTimeout(function() {
+        open.style.display ='none';
+        close.style.display ='block';
+     },500);
+  }else{
+     close.style.display ='none';
+     open.style.display ='block';
+     setTimeout(function() {
+        open.style.display ='none';
+        close.style.display ='block';
+     },200);
+  }
+},true);
+
+</script>
+</body>
+</html>
+ 
