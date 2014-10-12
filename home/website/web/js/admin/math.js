@@ -246,7 +246,7 @@ window.onload =function() {
 	    },
 	    longmapsto:{
 		value: '\\longmapsto ',
-		cursIndent: 12
+		cursIndent: 60
 	    },
 	    "in" :{
 		value: '\\in ',
@@ -323,7 +323,7 @@ window.onload =function() {
 		    insertWord(wordsInfo.longleftarrow);
 		}
 		break;
-		 case 220:
+		 case 60:
 		if(actionKeyDown){
 		    e.preventDefault();
 		    insertWord(wordsInfo.longmapsto);
