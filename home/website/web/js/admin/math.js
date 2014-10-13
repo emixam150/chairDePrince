@@ -224,48 +224,96 @@ window.onload =function() {
 	var textEltOnFocus = {},
 	    actionKeyDown = false,
 	wordsInfo = {
-	    mathbb:{
-		value: '\\mathbb ',
-		cursIndent: 8
-	    },
-	    longleftarrow:{
-		value: '\\longleftarrow ',
-		cursIndent: 15
-	    },
-	    longrightarrow:{
-		value: '\\longrightarrow ',
-		cursIndent: 16
-	    },
-	    Leftarrow:{
+	    37:{
 		value: '\\Leftarrow ',
-		cursIndent: 11
+		cursIndent: 0
 	    },
-	    Rightarrow:{
+	    38:{
+		value: '\\longrightarrow ',
+		cursIndent: 0
+	    },
+	    39:{
 		value: '\\Rightarrow ',
-		cursIndent: 12
+		cursIndent: 0
 	    },
-	    longmapsto:{
+	    40:{
+		value: '\\longleftarrow ',
+		cursIndent: 0
+	    },
+	    49: {
+		value: '\\mathscr ',
+		cursIndent: 0
+	    },
+	    50:{
+		value: '\\mathbb ',
+		cursIndent: 0
+	    },
+	    51:{
+		value: '\\mathrm ',
+		cursIndent: 0
+	    },
+	    56: {
+		value: '_{}',
+		cursIndent: -1
+	    },
+	    57: {
+		value: '^{}',
+		cursIndent: -1
+	    },
+	    60:{
 		value: '\\longmapsto ',
-		cursIndent: 60
+		cursIndent: 0
 	    },
-	    "in" :{
+	    65: {
+		value: '\\begin{array}{ll}\n\n\\end{array}',
+		cursIndent: -14
+	    },	    
+	    68 :{
 		value: '\\in ',
-		cursIndent: 4
+		cursIndent: 0
 	    },
-	    inlineLatex: {
+	    69: {
+		value: '\\exists ',
+		cursIndent: 0
+	    },
+	    70: {
+		value: '\\forall ',
+		cursIndent: 0
+	    },
+	    73: {
 		value: '$$',
-		cursIndent:1
+		cursIndent:-1
 	    },
-	    newlineLatex: {
+	    74: {
 		value: '\n$$$$\n',
-		cursIndent: 3
+		cursIndent: -3
+	    },
+	    83: {
+		value: '\\sum ',
+		cursIndent: 0
+	    },
+	    84: {
+		value: '\\text{} ',
+		cursIndent: -2
+	    },
+	    85: {
+		value: '\\cup ',
+		cursIndent: 0
+	    },
+	    87: {
+		value: '\\cap ',
+		cursIndent: 0
+	    },
+	    89: {
+		value: '\\infty',
+		cursIndent: 0
 	    }
 	};
 	var insertWord = function(wordInfo){
 	    var positionStart = textEltOnFocus.selectionStart;
 	    insertAtCursor(textEltOnFocus, wordInfo.value);
-	    textEltOnFocus.selectionStart = positionStart +wordInfo.cursIndent;
-	    textEltOnFocus.selectionEnd = positionStart +wordInfo.cursIndent;
+	    textEltOnFocus.selectionStart = positionStart + wordInfo.value.length +wordInfo.cursIndent;
+	    textEltOnFocus.selectionEnd = positionStart+ wordInfo.value.length +wordInfo.cursIndent;
 	    textEltOnFocus.focus();
 	};
 
@@ -276,84 +324,25 @@ window.onload =function() {
 	});
 	
 	document.getElementById('inline_latex').onclick = function(){
-	    insertWord(wordsInfo.inlineLatex);
+	    insertWord(wordsInfo[73]);
 	}
 
 	document.getElementById('newline_latex').onclick = function(){
-	    insertWord(wordsInfo.newlineLatex);
+	    insertWord(wordsInfo[74]);
 	}
 	
 	document.onkeydown = function(e){
-	    switch(e.keyCode){
-	    case 222 : 
+	    if(e.keyCode ==  222 || e.keyCode == 176 || e.keyCode == 192){ 
 		e.preventDefault();
 		actionKeyDown = true;
-		break;
-	    case 176 : 
+	    }else if(typeof wordsInfo[e.keyCode] != 'undefined' && actionKeyDown){
+		insertWord(wordsInfo[e.keyCode]);
 		e.preventDefault();
-		actionKeyDown = true;
-		break;
-	    case 68:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo['in']);
-		}
-		break;
-	    case 37:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.Leftarrow);
-		}
-		break;
-	    case 38:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.longrightarrow);
-		}
-		break;
-	    case 39:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.Rightarrow);
-		}
-		break;
-	    case 40:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.longleftarrow);
-		}
-		break;
-		 case 60:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.longmapsto);
-		}
-		break;
-	    case 73:
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.inlineLatex);
-		}
-		break;
-	    case 74: 
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.newlineLatex);
-		}
-		break;
-	    case 66: 
-		if(actionKeyDown){
-		    e.preventDefault();
-		    insertWord(wordsInfo.mathbb);
-		}
-		break;
-	    default:
-		break;
 	    }
 	}
 
 	document.onkeyup = function(e){
-	    if(e.keyCode == 222 || e.keyCode == 176)
+	    if(e.keyCode == 222 || e.keyCode == 176 || e.keyCode == 192)
 		actionKeyDown = false;
 	}
 /*
