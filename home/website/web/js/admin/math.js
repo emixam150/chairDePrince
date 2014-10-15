@@ -152,9 +152,12 @@ window.onload =function() {
     var eventEditor = false;
 
     socket.on('newContentMath', function(newContent){
-	currentContent = newContent;
+	currentContent = newContent.content;
+	bornDate = new Date(newContent.bornDate);
+	lastUpdate = new Date(newContent.lastUpdate);
 	console.log(newContent);
-	var mathEditor = new MathEltContent(newContent);
+	
+	var mathEditor = new MathEltContent(currentContent);
 
 /*
  * Chargement des events de l'editeur
@@ -267,6 +270,10 @@ window.onload =function() {
 	    65: {
 		value: '\\begin{array}{ll}\n\n\\end{array}',
 		cursIndent: -14
+	    },
+	    67: {
+		value: '\\cap ',
+		cursIndent: 0
 	    },	    
 	    68 :{
 		value: '\\in ',
@@ -300,10 +307,6 @@ window.onload =function() {
 		value: '\\cup ',
 		cursIndent: 0
 	    },
-	    87: {
-		value: '\\cap ',
-		cursIndent: 0
-	    },
 	    89: {
 		value: '\\infty',
 		cursIndent: 0
@@ -332,7 +335,7 @@ window.onload =function() {
 	}
 	
 	document.onkeydown = function(e){
-	    if(e.keyCode ==  222 || e.keyCode == 176 || e.keyCode == 192){ 
+	    if(e.keyCode ==  222 || e.keyCode == 176 || e.keyCode == 192 || e.keyCode == 27 ){ 
 		e.preventDefault();
 		actionKeyDown = true;
 	    }else if(typeof wordsInfo[e.keyCode] != 'undefined' && actionKeyDown){
@@ -342,7 +345,7 @@ window.onload =function() {
 	}
 
 	document.onkeyup = function(e){
-	    if(e.keyCode == 222 || e.keyCode == 176 || e.keyCode == 192)
+	    if(e.keyCode == 222 || e.keyCode == 176 || e.keyCode == 192 || e.keyCode == 27 )
 		actionKeyDown = false;
 	}
 /*
@@ -367,7 +370,6 @@ window.onload =function() {
 */
 
 	mathEditor.loadContent(currentContent);
-	console.log(mathEditor);
 	updateCasesDisplay();
 	// contenu des cases
 	Object.keys(mathEditor.cases).forEach(function(caseName){
@@ -375,6 +377,9 @@ window.onload =function() {
 	});
 	// contenu du titre
 	document.getElementById('current_title').innerHTML = mathEditor.title;
+	// contenu des dates
+	document.getElementById('born_date').innerHTML = bornDate.toLocaleString("fr-FR", {hour12: false});
+	document.getElementById('last_update').innerHTML = lastUpdate.toLocaleString("fr-FR", {hour12: false});
 	// contenu du type 
 	var typeSelectElt = document.getElementById('type'),
 	    indexOfType = 0,

@@ -30,28 +30,31 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
     };
     
     this.updateThis = function(newContent, cb){
-	var math = this,
-	query = { _id: this._id},
-	queryTest = { name: simplify(newContent.title)};
-	math.find(queryTest, function(docs){
-	    if(docs.length == 0 || String(docs[0]._id) == String(math._id)){
-		math.content = newContent;
-		math.name = simplify(newContent.title);
-		math.update(query, math, function(result){
-		    if(result != 0)
-			if(typeof cb != 'undefined') 
-			    cb(math);
-		    else
-			if(typeof cb != 'undefined')
-			    cb();
-		});
-	    }else
-		if(typeof cb != 'undefined')
-		    cb();
-	});
+	if(typeof newContent.title != "undefined" && newContent.title != "" && newContent.title != null){
+	    var math = this,
+	    query = { _id: this._id},
+	    queryTest = { name: simplify(newContent.title)};
+	    math.find(queryTest, function(docs){
+		if(docs.length == 0 || String(docs[0]._id) == String(math._id)){
+		    math.content = newContent;
+		    math.lastUpdate = new Date();
+		    math.name = simplify(newContent.title);
+		    math.update(query, math, function(result){
+			if(result != 0)
+			    if(typeof cb != 'undefined') 
+				cb(math);
+			else
+			    if(typeof cb != 'undefined')
+				cb();
+		    });
+		}else
+		    if(typeof cb != 'undefined')
+			cb();
+	    });
+	}
     };
 
-    this.removeThis = function(){ this.remove({'name':this.name}); };
+    this.removeThis = function(){ this.remove({_id :this._id}); };
 
     this.getByName = function(name,callback){
 	var math = this,
@@ -59,6 +62,8 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 	this.find(query ,function(docs){
 	    if(docs.length == 1){
 		math.name = docs[0].name;
+		math.bornDate = docs[0].bornDate;
+		math.lastUpdate = docs[0].lastUpdate;
 		math.content = docs[0].content;
 		math._id = docs[0]._id;
 		callback(math);

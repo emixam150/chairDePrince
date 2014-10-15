@@ -63,7 +63,6 @@ exports.execSocket= function(socket){
 	    if(err) throw err;
 	    htmlMath = data
 	});
-	//socket.on('endMath', function(){console.log('end');});
 
 	//listage des éléments mathématiques
 	var MathUseList = new MathOb();
@@ -99,7 +98,10 @@ exports.execSocket= function(socket){
 	    currentMath = new MathOb();
 	    currentMath.getByName(name, function(result){
 		if(typeof result != 'undefined'){
-		    socket.emit('newContentMath', currentMath.content);
+		    console.log(currentMath);
+		    socket.emit('newContentMath', {content: currentMath.content,
+						   bornDate: currentMath.bornDate,
+						   lastUpdate: currentMath.lastUpdate});
 		}else{
 		    currentMath = null;
 		    socket.emit('mathWarning', 'Warning: Name don\'t exists');

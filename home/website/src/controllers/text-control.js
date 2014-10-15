@@ -8,7 +8,6 @@ fileReader = require(paths.lib +'/fileReader.js'),
 error404 = require(paths.controllers +'/error404.js').exec;
 
 exports.exec = function(support) {
-    console.log(support.content);
     if(support.content != null){
 	support.res.setHeader('Content-Type', support.page.mime);
 	$.require('makeTextResponse').send(support.content, support.headers, support.res);

@@ -1,0 +1,20 @@
+/*
+ * Text Controller
+ *  Si support.content est non "null" alors on envoie le contenu 
+ Sinon il existe support.ressourcePath on envoie le contenu du fichier lié au path 
+ */
+var paths = require($.paths),
+fileReader = require(paths.lib +'/fileReader.js');
+
+exports.exec = function(support) {
+    console.log(support.content);
+    if(support.content != null){
+	support.res.setHeader('Content-Type', support.page.mime);
+	$.require('makeTextResponse').send(support.content, support.headers, support.res);
+    }else
+	fileReader.exec(support.ressourcePath, 'text', function(file,stat){
+	    console.log(stat);
+	    support.res.setHeader('Content-Type', support.page.mime);
+	    $.require('makeTextResponse').send(file, support.headers, support.res);
+	});
+};

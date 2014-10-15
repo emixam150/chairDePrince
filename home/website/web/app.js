@@ -180,7 +180,7 @@ exports.start = function(req, res, server,body) {
     support.res = res;
     support.req = req;
     support.paths = paths;
-    console.log(support.page);
+    //console.log(support.page);
     //var truc = new User("becasse");
     //truc.find({},function(tab){console.log(tab);});
     //truc.removeThis();

@@ -16,6 +16,7 @@ exports.exec = function(mathElt, htmlFile, cb) {
 		children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children:[],
 		queries: {
 		    title: mathElt.content.title,
+		    bornDate: formatDate(mathElt.bornDate),
 		    type: mathElt.translateTypeName(mathElt.content.type),
 		    typeColor : mathElt.translateTypeColor(mathElt.content.type),
 		    parents: parentsDisplay,
@@ -30,7 +31,10 @@ exports.exec = function(mathElt, htmlFile, cb) {
 	});
 } ;
 
-
+var formatDate = function(date){
+    var month = (date.getMonth()<9)? "0"+(date.getMonth()+1):date.getMonth()+1
+    return date.getDate()+"/"+month+"/"+date.getFullYear();
+}
 
 var recupParentChild = function(parents, children, cb){
     var cpt = 0,

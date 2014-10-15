@@ -5,15 +5,6 @@
 
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
-    <link href="//fonts.googleapis.com/css?family=Playfair+Display:400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
-    {{#cssLinked}}
-    <link rel="stylesheet" type="text/css" href="css/{{path}}">
-    {{/cssLinked}}
-    {{#cssSpe}}
-    <style>
-      {{cssSpe}}
-    </style>
-    {{/cssSpe}}
       <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	extensions: ["tex2jax.js"],
@@ -23,7 +14,10 @@
 	displayMath: [ ['$$','$$'] ],
 	processEscapes: true
 	},
-	"HTML-CSS": { availableFonts: ["TeX"] }
+	"HTML-CSS": { availableFonts: ["TeX"] },
+	TeX: {
+	extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+	}
 	});
       </script>
   
@@ -36,6 +30,18 @@
 {{{section}}}
 
 {{{footer}}}
+
+<link href="//fonts.googleapis.com/css?family=Playfair+Display:400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+
+    {{#cssLinked}}
+    <link rel="stylesheet" type="text/css" href="css/{{path}}">
+    {{/cssLinked}}
+    {{#cssSpe}}
+    <style>
+      {{cssSpe}}
+    </style>
+    {{/cssSpe}}
+
 {{#jsLinked}}
 <script type="application/javascript" src="{{path}}"></script>
 {{/jsLinked}}
