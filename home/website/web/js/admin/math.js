@@ -16,32 +16,43 @@ window.onload =function() {
         nametoload = document.getElementById('nametoload'),
         list_namestoload = document.getElementById('list_namestoload'),
         nouveau_button = document.getElementById('nouveau_button');
+
+	function requireListOfMath(){
+	    setTimeout(function(){
+		socket.emit('listOfMath');
+	    },1000)
+	}
     
     socket.emit('math', currentContent);
 
-    socket.on('math', function(listOfMath){
+    socket.on('mathLoading', function(){
+	socket.emit('listOfMath');
+	console.log('mathConnected');
 
+	nouveau_button.addEventListener('click', function(){
+	    var title = prompt('Titre:','');
+	    if(title && title != '')
+		socket.emit('newTitleMath',title); 
+	});
+
+	ouvrir_button.addEventListener('click',function(){
+	    if(nametoload.value != '')
+		socket.emit('loadNameMath',nametoload.value);
+	})
+    })
+
+    socket.on('listOfMath', function(listOfMath){
 	//mise en place des noms des elts 
+	list_namestoload.innerHTML ="";
 	for(var i=0; i< listOfMath.length; i++){
 	    var option = document.createElement('option');
 	    option.innerHTML = listOfMath[i].title;
 	    option.value = listOfMath[i].name;
 	    list_namestoload.appendChild(option);}
-	
-	console.log('mathConnected');
-	nouveau_button.addEventListener('click', function(){
-	    var title = prompt('Titre:','');
-	    if(title != '' && title != null)
-		socket.emit('newTitleMath',title); 
-	});
-	ouvrir_button.addEventListener('click',function(){
-	    if(nametoload.value != '')
-		socket.emit('loadNameMath',nametoload.value);
-	});
     });
     
     socket.on('mathWarning',function(warning){
-	console.log(warning);
+	alert(warning);
     });
 
     /*
@@ -106,7 +117,7 @@ window.onload =function() {
 	};
 
 	this.loadContent = function(contentMath){
-	    if(typeof contentMath.tree != 'undefined'){
+	    if(typeof contentMath.tree != 'undefined' && content.tree.children){
 		for(var i=0;i<contentMath.tree.children.length; i++){
 		    this.cases[contentMath.tree.children[i].id].content = contentMath.tree.children[i].content;
 		    if(contentMath.tree.children[i].id != 'cont')
@@ -125,6 +136,7 @@ window.onload =function() {
 		return false;
 	    }
 	}
+
 	this.removeParent = function(parentName){
 	    this.parents.splice(this.parents.indexOf(parentName),1);
 	}
@@ -174,17 +186,16 @@ window.onload =function() {
 	});
 	//MAJ titre
 	document.getElementById('change_title').onclick=function(){
-	   var promptTitle = prompt('Titre:',mathEditor.title);
-	    if(promptTitle != ''){
-		mathEditor.parents.forEach(function(parentName){
-		    socket.send('removeParentMath', parentName);
-		});
+	    var promptTitle = prompt('Titre:',mathEditor.title);
+	    if(promptTitle != '' && promptTitle != null){
+		socket.emit('changeTitle', promptTitle);
 		document.getElementById('current_title').innerHTML=promptTitle;
 		mathEditor.title = promptTitle;
 		
 		mathEditor.convertForSend(currentContent);send(currentContent);
 	    }
 	};
+
 	//MAJ type
 	document.getElementById('type').onchange=function(){
 	    mathEditor.type = (this.value != '')? this.value: undefined;
@@ -218,7 +229,8 @@ window.onload =function() {
 		li.innerHTML = selectValue;
 		li.appendChild(button);
 		document.getElementById('list_of_parents').appendChild(li);
-		mathEditor.convertForSend(currentContent);send(currentContent);
+		//mathEditor.convertForSend(currentContent);send(currentContent);
+		socket.emit('addParentMath',selectValue);
 	    }
 	};
 
@@ -415,6 +427,7 @@ window.onload =function() {
 
      	// librairies
 
+
      	function insertAtCursor(myField, myValue) {
      	    //IE support
      	    if (document.selection) {
@@ -445,7 +458,9 @@ window.onload =function() {
 	var isWaitingForLatex = false;
 
 	function send(content){
-	    socket.emit('refreshMath', content);
+	    console.log(content.tree,content.type);
+	    socket.emit('refreshMath', {tree: content.tree,
+					type: content.type});
 	}
 
 	socket.on('refreshMath',function(output){

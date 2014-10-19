@@ -9,12 +9,13 @@ var paths = require($.paths);
 
 var mapNext = function(temp, mapTemp, cb){
     var children = temp.children;
-    var childrenNumber = children.length,
+    if(typeof children !='undefined'){
+	var childrenNumber =  children.length,
 	childrenCpt = 0;  
-    if(childrenNumber == 0){
-	mapTemp(temp, cb);
-    }
-    children.forEach(function(child){
+	if(childrenNumber == 0){
+	    mapTemp(temp, cb);
+	}
+	children.forEach(function(child){
 	    child.parent = temp;
 	    mapNext(child, mapTemp, function(){
 		childrenCpt ++;
@@ -22,6 +23,8 @@ var mapNext = function(temp, mapTemp, cb){
 		    mapTemp(temp, cb);	
 	    });
 	});
+    }else
+	mapTemp(temp,cb);
 }; 
 
 var mapTemp = function(temp, cb){

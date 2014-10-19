@@ -143,7 +143,7 @@
    },
    "mainJs":{
       "type":"js",
-      "format":"/js/text-control.js$",
+      "format":"/js/main.js$",
       "mime":"application/javascript",
       "method":"GET",
       "ressource":"main.js",

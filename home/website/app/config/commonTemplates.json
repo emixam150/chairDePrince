@@ -6,7 +6,7 @@
 	"children":["header","footer"],
 	"queries":{
 	    "title": "",
-	    "lang": "",
+	    "lang": "fr",
 	    "jsLinked": [
 		{"path": "/js/main.js"}
 	    ],

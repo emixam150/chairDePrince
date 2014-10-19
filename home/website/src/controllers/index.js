@@ -27,7 +27,6 @@ exports.exec = function(support) {
 	type: "part",
 	children:[],
 	queries: {
-	    name :"jean Hugues"
 	},
 	content: support.file.html.index
     };

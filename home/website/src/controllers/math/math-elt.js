@@ -9,8 +9,8 @@ mathEltDisplay = require('./math-elt-display.js');
 
 exports.exec = function(support) {
     var mathElt = new Math();
-    mathElt.getByName(support.page.query.eltName, function(result){
-	if(typeof result != 'undefined'){
+    mathElt.getByName(support.page.query.eltName, function(err,result){
+	if(!err){
 
 
 	    mathEltDisplay.exec(mathElt, support.file.html['math-elt'], function(section){

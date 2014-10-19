@@ -9,7 +9,7 @@ MathOb = require(paths.models + '/math.js');
 exports.exec = function(mathElt, htmlFile, cb) {
 
 	    recupParentChild((typeof mathElt.content.parents != 'undefined')? mathElt.content.parents:[],(typeof  mathElt.content.children != 'undefined')? mathElt.content.children: [] , function(parentsDisplay, childrenDisplay){
-
+		console.log(mathElt)
 	    var section ={
 		id: "section",
 		type: "part",
@@ -32,8 +32,11 @@ exports.exec = function(mathElt, htmlFile, cb) {
 } ;
 
 var formatDate = function(date){
-    var month = (date.getMonth()<9)? "0"+(date.getMonth()+1):date.getMonth()+1
-    return date.getDate()+"/"+month+"/"+date.getFullYear();
+    if(date){
+	var month = (date.getMonth()<9)? "0"+(date.getMonth()+1):date.getMonth()+1
+	return date.getDate()+"/"+month+"/"+date.getFullYear();
+    }else
+	return ""
 }
 
 var recupParentChild = function(parents, children, cb){

@@ -1,75 +1,271 @@
 /*
- * Model user
+ * Math's Model 
  */
 var dbName = "main",
 enName = "math",
-MongoSession = require(__dirname +'/mongoSession.js');
+Publication = require(__dirname +'/publication.js');
 
 
 module.exports = function Math(title, bornDate, lastUpdate, content) {
     
-    MongoSession.call(this, enName, dbName);
-
-    this.name = (typeof title !='undefined')? simplify(title) : '';
-    this.bornDate =(typeof bornDate !='undefined')? bornDate : new Date();
-    this.lastUpdate =(typeof lastUpdate !='undefined')? lastUpdate : new Date();
-    this.content = (typeof content !='undefined')?content: {title:title};
-
-    this.addThis = function(callback){ 
-	var math = this,
-	query = { name: this.name};
-	this.find(query, function(docs){
-	    if(docs.length == 0){
-		math.add(math, function(){
-		    callback(math);
-		});
-	    }
-	    else
-		callback();
-	});
-    };
-    
-    this.updateThis = function(newContent, cb){
-	if(typeof newContent.title != "undefined" && newContent.title != "" && newContent.title != null){
-	    var math = this,
-	    query = { _id: this._id},
-	    queryTest = { name: simplify(newContent.title)};
-	    math.find(queryTest, function(docs){
-		if(docs.length == 0 || String(docs[0]._id) == String(math._id)){
-		    math.content = newContent;
-		    math.lastUpdate = new Date();
-		    math.name = simplify(newContent.title);
-		    math.update(query, math, function(result){
-			if(result != 0)
-			    if(typeof cb != 'undefined') 
-				cb(math);
-			else
-			    if(typeof cb != 'undefined')
-				cb();
-		    });
-		}else
-		    if(typeof cb != 'undefined')
-			cb();
-	    });
+    Publication.call(this, title, bornDate, lastUpdate, content, enName, dbName );
+    if(!content){
+	this.content.parents = []
+	this.content.children = []
+	this.content.tree =  {
+     	    "id": "section",
+     	    "type": "part",
+     	    "content":"",
+     	    "children":[{
+		"id": "cont",
+		"type": "part",
+		"content":"",
+		"children":[],
+		"queries":{}
+	    }],
+     	    "queries":{}
 	}
-    };
+	this.content.type = null
+    }
 
-    this.removeThis = function(){ this.remove({_id :this._id}); };
+    this.addParentByName = function(name,cb){
+	var parentToAdd = new Math(),
+	math = this;
+	parentToAdd.getByName(name, function(err,result){
+	    if(err){
+		cb(err);
+	    }else{
+		if(math.name != name){
+		    if(parentToAdd.content.children.indexOf(math.name) == -1){
+			if(math.content.parents.indexOf(name) == -1){
+			    math.content.parents.push(name)
+			    math.updateThis(function(err){
+				if(err)
+				    cb(err)
+				else{
+				    parentToAdd.content.children.push(math.name)
+				    parentToAdd.updateThis(function(err){
+					if(err)
+					    cb(err)
+					else{
+					    cb()
+					}
+				    })
+				}
+			    })
+			}else
+			    cb(new Error("parent already exists in current elt"))
+		    }else
+			cb(new Error("current elt already exists in children's parent"))
+		}else
+		    cb(new Error("Can't add itself as parent"))
+	    }
+	})
+    }
 
-    this.getByName = function(name,callback){
+    this.removeParentByName = function(name,cb){
+	var parentToRemove = new Math(),
+	math = this;
+	parentToRemove.getByName(name, function(err,result){
+	    if(err){
+		cb(err);
+	    }else{
+		if(math.name != name){
+		    if(parentToRemove.content.children.indexOf(math.name) != -1){
+			if(math.content.parents.indexOf(name) != -1){
+			    math.content.parents.splice(math.content.parents.indexOf(name),1)
+			    parentToRemove.content.children.splice(parentToRemove.content.children.indexOf(math.name),1)
+			    math.updateThis(function(err){
+				if(err)
+				    cb(err)
+				else{
+				    parentToRemove.updateThis(function(err){
+					if(err)
+					    cb(err)
+					else{
+					    cb()
+					}
+				    })
+				}
+			    })
+			}else
+			    cb(new Error("parent don't exists in current elt"))
+		    }else
+			cb(new Error("current elt don't exists in children's parent"))
+		}else
+		    cb(new Error("Can't remove itself as parent"))
+	    }
+	})
+    }
+    
+    this.changeTitle = function(title, cb){
 	var math = this,
-	query = {"name": name};
-	this.find(query ,function(docs){
-	    if(docs.length == 1){
-		math.name = docs[0].name;
-		math.bornDate = docs[0].bornDate;
-		math.lastUpdate = docs[0].lastUpdate;
-		math.content = docs[0].content;
-		math._id = docs[0]._id;
-		callback(math);
-	    }else callback();
-	});
-    };
+	cptParent = 0 ,
+	cptChild = 0,
+	parentsLength = math.content.parents.length,
+	parentsList = [],
+	childrenLength = math.content.children.length,
+	childrenList = []
+
+	var addChildren = function(n){
+	    if(n!=0){
+		var childName = childrenList[n-1],
+		child = new Math()
+		child.getByName(childName, function(err, result){
+		    if(err)
+			cb(err)
+		    else{
+			child.addParentByName(math.name, function(err){
+			    if(err)
+				cb(err)
+			    else{
+				addChildren(n-1)
+			    }
+			})
+		    }
+		})
+	    }else
+		math.getByName(math.name, function(err){ //mise a jour av l'ajout des parents
+		    if(err)
+			cb(err)
+		    else
+			addParents(parentsLength)
+		})
+	},
+	addParents = function(n){
+	    if(n!=0){
+		var parentName = parentsList[n-1]
+		math.addParentByName(parentName, function(err){
+		    if(err)
+			cb(err)
+		    else{
+			addParents(n-1)
+		    }
+		})
+	    }else
+		cb()  
+	},
+	update = function(){
+	    math.getByName(math.name,function(err){ //mise a jour avant changement du titre
+		if(err)
+		    cb(err)
+		    else
+			math.setTitle(title, function(err){
+			    if(err)
+				cb(err)
+			    else
+				math.updateThis(function(err){
+				    if(err)
+					cb(err)
+				    else{
+					addChildren(childrenLength)
+				    }
+				})
+			})
+	    })
+	},
+	rmChildren = function(k){
+	    if(k != 0){
+		var child = new Math(),
+		childName = math.content.children[k-1]
+		child.getByName(childName, function(err,result){
+		    if(err)
+			cb(err)
+		    else
+			child.removeParentByName(math.name,function(err){
+			    if(err)
+				cb(err)
+			    else{
+				childrenList.push(childName)
+				rmChildren(k-1)
+			    }
+			})
+		})
+	    }else
+		update()
+	},
+	rmParents = function(k){
+	    if(k!=0){
+	    var parentName = math.content.parents[k-1] 
+		math.removeParentByName(parentName, function(err){
+		    if(err)
+			cb(err)
+		    else{
+			parentsList.push(parentName)
+			rmParents(k-1)
+		    }
+		})   
+	    }else
+		rmChildren(childrenLength)
+	}
+	// on supprime les parents de l'elt et on le supprime dans la liste des parents de chacun de ses enfants
+
+	this.checkTitle(title,function(err){
+	    if(err)
+		cb(err);
+	    else{
+		rmParents(parentsLength)
+	    }
+	})
+    }
+
+    this.changeTree = function(tree,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		if(tree){
+		    math.content.tree = tree
+		    math.updateThis(cb);
+		}else
+		    cb(new Error("tree isn't correct"))
+	})
+    }
+
+    this.changeType = function(type,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		math.checkType(type, function(err){
+		    if(err)
+			cb(err)
+		    else{
+			math.content.type = type
+			math.updateThis(cb);
+		    }
+		})
+	})
+    }
+    
+    this.checkType = function(type,cb){
+	console.log(type, typeof type)
+	switch(type){
+	case 'prop': cb()
+	    break;
+	case 'th': cb()
+	    break;
+	case 'lem': cb()
+	    break;
+	case 'cor': cb()
+	    break;
+	case 'def': cb()
+	    break;
+	case 'axiom': cb()
+	    break;
+	case 'conj': cb()
+	    break;
+	default: 
+	    if(type != null)
+		cb(new Error("type isn't correct"))
+	    else
+		cb()
+	    break;
+	}
+    }
+
     this.translateTypeColor = function(type){
 	var result = 'black';
 	switch(type){
@@ -116,18 +312,3 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 	return result;
     };
 };
-
-
-function simplify(title){
-    var simpleName = title.trim();
-
-    simpleName = simpleName.replace(/ /g,'_');
-    simpleName = simpleName.replace(/[èéêë]/g,"e");
-    simpleName = simpleName.replace(/[àâä]/g,"a");
-    simpleName = simpleName.replace(/[ûüù]/g,"u");
-    simpleName = simpleName.replace(/ç/g,"c");
-    simpleName = simpleName.replace(/[ôö]/g,"o");
-    simpleName = simpleName.replace(/[ïî]/g,"i");
-    simpleName = simpleName.replace(/['\\$:;,\?\.\!]/g,"");
-    return simpleName.toLowerCase();
-}
