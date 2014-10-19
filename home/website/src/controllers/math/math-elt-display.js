@@ -9,7 +9,7 @@ MathOb = require(paths.models + '/math.js');
 exports.exec = function(mathElt, htmlFile, cb) {
 
 	    recupParentChild((typeof mathElt.content.parents != 'undefined')? mathElt.content.parents:[],(typeof  mathElt.content.children != 'undefined')? mathElt.content.children: [] , function(parentsDisplay, childrenDisplay){
-		console.log(mathElt)
+
 	    var section ={
 		id: "section",
 		type: "part",

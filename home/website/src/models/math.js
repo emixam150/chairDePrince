@@ -36,14 +36,20 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 		cb(err);
 	    }else{
 		if(math.name != name){
-		    if(parentToAdd.content.children.indexOf(math.name) == -1){
-			if(math.content.parents.indexOf(name) == -1){
-			    math.content.parents.push(name)
+		    if(!parentToAdd.content.children || parentToAdd.content.children.indexOf(math.name) == -1){
+			if(!math.content.parents || math.content.parents.indexOf(name) == -1){
+			    if(!math.content.parents)
+				math.content.parents = [name]
+			    else
+				math.content.parents.push(name)
 			    math.updateThis(function(err){
 				if(err)
 				    cb(err)
 				else{
-				    parentToAdd.content.children.push(math.name)
+				    if(!parentToAdd.content.children)
+					parentToAdd.content.children = [math.name]
+				    else
+					parentToAdd.content.children.push(math.name)
 				    parentToAdd.updateThis(function(err){
 					if(err)
 					    cb(err)
@@ -60,7 +66,7 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 		}else
 		    cb(new Error("Can't add itself as parent"))
 	    }
-	})
+	})	
     }
 
     this.removeParentByName = function(name,cb){
@@ -73,7 +79,9 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 		if(math.name != name){
 		    if(parentToRemove.content.children.indexOf(math.name) != -1){
 			if(math.content.parents.indexOf(name) != -1){
+			    console.log(math.content.parents[math.content.parents.indexOf(name)],math.content.parents.indexOf(name))
 			    math.content.parents.splice(math.content.parents.indexOf(name),1)
+			    console.log('in',math)
 			    parentToRemove.content.children.splice(parentToRemove.content.children.indexOf(math.name),1)
 			    math.updateThis(function(err){
 				if(err)
@@ -101,11 +109,13 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
     this.changeTitle = function(title, cb){
 	var math = this,
 	cptParent = 0 ,
-	cptChild = 0,
-	parentsLength = math.content.parents.length,
-	parentsList = [],
-	childrenLength = math.content.children.length,
-	childrenList = []
+	cptChild = 0
+	if(math.content.parents){
+	    var parentsLength = math.content.parents.length,
+	    parentsList = []}
+	if(math.content.children){
+	    var childrenLength = math.content.children.length,
+	    childrenList = []}
 
 	var addChildren = function(n){
 	    if(n!=0){
@@ -125,11 +135,15 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 		    }
 		})
 	    }else
-		math.getByName(math.name, function(err){ //mise a jour av l'ajout des parents
+		math.getById(math._id, function(err){ //mise a jour av l'ajout des parents
 		    if(err)
 			cb(err)
-		    else
-			addParents(parentsLength)
+		    else{
+			if(math.content.parents)
+			    addParents(parentsLength)
+			else
+			    cb()
+		    }
 		})
 	},
 	addParents = function(n){
@@ -146,7 +160,7 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 		cb()  
 	},
 	update = function(){
-	    math.getByName(math.name,function(err){ //mise a jour avant changement du titre
+	    math.getById(math._id,function(err){ //mise a jour avant changement du titre
 		if(err)
 		    cb(err)
 		    else
@@ -158,7 +172,14 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 				    if(err)
 					cb(err)
 				    else{
-					addChildren(childrenLength)
+					if(math.content.children)
+					    addChildren(childrenLength)
+					else{ 
+					    if(math.content.parents)
+						addParents(parentsLength)
+					    else
+						cb()
+					}
 				    }
 				})
 			})
@@ -186,17 +207,24 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 	},
 	rmParents = function(k){
 	    if(k!=0){
+		console.log('begin',math)
 	    var parentName = math.content.parents[k-1] 
 		math.removeParentByName(parentName, function(err){
 		    if(err)
 			cb(err)
 		    else{
+			console.log('end',math)
 			parentsList.push(parentName)
 			rmParents(k-1)
 		    }
 		})   
-	    }else
-		rmChildren(childrenLength)
+	    }else{
+		math.content.parents = []
+		if(math.content.children)
+		    rmChildren(childrenLength)
+		else
+		    update()
+	    }
 	}
 	// on supprime les parents de l'elt et on le supprime dans la liste des parents de chacun de ses enfants
 
@@ -204,7 +232,14 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 	    if(err)
 		cb(err);
 	    else{
-		rmParents(parentsLength)
+		if(math.content.parents){
+		    rmParents(parentsLength)
+		}else{
+		    if(math.content.children)
+			rmChildren(childrenLength)
+		    else
+			upadte()
+		}
 	    }
 	})
     }
@@ -241,7 +276,7 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
     }
     
     this.checkType = function(type,cb){
-	console.log(type, typeof type)
+
 	switch(type){
 	case 'prop': cb()
 	    break;

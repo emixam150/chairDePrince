@@ -1,6 +1,6 @@
 {
     "14022213": {
-        "lastDate": 1413717258255,
+        "lastDate": 1413754299987,
         "client": {
             "sessionIndex": 14022213,
             "ip": "109.190.59.114",
@@ -2880,12 +2880,10 @@
         }
     },
     "222491999823": {
-        "lastDate": 1413723150786,
         "client": {
             "sessionIndex": 222491999823,
             "ip": "198.20.69.74",
-            "locale": "FR_fr",
-            "nbReq": null
+            "locale": "FR_fr"
         },
         "sessionsEvent": {
             "domain": null,
@@ -2894,11 +2892,296 @@
         }
     },
     "223896576366": {
-        "lastDate": 1413723153269,
         "client": {
             "sessionIndex": 223896576366,
             "ip": "198.20.69.74",
             "locale": "FR_fr"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "224691878899": {
+        "client": {
+            "sessionIndex": 224691878899,
+            "ip": "5.104.224.246",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "225563329155": {
+        "client": {
+            "sessionIndex": 225563329155,
+            "ip": "5.104.224.246",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "226614884058": {
+        "client": {
+            "sessionIndex": 226614884058,
+            "ip": "5.104.224.246",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "227027651004": {
+        "client": {
+            "sessionIndex": 227027651004,
+            "ip": "217.14.208.233",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "228238239727": {
+        "client": {
+            "sessionIndex": 228238239727,
+            "ip": "217.14.208.233",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "229284557916": {
+        "client": {
+            "sessionIndex": 229284557916,
+            "ip": "217.14.208.233",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "230101578966": {
+        "client": {
+            "sessionIndex": 230101578966,
+            "ip": "91.214.131.47",
+            "locale": "FR_fr",
+            "userAgent": "GoogleBot 1.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "231246433055": {
+        "client": {
+            "sessionIndex": 231246433055,
+            "ip": "109.190.59.114",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Android; Mobile; rv:32.0) Gecko/32.0 Firefox/32.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "232567618335": {
+        "client": {
+            "sessionIndex": 232567618335,
+            "ip": "65.207.23.201",
+            "locale": "FR_fr",
+            "userAgent": "Morfeus Fucking Scanner"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "233470538408": {
+        "client": {
+            "sessionIndex": 233470538408,
+            "ip": "157.55.39.250",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "234441778767": {
+        "client": {
+            "sessionIndex": 234441778767,
+            "ip": "157.55.39.250",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "235971168263": {
+        "client": {
+            "sessionIndex": 235971168263,
+            "ip": "95.211.140.221",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "236768747323": {
+        "client": {
+            "sessionIndex": 236768747323,
+            "ip": "95.211.140.221",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "237387664504": {
+        "client": {
+            "sessionIndex": 237387664504,
+            "ip": "95.211.140.221",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "238327316192": {
+        "client": {
+            "sessionIndex": 238327316192,
+            "ip": "66.249.67.9",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "239587375942": {
+        "client": {
+            "sessionIndex": 239587375942,
+            "ip": "66.249.67.9",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "240504942873": {
+        "client": {
+            "sessionIndex": 240504942873,
+            "ip": "66.249.67.9",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "241036408332": {
+        "client": {
+            "sessionIndex": 241036408332,
+            "ip": "66.249.67.17",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "242398361062": {
+        "client": {
+            "sessionIndex": 242398361062,
+            "ip": "109.190.59.114",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Android; Mobile; rv:29.0) Gecko/29.0 Firefox/29.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "243108303951": {
+        "client": {
+            "sessionIndex": 243108303951,
+            "ip": "109.190.59.114",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Android; Mobile; rv:29.0) Gecko/29.0 Firefox/29.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "244543096154": {
+        "client": {
+            "sessionIndex": 244543096154,
+            "ip": "109.190.59.114",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; en-us) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Safari/530.17"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "245474685136": {
+        "client": {
+            "sessionIndex": 245474685136,
+            "ip": "66.249.67.17",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
         },
         "sessionsEvent": {
             "domain": null,

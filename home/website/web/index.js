@@ -82,8 +82,6 @@ exports.execSocket= function(socket){
     mathEltDisplay = require(paths.controllers + '/math/math-elt-display.js');
     
     socket.on('math',function(){
-	console.log('index mathLoading')
-
 	fs.readFile(paths.html +'/math/math-elt.html','utf8',function(err, data){
 	    if(err) throw err;
 	    htmlMath = data
@@ -122,6 +120,7 @@ exports.execSocket= function(socket){
 	    if(err){
 		socket.emit('mathWarning','Adding '+ title +' failed: '+err.message);
 	    }else{
+		console.log('newElementMath :' + title);
 		currentMath = newMath
 		emitListOfMath()
 		socket.emit('newContentMath', {content: currentMath.content,
@@ -147,7 +146,7 @@ exports.execSocket= function(socket){
     })
 
     socket.on('refreshMath',function(container){
-	console.log(container)
+	if(currentMath != null){
 	    //mise à jour dans la base de donnée
 	    currentMath.changeTree(container.tree,function(err){
 		if(err)
@@ -159,7 +158,6 @@ exports.execSocket= function(socket){
 			else{
 			    // creation du rendu html
 			    var mathToWork = clone(currentMath);
-			    console.log(currentMath)
 			    mathEltDisplay.exec(mathToWork, htmlMath, function(section){
 				//		fs.readFile(paths.html +'/template/figure.html',function(err, figTemp){
 				//		    if(err) throw err;
@@ -173,29 +171,36 @@ exports.execSocket= function(socket){
 			}
 		    });
 	    });
-	});
+	}
+    });
 	
 	socket.on('removeParentMath',function(parentName){
-	    currentMath.removeParentByName(parentName,function(err){
-		if(err){
-		    socket.emit('mathWarning', 'impossible to remove parent ' + parentName + ': '+ err.message)
-		}	    
-	    })
+	    if(currentMath != null){
+		currentMath.removeParentByName(parentName,function(err){
+		    if(err){
+			socket.emit('mathWarning', 'impossible to remove parent ' + parentName + ': '+ err.message)
+		    }	    
+		})
+	    }
 	})
 	
 	
 	socket.on('addParentMath', function(parentName){
-	    currentMath.addParentByName(parentName, function(err){
-		if(err)
-		    socket.emit('mathWarning', 'impossible to add parent ' + parentName + ': '+ err.message)
-	    })
+	    if(!currentMath != null){
+		currentMath.addParentByName(parentName, function(err){
+		    if(err)
+			socket.emit('mathWarning', 'impossible to add parent ' + parentName + ': '+ err.message)
+		})
+	    }
 	})
 
 	socket.on('changeTitle', function(title){
-	    currentMath.changeTitle(title, function(err){
-		if(err)
-		    socket.emit('mathWarning', 'impossible to change title of '+ currentMath.content.title+ ' to '+title+' : '+ err.message)
-	    })
+	    if(currentMath != null){
+		currentMath.changeTitle(title, function(err){
+		    if(err)
+			socket.emit('mathWarning', 'impossible to change title of '+ currentMath.content.title+ ' to '+title+' : '+ err.message)
+		})
+	    }
 	})
 	
 	var completContent = function(tree, type, content, cb){

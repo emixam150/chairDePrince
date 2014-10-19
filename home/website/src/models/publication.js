@@ -35,13 +35,16 @@ module.exports = function Publication(title, bornDate, lastUpdate, content,enNam
 	    var pub = this,
 	    query = { _id: this._id},
 	    queryTest = { name: simplify(this.content.title)};
+	    console.log('fup',pub.content)
 	    pub.find(queryTest, function(docs){
 		if(docs.length == 0 || String(docs[0]._id) == String(pub._id)){
 		    pub.lastUpdate = new Date();
 		    pub.update(query, pub, function(result){
 			if(result != 0)
-			    if(typeof cb != 'undefined') 
+			    if(typeof cb != 'undefined'){ 
+				console.log('outup',pub.content);
 				cb(null,pub);
+			    }
 			else
 			    if(typeof cb != 'undefined')
 				cb(new Error('no result for update'));

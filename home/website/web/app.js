@@ -364,7 +364,7 @@ setInterval(function(){
 	    delete sessions[session];
 	}
     setTimeout(function(){
-	console.log(sessions);
+	//console.log(sessions);
 	saveSessions();
     },100);
 },30*60*1000); //toute les demi heures
