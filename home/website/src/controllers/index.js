@@ -19,7 +19,7 @@ exports.exec = function(support) {
 	cssLinked:[],
 	jsLinked:[],
 	jsSpe: false,// '<script type="application/javascript"></script>'
-	cssSpe: false
+	cssSpe: support.file.css.indexSpe
     };
 
     var section ={

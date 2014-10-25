@@ -16,7 +16,7 @@ exports.exec = function(support,cb){
 		fs.readFile(paths.logs +'/registration.txt',function(err,inscrip){
 	    if(err) throw err;
 		    
-	    var rightAccueil = {
+	    var centerAccueil = {
 		id:"center",
 		type:"part",
 		children:[],
@@ -29,7 +29,7 @@ exports.exec = function(support,cb){
 		content:data.toString()
 	    };
 	    
-	    cb(rightAccueil);
+	    cb(centerAccueil);
 		});
 	    });
 	});
