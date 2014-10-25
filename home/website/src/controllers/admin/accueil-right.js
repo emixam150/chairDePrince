@@ -15,7 +15,7 @@ exports.exec = function(support,cb){
 	    var rightAccueil = {
 		id:"right",
 		type:"part",
-		children:[],
+		children:{},
 		queries:{
 		    title: "Messages",
 		    messages: messages.toString()

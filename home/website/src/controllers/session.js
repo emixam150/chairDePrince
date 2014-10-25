@@ -87,7 +87,7 @@ function get(support){
     var section ={
 	id: "section",
 	type: "part",
-	children:[],
+	children:{},
 	queries: {
 	    name: support.session.user.name,
 	    email: support.session.user.email,
@@ -98,7 +98,7 @@ function get(support){
 	content: support.file.html.session
     };
     commonTreeTemplate.constructTree( queriesTemp, function(tree){
-	tree.children.push(section);
+	tree.children.section = section ;
 	tempModel.constructOutput(tree, function(output){
 	    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 	    support.res.setHeader('Content-Type', 'text/html');

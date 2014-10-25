@@ -12,7 +12,6 @@ exports.exec = function(support) {
     mathElt.getByName(support.page.query.eltName, function(err,result){
 	if(!err){
 
-
 	    mathEltDisplay.exec(mathElt, support.file.html['math-elt'], function(section){
 		var queriesTemp = {
 		    title : mathElt.content.title + " - Math - Chere de prince",
@@ -34,7 +33,7 @@ exports.exec = function(support) {
 
 
 		commonTreeTemplate.constructTree( queriesTemp, function(tree){
-		    tree.children.push(section);
+		    tree.children.section = section;
 		    tempModel.constructOutput(tree, function(output){
 			support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 			support.res.setHeader('Content-Type', 'text/html');
