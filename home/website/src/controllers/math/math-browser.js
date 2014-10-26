@@ -32,14 +32,14 @@ exports.exec = function(support) {
     };
 
     var MathBrowser = new Math(),
-    limitSize = 100;
+    limitSize = 1000;
 
-    MathBrowser.findSort(null, { lastUpdate: 1 } ,limitSize, function(docs){
+    MathBrowser.findSort(null, { lastUpdate: -1 } ,limitSize, function(docs){
 	displayMathElts(docs,function(listOfDisplayMath){
 	    var section ={
 		id: "section",
 		type: "part",
-		children:[],
+		children:{},
 		queries: {
 		    isDisplayGraph: isDisplayGraph,
 		    listOfResult: listOfDisplayMath
@@ -48,7 +48,7 @@ exports.exec = function(support) {
 	    };
 
 	    commonTreeTemplate.constructTree( queriesTemp, function(tree){
-		tree.children.push(section);
+		tree.children.section = section;
 		tempModel.constructOutput(tree, function(output){
 		    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 		    support.res.setHeader('Content-Type', 'text/html');

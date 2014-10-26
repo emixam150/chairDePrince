@@ -15,7 +15,7 @@ var mapNext = function(temp, mapTemp, cb){
 	if(childrenNumber == 0){
 	    mapTemp(temp, cb);
 	}
-//	    console.log(children)
+
 	Object.keys(children).forEach(function(childName){
 	    children[childName].parent = temp;
 	    mapNext(children[childName], mapTemp, function(){
@@ -29,7 +29,7 @@ var mapNext = function(temp, mapTemp, cb){
 }; 
 
 var mapTemp = function(temp, cb){
-//    console.log(temp)
+
     compileMustache(temp, function(output){
 	if(typeof temp.parent != "undefined"){
 	    temp.parent.queries[temp.id] = output; //l'id est indicateur dans le contenu 

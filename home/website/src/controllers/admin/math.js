@@ -19,7 +19,7 @@ exports.exec = function(support,cb){
 		var mathLeft = {
 		    id:"left",
 		    type:"part",
-		    children:[],
+		    children:{},
 		    queries:{
 		    },
 		    content:left.toString()
@@ -27,7 +27,7 @@ exports.exec = function(support,cb){
 		    mathCenter = {
 			id:"center",
 			type:"part",
-			children:[],
+			children:{},
 			queries:{
 			},
 			content:center.toString()
@@ -35,7 +35,7 @@ exports.exec = function(support,cb){
 		    mathRight = {
 			id:"right",
 			type:"part",
-			children:[],
+			children:{},
 			queries:{
 			},
 			content:right.toString()

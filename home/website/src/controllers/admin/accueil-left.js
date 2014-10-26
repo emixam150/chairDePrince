@@ -13,7 +13,7 @@ exports.exec = function(support,cb){
 	var leftAccueil = {
 	    id:"left",
 	    type:"part",
-	    children:[],
+	    children:{},
 	    queries:{
 		title: "Navigation",
 		links:[

@@ -6,26 +6,26 @@ var fs = $.require('fs');
 
 var paths = require($.paths);
 var object = require(paths.config + '/commonTemplates.json'),
-    root = "head";
+    root = "head"
 
 var mapTree = function(temp, temps, queriesTemp, cb){
-    var children = temp.children;
-    var childrenNumber = children.length,
-	childrenCpt = 0;  
-    var childrenObject = [];
+    var children = temp.children,
+	childrenNumber = children.length,
+	childrenCpt = 0,
+	childrenObject = []
     if(childrenNumber == 0){
 	constructTemp(temp, childrenObject, queriesTemp,function(object){
 	    cb(object);
-	});
+	})
     }
     children.forEach(function(childName){
 	mapTree(temps[childName], temps, queriesTemp, function(childObject){
-	    childrenCpt ++;
-	    childrenObject.push(childObject);
+	    childrenCpt ++
+	    childrenObject.push(childObject)
 	    if(childrenCpt == childrenNumber){
 		constructTemp(temp,childrenObject,  queriesTemp, function(object){
-		    cb(object);
-		});
+		    cb(object)
+		})
 	    }
 	});
     });
@@ -66,7 +66,7 @@ var constructTemp = function(temp, childrenObject, queriesTemp, cb){
 
 	    if( queryNumber == 0)
 		cb(object);
-    });
+    })
 }
 
 function clone(obj) {

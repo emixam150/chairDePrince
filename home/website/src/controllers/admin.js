@@ -25,7 +25,7 @@ function get(support){
     var accueil = {};
     accueil.acces = typeof support.session.admin != 'undefined';
     accueil.title ='';
-    accueil.children = [];
+    accueil.children = {};
     
     if(accueil.acces){
 	if(support.page.query.page != '')
@@ -39,11 +39,11 @@ function get(support){
     case '': 
 	if(accueil.acces){
 	    require(__dirname +'/admin/accueil-left.js').exec(support,function(child){
-		accueil.children.push(child);
+		accueil.children.left = child;
 		require(__dirname +'/admin/accueil-right.js').exec(support,function(child){
-		    accueil.children.push(child);
+		    accueil.children.right = child;
 		    require(__dirname +'/admin/accueil-center.js').exec(support,function(child){
-			accueil.children.push(child);
+			accueil.children.center = child;
 			send(support, accueil);
 		    });
 		});
@@ -55,7 +55,9 @@ function get(support){
 	if(accueil.acces){
 	    require(__dirname+'/admin/math.js').exec(support,function(left,center,right,jsSpe){
 		accueil.js = jsSpe;
-		accueil.children.push(left,center,right);
+		accueil.children.left = left
+		accueil.children.center = center
+		accueil.children.right = right
 		send(support,accueil);
 	    });
 	}else

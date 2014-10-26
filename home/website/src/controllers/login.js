@@ -42,7 +42,7 @@ function get(support){
     var section ={
 	id: "section",
 	type: "part",
-	children:[],
+	children:{},
 	queries: {
 	},
 	content: support.file.html.login
@@ -50,7 +50,7 @@ function get(support){
 
     commonTreeTemplate.constructTree(queriesTemp, function(tree){
 
-	tree.children.push(section);
+	tree.children.section = section;
 	tempModel.constructOutput(tree, function(output){
 	    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 	    support.res.setHeader('Content-Type', 'text/html');

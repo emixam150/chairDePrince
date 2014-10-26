@@ -54,25 +54,20 @@ var listMath = [];
 
 var list = new MathOb();
 
-// list.find({},function(listOfElt){
-//     var eq = {};
-//     listOfElt.forEach(function(elt){
-// 	    eq[elt.name] = elt._id;
-//     })
-//     setTimeout(function(){
-// 	listOfElt.forEach(function(elt){
-// 	    if(typeof elt.content.children != 'undefined'){
-// 		elt.content.children.forEach(function(parent,index){
-// 		    elt.content.children[index] = eq[parent]
-// 		})
-// 	    }
-// 	})
-// 	setTimeout(function(){  
-// 	    listOfElt.forEach(function(elt){
-// 		console.log(elt.content.children);
-// 	    })},2000)
-//     },2000)
-// })
+list.find({},function(listOfElt){
+    listOfElt.forEach(function(elt){
+	var test = new  MathOb()
+	test.getByName(elt.name,function(){
+	var children = clone(elt.content.tree.children)
+	    test.content.tree.children={}
+	    children.forEach(function(child){
+	    test.content.tree.children[child.id]= child
+	    
+	})
+	    setTimeout(function(){test.updateThis(function(){})},1000)
+	})
+    })
+})
 
 exports.execSocket= function(socket){
 
