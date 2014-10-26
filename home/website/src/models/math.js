@@ -81,7 +81,6 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 			if(math.content.parents.indexOf(name) != -1){
 			    console.log(math.content.parents[math.content.parents.indexOf(name)],math.content.parents.indexOf(name))
 			    math.content.parents.splice(math.content.parents.indexOf(name),1)
-			    console.log('in',math)
 			    parentToRemove.content.children.splice(parentToRemove.content.children.indexOf(math.name),1)
 			    math.updateThis(function(err){
 				if(err)
