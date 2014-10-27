@@ -11,6 +11,7 @@ $.define(exports,"ROOT",normalize( __dirname + '/../..'));
 module.exports = {
     html:        this.ROOT + '/web/html',
     images:      this.ROOT + '/web/images',
+    io:          this.ROOT + '/web/io',
     svg:         this.ROOT + '/web/svg',
     js:          this.ROOT + '/web/js',
     css:         this.ROOT + '/web/css',

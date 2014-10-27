@@ -145,18 +145,22 @@ textarea, input{
 #dem{
     background-color: #F7BE81;
     box-shadow: 2px 2px 2px #F5D0A9;
+    display:none
 }
 #rem{
     background-color: #F5DA81;
     box-shadow: 2px 2px 2px #F3E2A9;
+    display:none
 }
 #ex{
     background-color: #F3F781;
     box-shadow: 2px 2px 2px #F3F781;
+    display:none
 }
 #exo{
     background-color: #C8FE2E;
     box-shadow: 2px 2px 2px #D0FA58;
+    display:none
 }
 #render_math{
     font-family: "Playfair Display";

@@ -1,0 +1,17 @@
+2014_9_0_21:20:9:552 new session of index: 425514918158
+2014_9_0_21:20:9:941 new session of index: 426775272355
+2014_9_1_0:20:9:115 new session of index: 514242337
+2014_9_1_0:21:44:446 new session of index: 1204793177
+2014_9_1_15:20:24:698 new session of index: 2358163698
+2014_9_1_16:52:29:987 new session of index: 3863157996
+2014_9_1_16:52:30:381 new session of index: 4566491874
+2014_9_1_16:52:31:30 new session of index: 5030626612
+2014_9_1_17:36:49:725 new session of index: 6487591260
+2014_9_1_17:36:50:147 new session of index: 7623416719
+2014_9_1_17:36:50:755 new session of index: 8287399855
+2014_9_1_17:36:53:119 new session of index: 9943728892
+2014_9_1_17:36:54:765 new session of index: 10818642775
+2014_9_1_18:29:15:299 new session of index: 11489014411
+2014_9_1_18:29:15:791 new session of index: 12362357067
+2014_9_1_20:39:17:754 new session of index: 13503270041
+2014_9_1_21:9:11:243 new session of index: 14624335132

@@ -53,22 +53,22 @@ var recupParentChild = function(parents, children, cb){
     if(parents.length + children.length == 0)
 	cb(parentsDisplay, childrenDisplay);
 
-    parents.forEach(function(parentName){
+    parents.forEach(function(parentId){
 	var MathRecup = new MathOb();
-	MathRecup.getByName(parentName,function(result){
+	MathRecup.getById(parentId,function(result){
 	    parentsDisplay.push({
-		name: parentName,
+		name: MathRecup.name,
 		title: (typeof result != 'undefined')? MathRecup.content.title: 'Non trouvé!!!!',
 		colorOfType: MathRecup.translateTypeColor(MathRecup.content.type)
 	    });
 	    next();
 	});
     })
-    children.forEach(function(childName){
+    children.forEach(function(childId){
 	var MathRecup = new MathOb();
-	MathRecup.getByName(childName,function(result){
+	MathRecup.getById(childId,function(result){
 	    childrenDisplay.push({
-		name: childName,
+		name: MathRecup.name,
 		title: MathRecup.content.title,
 		colorOfType: MathRecup.translateTypeColor(MathRecup.content.type)
 	    });

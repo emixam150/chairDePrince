@@ -1,0 +1,203 @@
+{
+    "514242337": {
+        "client": {
+            "sessionIndex": 514242337,
+            "ip": "79.88.152.166",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "1204793177": {
+        "lastDate": 1414444520295,
+        "client": {
+            "sessionIndex": 1204793177,
+            "ip": "79.88.152.166",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0",
+            "nbReq": null
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        },
+        "admin": true
+    },
+    "2358163698": {
+        "client": {
+            "sessionIndex": 2358163698,
+            "ip": "89.163.227.192",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; fr; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "3863157996": {
+        "client": {
+            "sessionIndex": 3863157996,
+            "ip": "66.249.69.13",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "4566491874": {
+        "client": {
+            "sessionIndex": 4566491874,
+            "ip": "66.249.69.33",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "5030626612": {
+        "client": {
+            "sessionIndex": 5030626612,
+            "ip": "66.249.69.13",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "6487591260": {
+        "client": {
+            "sessionIndex": 6487591260,
+            "ip": "66.249.69.205",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "7623416719": {
+        "client": {
+            "sessionIndex": 7623416719,
+            "ip": "66.249.69.173",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "8287399855": {
+        "client": {
+            "sessionIndex": 8287399855,
+            "ip": "66.249.69.205",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "9943728892": {
+        "client": {
+            "sessionIndex": 9943728892,
+            "ip": "66.249.69.173",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "10818642775": {
+        "client": {
+            "sessionIndex": 10818642775,
+            "ip": "66.249.69.189",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "11489014411": {
+        "client": {
+            "sessionIndex": 11489014411,
+            "ip": "66.249.69.17",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "12362357067": {
+        "client": {
+            "sessionIndex": 12362357067,
+            "ip": "66.249.69.33",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "13503270041": {
+        "lastDate": 1414446119160,
+        "client": {
+            "sessionIndex": 13503270041,
+            "ip": "82.228.161.121",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0",
+            "nbReq": null
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        },
+        "admin": true
+    },
+    "14624335132": {
+        "client": {
+            "sessionIndex": 14624335132,
+            "ip": "109.120.163.141",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:9.0.1) Gecko/20100101 Firefox/9.0.1"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    }
+}
