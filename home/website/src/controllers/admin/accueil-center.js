@@ -17,7 +17,7 @@ exports.exec = function(support,cb){
 	    if(err) throw err;
 		    
 		    var centerAccueil = {
-		id:"center",
+			id:"center",
 		type:"part",
 		children:{},
 		queries:{

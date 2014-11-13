@@ -13,12 +13,12 @@ exports.exec = function(mathElt, htmlFile, cb) {
 	    var section ={
 		id: "section",
 		type: "part",
-		children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children:[],
+		children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children:{},
 		queries: {
 		    title: mathElt.content.title,
 		    bornDate: formatDate(mathElt.bornDate),
 		    type: mathElt.translateTypeName(mathElt.content.type),
-		    typeColor : mathElt.translateTypeColor(mathElt.content.type),
+		    typeColor: mathElt.translateTypeColor(mathElt.content.type),
 		    parents: parentsDisplay,
 		    parentsVisibility: parentsDisplay.length !=0,
 		    children: childrenDisplay,

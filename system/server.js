@@ -26,8 +26,8 @@ httpServer = function(server) {
     }).listen(server.port);
     var ioServer = io.listen(srv);
     ioServer.sockets.on('connection', function(socket){
-    app.execSocket(socket);
-});
+	app.execSocket(socket);
+    });
 }
 /*
 ** method of HTTPS Server
