@@ -3,56 +3,58 @@
   <span class="type_container" style="float:right">{{bornDate}}</span>
   <h2 class="title_elt_math">{{title}}</h2>
   <div id="math_section">
-    <p class="cont container">
+    <div class="cont container">
       {{{cont}}}
-    </p>
-    {{#parentsVisibility}}
-    <div class="generation_container">
-      <span class="ident_part">Parents</span>
-      <ul class="generation_list">
-	{{#parents}}
-	<li class="inline_list">
-	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	</li>
-	{{/parents}}
-      </ul>
     </div>
-    {{/parentsVisibility}}
-    {{#childrenVisibility}}
-    <div>
-      <span class="ident_part ident_generation">Enfants</span>
-      <ul class="generation_list">
-	{{#children}}
-	<li class="inline_list">
-	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	</li>
-	{{/children}}
+    <div class="container">
+      {{#parentsVisibility}}
+      <div class="generation_container">
+	<span class="ident_part">Parents</span>
+	<ul class="generation_list">
+	  {{#parents}}
+	  <li class="inline_list">
+	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	  </li>
+	  {{/parents}}
       </ul>
-    </div>
-    {{/childrenVisibility}}
+      </div>
+      {{/parentsVisibility}}
+      {{#childrenVisibility}}
+      <div>
+	<span class="ident_part ident_generation">Enfants</span>
+	<ul class="generation_list">
+	  {{#children}}
+	  <li class="inline_list">
+	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	  </li>
+	  {{/children}}
+	</ul>
+      </div>
+      {{/childrenVisibility}}
+      </div>
     {{#dem}}
-    <p class="container">
+    <div class="container">
       <span class="ident_part">Démonstration</span>
       {{{dem}}}
-    </p>
+    </div>
     {{/dem}}
     {{#rem}}
-    <p class="container">
+    <div class="container">
       <span class="ident_part">Remarques</span>
       {{{rem}}}
-    </p>
+    </div>
     {{/rem}}
     {{#ex}}
-    <p class="container">
+    <div class="container">
       <span class="ident_part">Exemples</span>
       {{{ex}}}
-    </p>
+    </div>
     {{/ex}}
     {{#exo}}
-    <p class="container">
+    <div class="container">
       <span class="ident_part">Exercices</span>
       {{{exo}}}
-    </p>
+    </div>
     {{/exo}}
   </div>
 </div> 

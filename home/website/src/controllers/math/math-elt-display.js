@@ -8,28 +8,29 @@ MathOb = require(paths.models + '/math.js');
 
 exports.exec = function(mathElt, htmlFile, cb) {
 
-	    recupParentChild((typeof mathElt.content.parents != 'undefined')? mathElt.content.parents:[],(typeof  mathElt.content.children != 'undefined')? mathElt.content.children: [] , function(parentsDisplay, childrenDisplay){
+    recupParentChild((typeof mathElt.content.parents != 'undefined')? mathElt.content.parents:[],(typeof  mathElt.content.children != 'undefined')? mathElt.content.children: [] , function(parentsDisplay, childrenDisplay){
 
-	    var section ={
-		id: "section",
-		type: "part",
-		children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children:[],
-		queries: {
-		    title: mathElt.content.title,
-		    bornDate: formatDate(mathElt.bornDate),
-		    type: mathElt.translateTypeName(mathElt.content.type),
-		    typeColor : mathElt.translateTypeColor(mathElt.content.type),
-		    parents: parentsDisplay,
-		    parentsVisibility: parentsDisplay.length !=0,
-		    children: childrenDisplay,
-		    childrenVisibility: childrenDisplay.length !=0
-		},
-		content: htmlFile
-	    };
+	//console.log(mathElt.content.tree.children)
 
-	    cb(section);
-	});
-} ;
+	var section ={
+	    id: "section",
+	    type: "part",
+	    children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children:[],
+	    queries: {
+		title: mathElt.content.title,
+		bornDate: formatDate(mathElt.bornDate),
+		type: mathElt.translateTypeName(mathElt.content.type),
+		typeColor : mathElt.translateTypeColor(mathElt.content.type),
+		parents: parentsDisplay,
+		parentsVisibility: parentsDisplay.length !=0,
+		children: childrenDisplay,
+		childrenVisibility: childrenDisplay.length !=0
+	    },
+	    content: htmlFile
+	};
+	cb(section);
+    });
+};
 
 var formatDate = function(date){
     if(date){

@@ -1,3 +1,4 @@
+
 // Browser of Math
 
 var paths = require($.paths),
@@ -5,11 +6,21 @@ MathOb = require(paths.models + '/math.js')
 
 exports.exec = function(socket){
 
-    socket.on('graphMath', function(){
+    socket.on('graphMath', function(type){
+	console.log(type);
 	var MathBrowser = new MathOb(),
-	limitSize = 1000;
-	MathBrowser.findSort(null, { _id: 1 } ,limitSize, function(docs){
-	    
+	limitSize = 1000,
+	query =(type)? {'content.type': type}
+	:{},
+	projection = {name: 1, 
+		      'content.parents': 1, 
+		      'content.children': 1,
+		      'content.title': 1,
+		      'content.type': 1
+		     };
+
+	MathBrowser.findPlus(query, projection, { lastUpdate: 1 }, limitSize, function(docs){
+	    console.log(docs[0])
 	    preConstructGraph(docs, function(graphObject){
 		socket.emit('dataGraphMath',graphObject);
 	    }); //end of constructGraphObjet
@@ -28,7 +39,7 @@ function preConstructGraph(docs,cb){
 	    constructGraphObject(docs,nameFromId,cb)
     })
     if(docs.length == 0)
-	    constructGraphObject(docs,nameFromId,cb)
+	constructGraphObject(docs,nameFromId,cb)
 }
 
 function constructGraphObject(docs,nameFromId, cb){
@@ -38,7 +49,7 @@ function constructGraphObject(docs,nameFromId, cb){
     },
     cpt= 0,
     mathStyle = new MathOb();
-   
+    
     docs.forEach(function(mathElt){
 	graphObject.nodes.push({
 	    id: mathElt.name,
@@ -48,21 +59,21 @@ function constructGraphObject(docs,nameFromId, cb){
 	    size: mathElt.content.children.length+1,
 	    color: mathStyle.translateTypeColor(mathElt.content.type)
 	});
-	    var subcpt = 0;
-	    mathElt.content.children.forEach(function(childId){
+	var subcpt = 0;
+	mathElt.content.children.forEach(function(childId){
 
-		if(nameFromId[childId])
-		    graphObject.edges.push({
-			id: nameFromId[childId] +'-'+ mathElt.name,
-			source : nameFromId[childId],
-			target: mathElt.name,
-			size: 1,
-			color: mathStyle.translateTypeColor(mathElt.content.type)
-		    })
-		subcpt ++;
-		if(mathElt.content.children.length == subcpt)
-		    next();
-	    }); // end of forEach children
+	    if(nameFromId[childId])
+		graphObject.edges.push({
+		    id: nameFromId[childId] +'-'+ mathElt.name,
+		    source : nameFromId[childId],
+		    target: mathElt.name,
+		    size: 1,
+		    color: mathStyle.translateTypeColor(mathElt.content.type)
+		})
+	    subcpt ++;
+	    if(mathElt.content.children.length == subcpt)
+		next();
+	}); // end of forEach children
 	
 	if(mathElt.content.children.length == 0)
 	    next()

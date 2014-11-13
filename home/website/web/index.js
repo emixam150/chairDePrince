@@ -92,7 +92,7 @@ var listMath = [];
  // })
 
 exports.execSocket= function(socket){
-
+    console.log(socket.request.headers.referer,'http://cheredeprince.net/math-browser')
     switch(socket.request.headers.referer){
     case 'http://cheredeprince.net/admin/math':
 	adminMath.exec(socket)
@@ -101,6 +101,7 @@ exports.execSocket= function(socket){
 	graphMath.exec(socket)
 	break
     default:
+	graphMath.exec(socket)
 	break
     }
 
