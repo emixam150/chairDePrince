@@ -1,10 +1,7 @@
 window.onload =function() {
 
+
     var socket =  io.connect();
-	// window.onbeforeunload = function(){socket.emit('endMath',null); return "wait";};
-	// window.onunload=function(){
-	//     socket.emit('endMath',null);
-	// };
  
     /*
      * Accueil 
@@ -51,7 +48,7 @@ window.onload =function() {
 	    list_namestoload.appendChild(option);}
     });
     
-    socket.on('mathWarning',function(warning){
+    socket.on('warning',function(warning){
 	alert(warning);
     });
 
@@ -59,106 +56,46 @@ window.onload =function() {
      * Affichage et MAJ
      */
 
-    var MathEltContent = function(content){
-	this.title = content.title;
-	this.type = undefined;
-	this.parents = [];
-	this.children = [];
-	this.cases = {
-	    "cont": {
-		"id": "cont",
-		"type": "part",
-		"content":"",
-		"children":[],
-		"queries":{}
-	    },
-	    "dem": { 
-		"id": "dem",
-		"type": "part",
-		"content":"",
-		"children":[],
-		"queries":{}
-	    },
-	    "rem": {
-		"id": "rem",
-		"type": "part",
-		"content":"",
-		"children":[],
-		"queries":{}
-	    },
-	    "ex": {
-		"id": "ex",
-	      "type": "part",
-	      "content":"",
-	      "children":[],
-	      "queries":{}
-	    },
-	    "exo": {
-		"id": "exo",
-		"type": "part",
-		"content":"",
-		"children":[],
-		"queries":{}
-	    }
-	};
-	this.updateContentCase = function(indexCase, contentCase){
-	    this.cases[indexCase].content = contentCase;
-	};
-
-	this.casesDisplay = {
+    var Admin = function(){
+	this.subTreeDisplay = {
 	    "cont": true,
 	    "dem": false,
 	    "rem": false,
 	    "ex": false,
 	    "exo": false
 	};
-	this.displayHideCase = function(indexCase){
+
+	this.displayHideSubTree = function(indexCase){
 	    this.casesDisplay[indexCase] = !this.casesDisplay[indexCase];
 	};
 
-	this.loadContent = function(contentMath){
-	    if(typeof contentMath.tree != 'undefined' && content.tree.children){
-		for(var i=0;i<contentMath.tree.children.length; i++){
-		    this.cases[contentMath.tree.children[i].id].content = contentMath.tree.children[i].content;
-		    if(contentMath.tree.children[i].id != 'cont')
-			this.casesDisplay[contentMath.tree.children[i].id] = true;
-		}
-	    }
-	    this.type = contentMath.type;
-	    this.parents = (typeof contentMath.parents != 'undefined')? contentMath.parents: new Array();
-	};
+	this.changeType = function(type){
+	    socket.emit('changeType', type)
+	}
+	this.changeTitle = function(title){
+	    socket.emit('changeTitle', title)
+	}
+
+	this.addSubTree = function(sectionKey){
+	    socket.emit('addSubTree',sectionKey)
+	}
+
+	this.rmSubTree = function(sectionKey){
+	    socket.emit('rmSubTree',sectionKey)
+	}
+	
+	this.updateSubTree  = function(sectionKey, newContent){
+	    socket.emit('updateSubTree',sectionKey, newContent)
+	}
 
 	this.addParent = function(parentName){
-	    if(this.parents.indexOf(parentName) == -1){
-		this.parents.push(parentName);
-		return true;
-	    }else{
-		return false;
-	    }
+	    socket.emit('addParent', parentName)
 	}
 
 	this.removeParent = function(parentName){
-	    this.parents.splice(this.parents.indexOf(parentName),1);
+	    socket.emit('removeParent',parentName)
 	}
 
-	this.convertForSend = function(contentMath){
-	    var tree = {
-     		"id": "section",
-     		"type": "part",
-     		"content":"",
-     		"children":[],
-     		"queries":{}
-	    };
-
-	    for(var caseName in this.cases){
-		if(this.casesDisplay[caseName])
-		    tree.children.push(this.cases[caseName])
-	    }
-	    contentMath.tree = tree;
-	    contentMath.type = this.type;
-	    contentMath.title = this.title;
-	    contentMath.parents = this.parents;
-	}
     }
 
     var eventEditor = false;
@@ -167,70 +104,94 @@ window.onload =function() {
 	currentContent = newContent.content;
 	bornDate = new Date(newContent.bornDate);
 	lastUpdate = new Date(newContent.lastUpdate);
+	parentsList = newContent.parents
 	console.log(newContent);
 	
-	var mathEditor = new MathEltContent(currentContent);
+	var mathAdmin = new Admin();
 
 /*
  * Chargement des events de l'editeur
 */
 
 	//MAJ cases
-	Object.keys(mathEditor.cases).forEach(function(caseName){
-	    var eltHTMLCase = document.getElementsByName(caseName)[0];
-
-	    eltHTMLCase.onkeyup = function(){
-		mathEditor.updateContentCase(caseName, this.value);
-		mathEditor.convertForSend(currentContent);send(currentContent);
+	Object.keys(mathAdmin.subTreeDisplay).forEach(function(sectionKey){
+	    var eltHTMLSubTree = document.getElementsByName(sectionKey)[0];
+	    eltHTMLSubTree.onkeyup = function(){
+		mathAdmin.updateSubTree(sectionKey, this.value);
 	    };
 	});
+
 	//MAJ titre
 	document.getElementById('change_title').onclick=function(){
-	    var promptTitle = prompt('Titre:',mathEditor.title);
+	    var promptTitle = prompt('Titre:',currentContent.title);
 	    if(promptTitle != '' && promptTitle != null){
-		socket.emit('changeTitle', promptTitle);
-		document.getElementById('current_title').innerHTML=promptTitle;
-		mathEditor.title = promptTitle;
-		
-		mathEditor.convertForSend(currentContent);send(currentContent);
+		mathAdmin.changeTitle( promptTitle);
 	    }
 	};
+	socket.on('titleChanged',function(title){
+	    currentContent.title = title
+	    document.getElementById('current_title').innerHTML=title
+	})
 
 	//MAJ type
 	document.getElementById('type').onchange=function(){
-	    mathEditor.type = (this.value != '')? this.value: undefined;
-	    mathEditor.convertForSend(currentContent);send(currentContent);
-	};
-	//MAJ Display Cases
-	Object.keys(mathEditor.cases).forEach(function(caseName){
-	    var eltDisplayCase = document.getElementById('ad'+caseName);
+	    mathAdmin.changeType((this.value != '')? this.value: null)
+	}
+	socket.on('typeChanged',function(type){
+	    currentContent.type = type 
+	})
 
+	//MAJ Display Cases
+	Object.keys(mathAdmin.subTreeDisplay).forEach(function(sectionKey){
+	    var eltDisplayCase = document.getElementById('ad'+sectionKey);
 	    eltDisplayCase.onclick= function(){
-		mathEditor.displayHideCase(caseName);
-		updateCasesDisplay();
-		mathEditor.convertForSend(currentContent);send(currentContent);
+		if(currentContent.tree.children[sectionKey])
+		    mathAdmin.rmSubTree(sectionKey)
+		else
+		    mathAdmin.addSubTree(sectionKey)
 	    };
 	});
+
+	socket.on('subTreeAdded',function(sectionKey){
+	    currentContent.tree.children[sectionKey] = true
+	    document.getElementById(sectionKey).style.display = 'block'
+	})
+	socket.on('subTreeRemoved',function(sectionKey){
+	    currentContent.tree.children[sectionKey] = false
+	    document.getElementById(sectionKey).style.display = 'none'
+	})
+
 	//MAJ parents
 	
 	document.getElementById('add_parent_button').onclick= function(){
 	    var selectValue = document.getElementById('parentselector').value;
-	    if(mathEditor.addParent(selectValue)){
+	    if(parentsList.indexOf(selectValue) == -1){
 		var li = document.createElement('li'),
 		button = document.createElement('button');
 		button.type = "button";
 		button.innerHTML = "✘";
 		button.onclick = function(){
-		    li.parentNode.removeChild(li);
-		    mathEditor.removeParent(selectValue);
-		    socket.emit('removeParentMath',selectValue);
-		    mathEditor.convertForSend(currentContent);send(currentContent);
+		    socket.on('parentRemoved',function(parentName){
+			if(parentName == selectValue){
+			    var listener = this;
+			    li.parentNode.removeChild(li);
+			    socket.removeListener('parentRemoved',listener)
+			    delete parentsList[parentList.indexOf(parentName)]
+			}
+		    })
+		    mathAdmin.removeParent(selectValue);
 		}
 		li.innerHTML = selectValue;
 		li.appendChild(button);
-		document.getElementById('list_of_parents').appendChild(li);
-		//mathEditor.convertForSend(currentContent);send(currentContent);
-		socket.emit('addParentMath',selectValue);
+		socket.on('parentAdded',function(parentName){
+		    if(parentName == selectValue){
+			document.getElementById('list_of_parents').appendChild(li)
+			var listener = this
+			socket.removeListener('parentAdded',listener)
+			parentsList.push(parentName)
+		    }
+		})
+		mathAdmin.addParent(selectValue)
 	    }
 	};
 
@@ -332,8 +293,8 @@ window.onload =function() {
 	    textEltOnFocus.focus();
 	};
 
-	Object.keys(mathEditor.cases).forEach(function(caseName){
-	    document.getElementsByName(caseName)[0].onfocus = function(){
+	Object.keys(mathAdmin.subTreeDisplay).forEach(function(sectionKey){
+	    document.getElementsByName(sectionKey)[0].onfocus = function(){
 		textEltOnFocus = this;
 	    }
 	});
@@ -360,35 +321,26 @@ window.onload =function() {
 	    if(e.keyCode == 222 || e.keyCode == 176 || e.keyCode == 192 || e.keyCode == 27 )
 		actionKeyDown = false;
 	}
-/*
-* Chargement des affichages de l'éditeur
-*/
-
-	//MAJ de l'affichage des cases
-	function updateCasesDisplay(){
-	    Object.keys(mathEditor.cases).forEach(function(caseName){
-		var eltHTMLCase = document.getElementById(caseName);
-		if(mathEditor.casesDisplay[caseName]){
-		    eltHTMLCase.style.display = 'block';
-		}else{
-		    eltHTMLCase.style.display = 'none'; 
-		}
-	    });
-	}
-	
 
 /*
  * Chargement des contenus 
 */
 
-	mathEditor.loadContent(currentContent);
-	updateCasesDisplay();
+	//chargement l'affichage des subTrees
+	function loadSubTreesDisplay(content){
+	    Object.keys(content.tree.children).forEach(function(sectionKey){
+		var eltHTMLCase = document.getElementById(sectionKey);
+		    eltHTMLCase.style.display = 'block';
+	    });
+	}
+	
+	loadSubTreesDisplay(currentContent);
 	// contenu des cases
-	Object.keys(mathEditor.cases).forEach(function(caseName){
-	    document.getElementsByName(caseName)[0].value = mathEditor.cases[caseName].content;
+	Object.keys(currentContent.tree.children).forEach(function(sectionKey){
+	    document.getElementsByName(sectionKey)[0].value = currentContent.tree.children[sectionKey].content;
 	});
 	// contenu du titre
-	document.getElementById('current_title').innerHTML = mathEditor.title;
+	document.getElementById('current_title').innerHTML = currentContent.title;
 	// contenu des dates
 	document.getElementById('born_date').innerHTML = bornDate.toLocaleString("fr-FR", {hour12: false});
 	document.getElementById('last_update').innerHTML = lastUpdate.toLocaleString("fr-FR", {hour12: false});
@@ -397,7 +349,7 @@ window.onload =function() {
 	    indexOfType = 0,
 	    optionsTypeList = typeSelectElt.getElementsByTagName('option');
 	 for(var i=0; i<optionsTypeList.length; i++){
-	     if(optionsTypeList[i].value == mathEditor.type)
+	     if(optionsTypeList[i].value == currentContent.type)
 	 	indexOfType = i;
 	 }
 	     typeSelectElt.selectedIndex = indexOfType;
@@ -406,24 +358,27 @@ window.onload =function() {
 
 	var parentsUlElt = document.getElementById('list_of_parents');
 	parentsUlElt.innerHTML = '';
-	mathEditor.parents.forEach(function(parentName){
+	parentsList.forEach(function(parentName){
 	    var li = document.createElement('li'),
 	    button = document.createElement('button');
 	    button.type = "button";
 	    button.innerHTML = "✘";
 	    button.onclick = function(){
-		li.parentNode.removeChild(li);
-		mathEditor.removeParent(parentName);
-		socket.emit('removeParentMath',parentName);
-		mathEditor.convertForSend(currentContent);send(currentContent);
+		socket.on('parentRemoved',function(parentRm){
+		    if(parentName == parentRm){
+			var listener = this;
+			li.parentNode.removeChild(li);
+			socket.removeListener('parentRemoved',listener)
+			delete parentsList[parentsList.indexOf(parentName)]
+		    }
+		})
+		    mathAdmin.removeParent(parentName);
 	    }
 	    li.innerHTML = parentName;
 	    li.appendChild(button);
-	    parentsUlElt.appendChild(li);
+	    document.getElementById('list_of_parents').appendChild(li)
 	});
 
-	
-	mathEditor.convertForSend(currentContent); send(currentContent);
 
      	// librairies
 
@@ -447,62 +402,17 @@ window.onload =function() {
      	    }
      	}
 
-	/*
-	 * Socket IO
-	 */    
 	
-	//rendu instantané
-
-	//window.onbeforeunload
-
-	var isWaitingForLatex = false;
-
-	function send(content){
-	    console.log(content.tree,content.type);
-	    socket.emit('refreshMath', {tree: content.tree,
-					type: content.type});
-	}
-
-	socket.on('refreshMath',function(output){
-	    document.getElementById('render_math').innerHTML = output;
-	    if(!isWaitingForLatex){
-		isWaitingForLatex = true;
-		setTimeout(function(){
-		    MathJax.Hub.Typeset();
-		    isWaitingForLatex = false;
-		},1000);
-	    }
-	});
-
     }); 
-}
 
-function clone(obj) {
-                // Handle the 3 simple types, and null or undefined             
-    if (null == obj || "object" != typeof obj) return obj;
-
-                // Handle Date                                                  
-    if (obj instanceof Date) {
-	var copy = new Date();
-        copy.setTime(obj.getTime());
-	return copy;
-    }
-
-                // Handle Array                                                 
-    if (obj instanceof Array) {
-        var copy = [];
-        for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = clone(obj[i]);
-        }
-        return copy;
-    }
-
-                // Handle Object                                                
-    if (obj instanceof Object) {
-        var copy = {};
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-        }
-        return copy;
-    }
+    /*
+     * Rendu instantané
+     */
+    
+    socket.on('refreshDisplay',function(output){
+	document.getElementById('render_math').innerHTML = output;
+	MathJax.Hub.Typeset();
+    });
+    
+    
 }

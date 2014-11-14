@@ -4,59 +4,49 @@
 var MongoSession = require(__dirname +'/mongoSession.js');
 
 
-module.exports = function Publication(title, bornDate, lastUpdate, content,enName,dbName) {
+module.exports = function Publication(enName,dbName) {
     
     MongoSession.call(this, enName, dbName);
 
-    this.name = (typeof title !='undefined')? simplify(title) : '';
-    this.bornDate =(typeof bornDate !='undefined')? bornDate : new Date();
-    this.lastUpdate =(typeof lastUpdate !='undefined')? lastUpdate : new Date();
-    this.content = (typeof content !='undefined')?content: {title:title};
+    this.name = '';
+    this.bornDate =  new Date();
+    this.lastUpdate =  new Date();
+    this.content =  {title:""};
 
-    this.addThis = function(cb){ 
-	if(this.name && this.name != ""){
+    // on ajout une publication à la base de donnée
+    this.addByTitle = function(title,cb){ 
+	if(title && title != ""){
 	    var pub = this,
-	    query = { name: this.name};
+	    nameTest = simplify(String(title)),
+	    query = { name: nameTest};
 	    this.find(query, function(docs){
 		if(docs.length == 0){
+		    pub.content.title = title
+		    pub.name = nameTest
 		    pub.add(pub, function(){
 			cb(null,pub);
 		    })
 		}else
-		    cb(new Error("name already exists"));
+		    cb(new Error("title already exists"));
 	    })
 	}else
-	    cb(new Error("name is not valid"))
+	    cb(new Error("title is not valid"))
     };
     
-    //met à jour le contenu de la publication
+    //met à jour le contenu de la publication suivant l'id sans vérification du contenu
     this.updateThis = function(cb){
-	if(typeof this.content.title != "undefined" && this.content.title != "" && this.content.title != null){
-	    var pub = this,
-	    query = { _id: this._id},
-	    queryTest = { name: simplify(this.content.title)};
-	    console.log('fup',pub.content)
-	    pub.find(queryTest, function(docs){
-		if(docs.length == 0 || String(docs[0]._id) == String(pub._id)){
-		    pub.lastUpdate = new Date();
-		    pub.update(query, pub, function(result){
-			if(result != 0)
-			    if(typeof cb != 'undefined'){ 
-				console.log('outup',pub.content);
-				cb(null,pub);
-			    }
-			else
-			    if(typeof cb != 'undefined')
-				cb(new Error('no result for update'));
-		    });
+	var pub = this,
+	query = { _id: this._id} 
+	pub.lastUpdate = new Date();
+	pub.update(query, pub, function(result){
+	    if(result != 0)
+		if(typeof cb != 'undefined'){ 
+		    cb(null,pub);
 		}else
 		    if(typeof cb != 'undefined')
-			cb(new Error("ids don't match"));
-	    });
-	}else 
-	    if(typeof cb != "undefined")
-		cb(new Error("title don't exists or is empty"));
-    };
+			cb(new Error('no result for update'));
+	})
+    }
 
     this.removeThis = function(){ this.remove({_id :this._id}); };
 
@@ -100,42 +90,28 @@ module.exports = function Publication(title, bornDate, lastUpdate, content,enNam
 	});
     };
 
-    this.checkTitle = function(title, cb){
-	if(title && title != ''){
-	    if(this.name != simplify(title)){
-		var pub = this,
-		query = {name: simplify(title)}
-		
-		this.find(query,function(docs){
-		    if(docs.length == 0 || this.name == simplify(title) ){
-			cb()
-		    }else
-			cb(new Error("title is linked to a already used name"))
-		})
-	    }else
-		cb()
-	}else 
-	    cb(new Error("title's format is invalid"))
-    }
-
     this.setTitle = function(title, cb){
 	if(title && title != ''){
-	    if(this.name != simplify(title)){
-		var pub = this,
-		query = {name: simplify(title)}
-		
-		this.find(query,function(docs){
-		    if(docs.length == 0){
-			pub.name = simplify(title)
-			pub.content.title = title
-			cb()
+	    var pub = this,
+	    query = {name: simplify(String(title))}
+	    pub.getById(pub._id,function(err){
+		if(err)
+		    cb(err)
+		else{
+		    if(pub.name == simplify(String(title))){
+			pub.content.title = String(title)
+			pub.updateThis(cb)
 		    }else
-			cb(new Error("title is linked to a already used name"))
-		})
-	    }else{
-		this.content.title = title
-		cb()
-	    }
+			pub.find(query,function(docs){
+			    if(docs.length == 0){
+				pub.name = simplify(String(title))
+				pub.content.title = String(title)
+				pub.updateThis(cb)
+			    }else
+				cb(new Error("title is linked to a already used name"))
+			})
+		}
+	    })
 	}else 
 	    cb(new Error("title's format is invalid"))
     }

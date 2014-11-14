@@ -31,6 +31,7 @@ var mapNext = function(temp, mapTemp, cb){
 var mapTemp = function(temp, cb){
 
     compileMustache(temp, function(output){
+//	console.log(output)
 	if(typeof temp.parent != "undefined"){
 	    temp.parent.queries[temp.id] = output; //l'id est indicateur dans le contenu 
 	    cb();

@@ -1,0 +1,233 @@
+
+var paths = require($.paths),
+tempModel = require(paths.models + '/template.js'),
+MathOb = require(paths.models + '/math.js'),
+fs = require('fs');
+var listMath = [];
+
+
+exports.exec = function(socket){
+
+    var currentMath = null,
+    currentIntervalMath = null,
+    htmlMath = '',
+    mathEltDisplay = require(paths.controllers + '/math/math-elt-display.js');
+    
+    console.log('admin')
+
+    socket.on('math',function(){
+	fs.readFile(paths.html +'/math/math-elt.html','utf8',function(err, data){
+	    if(err) throw err;
+	    htmlMath = data
+	})
+	socket.emit('mathLoading');
+    })
+
+    socket.on('listOfMath',function(){
+	emitListOfMath(function(listOfMath){
+	    socket.emit('listOfMath',listOfMath);
+	})
+    });
+    
+    //mise en place de la connexion
+    socket.on('newTitleMath', function(title){
+	newMath = new MathOb(title);
+	newMath.addThis(function(err,result){
+	    if(err){
+		socket.emit('warning','Adding '+ title +' failed: '+err.message);
+	    }else{
+		console.log('newElementMath :' + title);
+		currentMath = newMath
+		emitListOfMath(function(listOfMath){
+		    socket.emit('listOfMath',listOfMath);
+		})
+		socket.emit('newContentMath', {content: currentMath.content,
+					       parents: [],
+					       bornDate: currentMath.bornDate,
+					       lastUpdate: currentMath.lastUpdate})
+	    }
+	})
+    })
+    
+    socket.on('loadNameMath', function(name){
+	loadingMath = new MathOb()
+	loadingMath.getByName(name, function(err,result){
+	    if(err){
+		socket.emit('warning', 'Loading  '+ name + ' failed: '+err.message)
+	    }else{
+		emitListOfMath(function(listOfMath){
+		    socket.emit('listOfMath',listOfMath);
+		})
+		currentMath = loadingMath
+		extractParentsList(currentMath,function(parentsList){
+		socket.emit('newContentMath', {content: currentMath.content,
+					       parents: parentsList,
+					       bornDate: currentMath.bornDate,
+					       lastUpdate: currentMath.lastUpdate})
+		})
+	    }
+	})
+    })
+
+    socket.on('refreshMath',function(container){
+	if(currentMath != null){
+	    //mise à jour dans la base de donnée
+	    currentMath.changeTree(container.tree,function(err){
+		if(err)
+		    socket.emit('mathWarning', 'errors during saving the tree : ' + err.message)
+		else
+		    currentMath.changeType(container.type,function(err){
+			if(err)
+			    socket.emit('mathWarning', 'errors during saving the type : ' + err.message)
+			else{
+			    // creation du rendu html
+			    var mathToWork = clone(currentMath);
+			    mathEltDisplay.exec(mathToWork, htmlMath, function(section){
+				//		fs.readFile(paths.html +'/template/figure.html',function(err, figTemp){
+				//		    if(err) throw err;
+				//		    completContent(mathToWork.content.tree, 'figure', figTemp.toString(), function(){
+				tempModel.constructOutput(section, function(output){
+				    socket.emit('refreshMath',output);
+				});
+				//		    });
+				//		});
+			    });
+			}
+		    });
+	    });
+	}
+    });
+    
+    socket.on('addSubTree', function(sectionKey){
+	if(currentMath != null){
+	    currentMath.addSubTree(sectionKey,function(err){
+		if(err)
+		    socket.emit('warning',"impossible to add the subTree "+ sectionKey + " : " + err.message)
+		else
+		    socket.emit('subTreeAdded',sectionKey)
+	    })
+	}
+    })
+
+    socket.on('rmSubTree', function(sectionKey){
+	if(currentMath != null){
+	    currentMath.rmSubTree(sectionKey,function(err){
+		if(err)
+		    socket.emit('warning',"impossible to remove the subTree "+ sectionKey + " : " + err.message)
+		else
+		    socket.emit('subTreeRemoved',sectionKey)
+	    })
+	}
+    })
+
+    socket.on('updateSubTree', function(sectionKey, newContent){
+	if(currentMath != null){
+	    currentMath.updateSubTree(sectionKey, newContent,function(err){
+		if(err)
+		    socket.emit('warning',"impossible to upadate the subTree " + sectionKey+ " : "+ err.message)
+		else
+		    socket.emit('subTreeUpdated')
+	    })
+	}
+    })
+
+    socket.on('removeParentMath',function(parentName){
+	if(currentMath != null){
+	    currentMath.removeParentByName(parentName,function(err){
+		if(err)
+		    socket.emit('mathWarning', 'impossible to remove parent ' + parentName + ': '+ err.message)
+		else
+		    socket.emit('parentRemoved',parentName)
+	    })
+	}
+    })
+    
+    
+    socket.on('addParent', function(parentName){
+	if(!currentMath != null){
+	    currentMath.addParentByName(parentName, function(err){
+		if(err)
+		    socket.emit('warning', 'impossible to add parent ' + parentName + ': '+ err.message)
+		else
+		    socket.emit('parentAdded',parentName)
+	    })
+	}
+    })
+
+    socket.on('changeTitle', function(title){
+	var oldTitle  = currentMath.content.title
+	if(currentMath != null){
+	    currentMath.setTitle(title, function(err){
+		if(err)
+		    socket.emit('warning', 'impossible to change title of '+ oldTitle+ ' to '+title+' : '+ err.message)
+		else
+		    socket.emit('titleChanged',title)
+	    })
+	}
+    })
+
+    socket.on('changeType',function(type){
+	var oldType = currentMath.content.type
+	if(currentMath !=null){
+	    currentMath.changeType(type,function(err){
+		if(err)
+		    socket.emit('warning', 'impossible to change type from '+oldType + ' to ' + type +' : '+ err.message)
+		else
+		    socket.emit('typeChanged',type)
+	    })
+	}
+    })
+    
+    var completContent = function(tree, type, content, cb){
+	if(tree.type == type)
+	    tree.content = content;
+	var nbChildren = tree.children.length,
+	indexChildren = 0;
+	for(var child in tree.children){
+	    completContent(tree.children[child], type, content, function(){
+		indexChildren ++;
+		if(nbChildren == indexChildren)
+		    cb();
+	    });
+	}
+	if(nbChildren == 0)
+	    cb();
+    };
+
+}// end of function exec
+
+var emitListOfMath = function(cb){
+    //listage des éléments mathématiques
+    var MathUseList = new MathOb();
+    MathUseList.find({},function(listOfElt){
+	var listOfMath = [],
+	cpt = 0;
+	for(var elt in listOfElt){
+	    if( typeof listOfElt[elt].content.title != 'undefined'){
+		listOfMath.push({name: listOfElt[elt].name,
+				 title: listOfElt[elt].content.title});
+	    }
+	    cpt++;
+	    if(cpt == listOfElt.length)
+		cb(listOfMath)
+	}
+	if(listOfElt.length == 0)
+	    cb(listOfMath)
+    })
+}
+
+var extractParentsList = function(mathElt,cb){
+    var parentsList =[],
+    cpt = 0
+    mathElt.content.parents.forEach(function(parentId){
+	var parent = new MathOb()
+	parent.getById(parentId, function(){
+	    parentsList.push(parent.name)
+	    cpt++
+	    if(mathElt.content.parents.length == cpt)
+		cb(parentsList)
+	})
+    })
+    if(mathElt.content.parents.length == 0)
+	cb(parentsList)
+}

@@ -1,16 +1,31 @@
+section{
+    display: block;
+}
+
 #selectors{
     display:inline-block;
     vertical-align:top;
 }
 
-#result_container{
-display:inline-block;
-vertical-align:top;
+#sigma-container{
+    border-top: 1px #72ffff solid;
+    border-bottom: 1px #72ffff solid;
+    height:500px;
 }
 
+#list-result{
+    font-size:0.8em;
+    overflow: auto;
+    height:600px;
+    border-bottom: black 1px solid;
+}
+
+#list-result li{
+    padding : 0.3em;
+}
 
 .center-container{
-    display: block;
+    /*display: block;*/
     width: 95%;
     margin: 0 auto;
 }
@@ -19,5 +34,24 @@ vertical-align:top;
     display: inline-block;
     width: 45%;
     margin: 2%;
+    vertical-align:top;
+}
 
+@media screen and (min-width: 860px){
+    #sigma-container{
+	display:inline-block;
+	width: 65%;
+	vertical-align:top;
+	height:700px;
+    }
+    #result-container{
+	display: inline-block;
+	width:30%;
+	height:700px;
+	margin:0;
+	vertical-align: top;
+    }
+    selectors{
+	display:block;
+    }
 }

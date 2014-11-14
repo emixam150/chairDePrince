@@ -2,259 +2,162 @@
  * Math's Model 
  */
 var dbName = "main",
-enName = "math",
-Publication = require(__dirname +'/publication.js');
+    enName = "math",
+    Publication = require(__dirname +'/publication.js');
 
 
-module.exports = function Math(title, bornDate, lastUpdate, content) {
+module.exports = function Math() {
     
-    Publication.call(this, title, bornDate, lastUpdate, content, enName, dbName );
-    if(!content){
-	this.content.parents = []
-	this.content.children = []
-	this.content.tree =  {
-     	    "id": "section",
-     	    "type": "part",
-     	    "content":"",
-     	    "children":[{
+    Publication.call(this, enName, dbName );
+
+    this.content.parents = []
+    this.content.children = []
+    this.content.tree =  {
+     	"id": "section",
+     	"content": "",
+     	"children": {
+	    "cont": {
 		"id": "cont",
 		"type": "part",
 		"content":"",
-		"children":[],
+		"children":{},
 		"queries":{}
-	    }],
-     	    "queries":{}
-	}
-	this.content.type = null
+	    }
+	},
+     	"queries":{}
     }
+    this.content.type = null
 
     this.addParentByName = function(name,cb){
 	var parentToAdd = new Math(),
 	math = this;
-	parentToAdd.getByName(name, function(err,result){
-	    if(err){
-		cb(err);
-	    }else{
-		if(math.name != name){
-		    if(!parentToAdd.content.children || parentToAdd.content.children.indexOf(math.name) == -1){
-			if(!math.content.parents || math.content.parents.indexOf(name) == -1){
-			    if(!math.content.parents)
-				math.content.parents = [name]
-			    else
-				math.content.parents.push(name)
-			    math.updateThis(function(err){
-				if(err)
-				    cb(err)
-				else{
-				    if(!parentToAdd.content.children)
-					parentToAdd.content.children = [math.name]
-				    else
-					parentToAdd.content.children.push(math.name)
-				    parentToAdd.updateThis(function(err){
-					if(err)
-					    cb(err)
-					else{
-					    cb()
-					}
-				    })
-				}
+	math.getById(math._id, function(err){
+	    parentToAdd.getByName(name, function(err,result){
+		if(err){
+		    cb(err)
+		}else{
+		    if(math.name != name){
+			ObjIdArrToStrArr(parentToAdd.content.children,function(parentChildren){
+			    ObjIdArrToStrArr(math.content.parents,function(mathParents){
+				if(parentChildren.indexOf(String(math._id)) == -1){
+				    if(mathParents.indexOf(String(parentToAdd._id)) == -1){
+					math.content.parents.push(parentToAdd._id)
+					parentToAdd.content.children.push(math._id)
+					math.updateThis(function(err){
+					    if(err)
+						cb(err)
+					    else
+						parentToAdd.updateThis(function(err){
+						    if(err)
+							cb(err)
+						    else{
+							cb()
+						    }
+						})
+					})
+				    }else
+					cb(new Error("parent already exists in current elt"))
+				}else
+				    cb(new Error("current elt already exists in children's parent"))
 			    })
-			}else
-			    cb(new Error("parent already exists in current elt"))
+			})
 		    }else
-			cb(new Error("current elt already exists in children's parent"))
-		}else
-		    cb(new Error("Can't add itself as parent"))
-	    }
+			cb(new Error("Can't add itself as parent"))
+		}
+	    })
 	})	
     }
-
+    
     this.removeParentByName = function(name,cb){
 	var parentToRemove = new Math(),
 	math = this;
-	parentToRemove.getByName(name, function(err,result){
-	    if(err){
-		cb(err);
-	    }else{
-		if(math.name != name){
-		    if(parentToRemove.content.children.indexOf(math.name) != -1){
-			if(math.content.parents.indexOf(name) != -1){
-			    console.log(math.content.parents[math.content.parents.indexOf(name)],math.content.parents.indexOf(name))
-			    math.content.parents.splice(math.content.parents.indexOf(name),1)
-			    console.log('in',math)
-			    parentToRemove.content.children.splice(parentToRemove.content.children.indexOf(math.name),1)
-			    math.updateThis(function(err){
-				if(err)
-				    cb(err)
-				else{
-				    parentToRemove.updateThis(function(err){
-					if(err)
-					    cb(err)
-					else{
-					    cb()
-					}
-				    })
-				}
-			    })
-			}else
-			    cb(new Error("parent don't exists in current elt"))
-		    }else
-			cb(new Error("current elt don't exists in children's parent"))
-		}else
-		    cb(new Error("Can't remove itself as parent"))
-	    }
-	})
-    }
-    
-    this.changeTitle = function(title, cb){
-	var math = this,
-	cptParent = 0 ,
-	cptChild = 0
-	if(math.content.parents){
-	    var parentsLength = math.content.parents.length,
-	    parentsList = []}
-	if(math.content.children){
-	    var childrenLength = math.content.children.length,
-	    childrenList = []}
-
-	var addChildren = function(n){
-	    if(n!=0){
-		var childName = childrenList[n-1],
-		child = new Math()
-		child.getByName(childName, function(err, result){
-		    if(err)
-			cb(err)
-		    else{
-			child.addParentByName(math.name, function(err){
-			    if(err)
-				cb(err)
-			    else{
-				addChildren(n-1)
-			    }
-			})
-		    }
-		})
-	    }else
-		math.getById(math._id, function(err){ //mise a jour av l'ajout des parents
-		    if(err)
-			cb(err)
-		    else{
-			if(math.content.parents)
-			    addParents(parentsLength)
-			else
-			    cb()
-		    }
-		})
-	},
-	addParents = function(n){
-	    if(n!=0){
-		var parentName = parentsList[n-1]
-		math.addParentByName(parentName, function(err){
-		    if(err)
-			cb(err)
-		    else{
-			addParents(n-1)
-		    }
-		})
-	    }else
-		cb()  
-	},
-	update = function(){
-	    math.getById(math._id,function(err){ //mise a jour avant changement du titre
-		if(err)
-		    cb(err)
-		    else
-			math.setTitle(title, function(err){
-			    if(err)
-				cb(err)
-			    else
-				math.updateThis(function(err){
-				    if(err)
-					cb(err)
-				    else{
-					if(math.content.children)
-					    addChildren(childrenLength)
-					else{ 
-					    if(math.content.parents)
-						addParents(parentsLength)
-					    else
-						cb()
-					}
-				    }
-				})
-			})
-	    })
-	},
-	rmChildren = function(k){
-	    if(k != 0){
-		var child = new Math(),
-		childName = math.content.children[k-1]
-		child.getByName(childName, function(err,result){
-		    if(err)
-			cb(err)
-		    else
-			child.removeParentByName(math.name,function(err){
-			    if(err)
-				cb(err)
-			    else{
-				childrenList.push(childName)
-				rmChildren(k-1)
-			    }
-			})
-		})
-	    }else
-		update()
-	},
-	rmParents = function(k){
-	    if(k!=0){
-		console.log('begin',math)
-	    var parentName = math.content.parents[k-1] 
-		math.removeParentByName(parentName, function(err){
-		    if(err)
-			cb(err)
-		    else{
-			console.log('end',math)
-			parentsList.push(parentName)
-			rmParents(k-1)
-		    }
-		})   
-	    }else{
-		math.content.parents = []
-		if(math.content.children)
-		    rmChildren(childrenLength)
-		else
-		    update()
-	    }
-	}
-	// on supprime les parents de l'elt et on le supprime dans la liste des parents de chacun de ses enfants
-
-	this.checkTitle(title,function(err){
-	    if(err)
-		cb(err);
-	    else{
-		if(math.content.parents){
-		    rmParents(parentsLength)
+	math.getById(math._id,function(err){
+	    parentToRemove.getByName(name, function(err,result){
+		if(err){
+		    cb(err);
 		}else{
-		    if(math.content.children)
-			rmChildren(childrenLength)
-		    else
-			upadte()
+		    if(math.name != name){
+			ObjIdArrToStrArr(parentToRemove.content.children,function(parentChildren){
+			    ObjIdArrToStrArr(math.content.parents,function(mathParents){
+				if(parentChildren.indexOf(String(math._id)) != -1){
+				    if(mathParents.indexOf(String(parentToRemove._id)) != -1){
+					math.content.parents.splice(mathParents.indexOf(String(parentToRemove._id)),1)
+					parentToRemove.content.children.splice(parentChildren.indexOf(String(math._id)),1)
+					math.updateThis(function(err){
+					    if(err)
+						cb(err)
+					    else
+						parentToRemove.updateThis(function(err){
+						    if(err)
+							cb(err)
+						    else{
+							cb()
+						    }
+						})
+					})
+				    }else
+					cb(new Error("parent don't exists in current elt"))
+				}else
+				    cb(new Error("current elt don't exists in children's parent"))
+			    })
+			})
+		    }else
+			cb(new Error("Can't remove itself as parent"))
 		}
-	    }
+	    })
 	})
     }
 
-    this.changeTree = function(tree,cb){
+    this.addSubTree = function(sectionKey,cb){
 	var math = this
 	math.getById(math._id, function(err){ //mise a jour 
 	    if(err)
 		cb(err)
 	    else 
-		if(tree){
-		    math.content.tree = tree
-		    math.updateThis(cb);
+		//on ajout une partie non présente
+		if((sectionKey == 'dem' || sectionKey == 'rem' || sectionKey == 'ex' || sectionKey == 'exo') && !math.content.tree.children[sectionKey] ){
+		    math.content.tree.children[sectionKey] = {
+			"id": sectionKey,
+			"type": "part",
+			"content":"",
+			"children":{},
+			"queries":{}
+		    }
+		    math.updateThis(cb)
 		}else
-		    cb(new Error("tree isn't correct"))
+		    cb(new Error("sectionKey already exists or isn't correct"))
+	})
+    }
+    
+    this.rmSubTree = function(sectionKey,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		//on supprime une partie déjà présente
+		if(math.content.tree.children[sectionKey] && sectionKey != 'cont'){
+		    delete math.content.tree.children[sectionKey]
+		    math.updateThis(cb)
+		    
+		}else
+		    cb(new Error("Content or keySection isn't correct"))
+	})
+    }
+    
+
+    this.updateSubTree = function(sectionKey, newContent,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		if(math.content.tree.children[sectionKey] && (newContent || typeof newContent == "string")){
+		    console.log(String(newContent))
+		    math.content.tree.children[sectionKey].content = String(newContent)
+		    math.updateThis(cb)
+		}else
+		    cb(new Error("Content or keySection isn't correct"))
 	})
     }
 
@@ -345,5 +248,158 @@ module.exports = function Math(title, bornDate, lastUpdate, content) {
 	    break;
 	}
 	return result;
-    };
+    }
+
+
+
+    // this.changeTitle = function(title, cb){
+    // 	var math = this,
+    // 	cptParent = 0 ,
+    // 	cptChild = 0
+    // 	if(math.content.parents){
+    // 	    var parentsLength = math.content.parents.length,
+    // 	    parentsList = []}
+    // 	if(math.content.children){
+    // 	    var childrenLength = math.content.children.length,
+    // 	    childrenList = []}
+
+    // 	var addChildren = function(n){
+    // 	    if(n!=0){
+    // 		var childName = childrenList[n-1],
+    // 		child = new Math()
+    // 		child.getByName(childName, function(err, result){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			child.addParentByName(math.name, function(err){
+    // 			    if(err)
+    // 				cb(err)
+    // 			    else{
+    // 				addChildren(n-1)
+    // 			    }
+    // 			})
+    // 		    }
+    // 		})
+    // 	    }else
+    // 		math.getById(math._id, function(err){ //mise a jour av l'ajout des parents
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			if(math.content.parents)
+    // 			    addParents(parentsLength)
+    // 			else
+    // 			    cb()
+    // 		    }
+    // 		})
+    // 	},
+    // 	addParents = function(n){
+    // 	    if(n!=0){
+    // 		var parentName = parentsList[n-1]
+    // 		math.addParentByName(parentName, function(err){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			addParents(n-1)
+    // 		    }
+    // 		})
+    // 	    }else
+    // 		cb()  
+    // 	},
+    // 	update = function(){
+    // 	    math.getById(math._id,function(err){ //mise a jour avant changement du titre
+    // 		if(err)
+    // 		    cb(err)
+    // 		else
+    // 		    math.setTitle(title, function(err){
+    // 			if(err)
+    // 			    cb(err)
+    // 			else
+    // 			    math.updateThis(function(err){
+    // 				if(err)
+    // 				    cb(err)
+    // 				else{
+    // 				    if(math.content.children)
+    // 					addChildren(childrenLength)
+    // 				    else{ 
+    // 					if(math.content.parents)
+    // 					    addParents(parentsLength)
+    // 					else
+    // 					    cb()
+    // 				    }
+    // 				}
+    // 			    })
+    // 		    })
+    // 	    })
+    // 	},
+    // 	rmChildren = function(k){
+    // 	    if(k != 0){
+    // 		var child = new Math(),
+    // 		childName = math.content.children[k-1]
+    // 		child.getByName(childName, function(err,result){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else
+    // 			child.removeParentByName(math.name,function(err){
+    // 			    if(err)
+    // 				cb(err)
+    // 			    else{
+    // 				childrenList.push(childName)
+    // 				rmChildren(k-1)
+    // 			    }
+    // 			})
+    // 		})
+    // 	    }else
+    // 		update()
+    // 	},
+    // 	rmParents = function(k){
+    // 	    if(k!=0){
+    // 		console.log('begin',math)
+    // 		var parentName = math.content.parents[k-1] 
+    // 		math.removeParentByName(parentName, function(err){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			console.log('end',math)
+    // 			parentsList.push(parentName)
+    // 			rmParents(k-1)
+    // 		    }
+    // 		})   
+    // 	    }else{
+    // 		math.content.parents = []
+    // 		if(math.content.children)
+    // 		    rmChildren(childrenLength)
+    // 		else
+    // 		    update()
+    // 	    }
+    // 	}
+    // 	// on supprime les parents de l'elt et on le supprime dans la liste des parents de chacun de ses enfants
+
+    // 	this.checkTitle(title,function(err){
+    // 	    if(err)
+    // 		cb(err);
+    // 	    else{
+    // 		if(math.content.parents){
+    // 		    rmParents(parentsLength)
+    // 		}else{
+    // 		    if(math.content.children)
+    // 			rmChildren(childrenLength)
+    // 		    else
+    // 			upadte()
+    // 		}
+    // 	    }
+    // 	})
+    // }
 };
+
+var ObjIdArrToStrArr = function(objArr,cb){
+    var strArr = [],
+    cpt = 0
+    objArr.forEach(function(ObjectId,index){
+	strArr[index]=String(ObjectId)
+	cpt++
+	if(cpt == objArr.length)
+	    cb(strArr)
+    })
+    if(objArr.length == 0)
+	cb(strArr)
+}

@@ -9,9 +9,11 @@ exports.exec = function(support) {
     var queriesTemp = {
 	title : "index - Chere de prince",
 	lang: "fr",
-	figTitle: support.file.svg.figTitle_webCommon,
-	topHeaderBar: support.file.svg.top_header_barCommon,
-	banniereHeader : false,
+	figTitle: support.file.svg.logoCommon,
+	banniereHeader :{
+	    link:"/svg/bannieres/tunnel.svg",
+	    alt:"Tunnel vers la becasserie"
+	},
 	links: [
 	],
 	sessionDisplay: typeof support.session.user != "undefined",

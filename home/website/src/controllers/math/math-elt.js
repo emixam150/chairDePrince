@@ -16,10 +16,9 @@ exports.exec = function(support) {
 		var queriesTemp = {
 		    title : mathElt.content.title + " - Math - Chere de prince",
 		    lang: "fr",
-		    figTitle: support.file.svg.figTitle_webCommon,
-		    topHeaderBar: support.file.svg.top_header_barCommon,
+		    figTitle: support.file.svg.logoCommon,
 		    banniereHeader: {
-			link:"/svg/common/pimp_my_math_banniere.svg",
+			link:"/svg/bannieres/pimp_my_math.svg",
 			alt:"Pimp My Math"
 		    },
 		    links: [

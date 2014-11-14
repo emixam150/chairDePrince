@@ -1,5 +1,5 @@
 /*
- *Index Controller
+ *MathBrowser Controller
  */
 var paths = require($.paths),
 commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
@@ -9,22 +9,21 @@ Math = require(paths.models + '/math.js');
 exports.exec = function(support) {
     //console.log(support.page.query.displayType,support.page.query.classification);
     var isDisplayGraph = typeof support.page.query.displayType == 'undefined' || support.page.query.displayType == 'graph',
-    jsLinked =  (isDisplayGraph)? [{path:'https://cdn.socket.io/socket.io-1.0.3.js'},{path:'/js/sigma.min.js'}]:[];
+    jsLinked =  (isDisplayGraph)? [{path:'https://cdn.socket.io/socket.io-1.2.0.js'},{path:'/js/sigma.min.js'}]:[];
         
 
     var queriesTemp = {
 	title : "Mate les maths - Chere de prince",
 	lang: "fr",
-	figTitle: support.file.svg.figTitle_webCommon,
-	topHeaderBar: support.file.svg.top_header_barCommon,
+	figTitle: support.file.svg.logoCommon,
 	banniereHeader :  {
-	    link:"/svg/common/pimp_my_math_banniere.svg",
+	    link:"/svg/bannieres/pimp_my_math.svg",
 	    alt:"Pimp My Math"
 	},
 	links: [
 	],
 	sessionDisplay: typeof support.session.user != "undefined",
-	userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
+	userName: (typeof support.session.user != "undefined")? support.session.user.name : '',
 	cssLinked:[],
 	jsLinked:jsLinked,
 	jsSpe: false, //'<script type="application/javascript"></script>'
@@ -32,9 +31,15 @@ exports.exec = function(support) {
     };
 
     var MathBrowser = new Math(),
-    limitSize = 1000;
-
-    MathBrowser.findSort(null, { lastUpdate: -1 } ,limitSize, function(docs){
+    limitSize = 1000,
+    projection = {name: 1, 
+		      'content.parents': 1, 
+		      'content.children': 1,
+		      'content.title': 1,
+		      'content.type': 1
+		     };;
+    
+    MathBrowser.findPlus({},projection, { lastUpdate: -1 } ,limitSize, function(docs){
 	displayMathElts(docs,function(listOfDisplayMath){
 	    var section ={
 		id: "section",
@@ -59,55 +64,10 @@ exports.exec = function(support) {
     }); // end of findSort
 } ;
 
-var translateTypeName = function(type){
-    var result = '';
-    switch(type){
-    case 'prop': result = 'propriété'
-	break;
-    case 'th': result = 'théorème'
-	break;
-    case 'lem': result = 'lemme'
-	break;
-    case 'cor': result = 'corollaire'
-	break;
-    case 'def': result = 'définition'
-	break;
-    case 'axiom': result = 'axiome'
-	break;
-    case 'conj': result = 'conjecture'
-	break;
-    default: result = ''
-	break;
-    }
-    return result;
-};
-
-var translateTypeColor = function(type){
-    var result = 'black';
-    switch(type){
-    case 'prop': result = '#0D0FB6'
-	break;
-    case 'th': result = '#C20707'
-	break;
-    case 'lem': result = '#610DB6'
-	break;
-    case 'cor': result = '#0D0FB6'
-	break;
-    case 'def': result = '#0D0FB6'
-	break;
-    case 'axiom': result = '#CADC09'
-	break;
-    case 'conj': result = '#2C2C2C'
-	break;
-    default: result = 'pink'
-	break;
-    }
-    return result;
-};
-
 var displayMathElts = function(mathElts, cb){
     var cpt = 0,
-    listOfDisplayMath =[];
+    listOfDisplayMath =[],
+    mathStyle = new Math();
     
     function next(){
 	cpt ++;
@@ -122,7 +82,7 @@ var displayMathElts = function(mathElts, cb){
 	listOfDisplayMath.push({
 	    name: eltMath.name,
 	    title: eltMath.content.title,
-	    colorOfType: translateTypeColor(eltMath.content.type)
+	    colorOfType: mathStyle.translateTypeColor(eltMath.content.type)
 	});
 	next();
     });

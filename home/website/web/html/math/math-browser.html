@@ -2,120 +2,142 @@
   <h2>Mate mes Maths</h2>
 
   {{#isDisplayGraph}}
-  <div id="sigma-container" class="center-container" style="border-top: 1px #72ffff solid;border-bottom: 1px #72ffff solid;width:100%;height:500px;"></div>
+  <div id="sigma-container" class="center-container" ></div>
   {{/isDisplayGraph}}
 
-  <div class="center-container">
-       <div id="selectors" class="two-column">
-	 <h3>Filtres</h3>
-	 <span class="titleselector">Filtre de premier rang</span>
-	 <form method="GET" action="/math-browser/list">
-	   <select name="" id="selectFirst">
-	     <option selected="selected" value="">Select a Mathematics subject classification</option>
-	     <option  value="00-XX">00 General</option>
-	     <option  value="01-XX">01 History and biography </option>
-	     <option  value="03-XX">03 Mathematical logic and foundations</option>
-	     <option  value="05-XX">05 Combinatorics </option>
-	     <option  value="06-XX">06 Order, lattices, ordered algebraic structures </option>
-	     <option  value="08-XX">08 General algebraic systems</option>
-	     <option  value="11-XX">11 Number theory</option>
-	     <option  value="12-XX">12 Field theory and polynomials</option>
-	     <option  value="13-XX">13 Commutative rings and algebras</option>
-	     <option  value="14-XX">14 Algebraic geometry</option>
-	     <option  value="15-XX">15 Linear and multilinear algebra; matrix theory</option>
-	     <option  value="16-XX">16 Associative rings and algebras </option>
-	     <option  value="17-XX">17 Nonassociative rings and algebras</option>
-	     <option  value="18-XX">18 Category theory; homological algebra </option>
-	     <option  value="19-XX">19 $K$-theory </option>
-	     <option  value="20-XX">20 Group theory and generalizations</option>
-	     <option  value="22-XX">22 Topological groups, Lie groups </option>
-	     <option  value="26-XX">26 Real functions </option>
-	     <option  value="28-XX">28 Measure and integration </option>
-	     <option  value="30-XX">30 Functions of a complex variable </option>
-	     <option  value="31-XX">31 Potential theory </option>
-	     <option  value="32-XX">32 Several complex variables and analytic spaces </option>
-	     <option  value="33-XX">33 Special functions </option>
-	     <option  value="34-XX">34 Ordinary differential equations</option>
-	     <option  value="35-XX">35 Partial differential equations</option>
-	     <option  value="37-XX">37 Dynamical systems and ergodic theory </option>
-	     <option  value="39-XX">39 Difference and functional equations</option>
-	     <option  value="40-XX">40 Sequences, series, summability</option>
-	     <option  value="41-XX">41 Approximations and expansions </option>
-	     <option  value="42-XX">42 Fourier analysis</option>
-	     <option  value="43-XX">43 Abstract harmonic analysis </option>
-	     <option  value="44-XX">44 Integral transforms, operational calculus </option>
-	     <option  value="45-XX">45 Integral equations</option>
-	     <option  value="46-XX">46 Functional analysis </option>
-	     <option  value="47-XX">47 Operator theory</option>
-	     <option  value="49-XX">49 Calculus of variations and optimal control; optimization </option>
-	     <option  value="51-XX">51 Geometry </option>
-	     <option  value="52-XX">52 Convex and discrete geometry</option>
-	     <option  value="53-XX">53 Differential geometry </option>
-	     <option  value="54-XX">54 General topology </option>
-	     <option  value="55-XX">55 Algebraic topology</option>
-	     <option  value="57-XX">57 Manifolds and cell complexes </option>
-	     <option  value="58-XX">58 Global analysis, analysis on manifolds </option>
-	     <option  value="60-XX">60 Probability theory and stochastic processes </option>
-	     <option  value="62-XX">62 Statistics</option>
-	     <option  value="65-XX">65 Numerical analysis</option>
-	     <option  value="68-XX">68 Computer science </option>
-	     <option  value="70-XX">70 Mechanics of particles and systems </option>
-	     <option  value="74-XX">74 Mechanics of deformable solids</option>
-	     <option  value="76-XX">76 Fluid mechanics </option>
-	     <option  value="78-XX">78 Optics, electromagnetic theory </option>
-	     <option  value="80-XX">80 Classical thermodynamics, heat transfer </option>
-	     <option  value="81-XX">81 Quantum theory</option>
-	     <option  value="82-XX">82 Statistical mechanics, structure of matter</option>
-	     <option  value="83-XX">83 Relativity and gravitational theory</option>
-	     <option  value="85-XX">85 Astronomy and astrophysics </option>
-	     <option  value="86-XX">86 Geophysics </option>
-	     <option  value="90-XX">90 Operations research, mathematical programming</option>
-	     <option  value="91-XX">91 Game theory, economics, social and behavioral sciences</option>
-	     <option  value="92-XX">92 Biology and other natural sciences</option>
-	     <option  value="93-XX">93 Systems theory; control </option>
-	     <option  value="94-XX">94 Information and communication, circuits</option>
-	     <option  value="97-XX">97 Mathematics education</option>
-	   </select>
-	 </form>
-       </div>
+
+    <div id="result-container" class="two-column">
+      <h3>Voilà de quoi faire briller vos mirettes</h3>
+
+      <ul id="list-result">
+	{{#listOfResult}}
+	<li data-name="{{name}}" style="color:{{colorOfType}}" ><a  href="/math/{{name}}">{{title}}</a></li>
+	{{/listOfResult}}
+      </ul>
+
+    </div>
+
+    
+
+    <div id="selectors" class="two-column">
+      <h3>Filtres</h3>
+      <span class="titleselector">Filtre de premier rang</span>
+      <form method="GET" action="/math-browser/list">
+	<select name="" id="selectFirst">
+	  <option selected="selected" value="">Select a Mathematics subject classification</option>
+	  <option  value="00-XX">00 General</option>
+	  <option  value="01-XX">01 History and biography </option>
+	  <option  value="03-XX">03 Mathematical logic and foundations</option>
+	  <option  value="05-XX">05 Combinatorics </option>
+	  <option  value="06-XX">06 Order, lattices, ordered algebraic structures </option>
+	  <option  value="08-XX">08 General algebraic systems</option>
+	  <option  value="11-XX">11 Number theory</option>
+	  <option  value="12-XX">12 Field theory and polynomials</option>
+	  <option  value="13-XX">13 Commutative rings and algebras</option>
+	  <option  value="14-XX">14 Algebraic geometry</option>
+	  <option  value="15-XX">15 Linear and multilinear algebra; matrix theory</option>
+	  <option  value="16-XX">16 Associative rings and algebras </option>
+	  <option  value="17-XX">17 Nonassociative rings and algebras</option>
+	  <option  value="18-XX">18 Category theory; homological algebra </option>
+	  <option  value="19-XX">19 $K$-theory </option>
+	  <option  value="20-XX">20 Group theory and generalizations</option>
+	  <option  value="22-XX">22 Topological groups, Lie groups </option>
+	  <option  value="26-XX">26 Real functions </option>
+	  <option  value="28-XX">28 Measure and integration </option>
+	  <option  value="30-XX">30 Functions of a complex variable </option>
+	  <option  value="31-XX">31 Potential theory </option>
+	  <option  value="32-XX">32 Several complex variables and analytic spaces </option>
+	  <option  value="33-XX">33 Special functions </option>
+	  <option  value="34-XX">34 Ordinary differential equations</option>
+	  <option  value="35-XX">35 Partial differential equations</option>
+	  <option  value="37-XX">37 Dynamical systems and ergodic theory </option>
+	  <option  value="39-XX">39 Difference and functional equations</option>
+	  <option  value="40-XX">40 Sequences, series, summability</option>
+	  <option  value="41-XX">41 Approximations and expansions </option>
+	  <option  value="42-XX">42 Fourier analysis</option>
+	  <option  value="43-XX">43 Abstract harmonic analysis </option>
+	  <option  value="44-XX">44 Integral transforms, operational calculus </option>
+	  <option  value="45-XX">45 Integral equations</option>
+	  <option  value="46-XX">46 Functional analysis </option>
+	  <option  value="47-XX">47 Operator theory</option>
+	  <option  value="49-XX">49 Calculus of variations and optimal control; optimization </option>
+	  <option  value="51-XX">51 Geometry </option>
+	  <option  value="52-XX">52 Convex and discrete geometry</option>
+	  <option  value="53-XX">53 Differential geometry </option>
+	  <option  value="54-XX">54 General topology </option>
+	  <option  value="55-XX">55 Algebraic topology</option>
+	  <option  value="57-XX">57 Manifolds and cell complexes </option>
+	  <option  value="58-XX">58 Global analysis, analysis on manifolds </option>
+	  <option  value="60-XX">60 Probability theory and stochastic processes </option>
+	  <option  value="62-XX">62 Statistics</option>
+	  <option  value="65-XX">65 Numerical analysis</option>
+	  <option  value="68-XX">68 Computer science </option>
+	  <option  value="70-XX">70 Mechanics of particles and systems </option>
+	  <option  value="74-XX">74 Mechanics of deformable solids</option>
+	  <option  value="76-XX">76 Fluid mechanics </option>
+	  <option  value="78-XX">78 Optics, electromagnetic theory </option>
+	  <option  value="80-XX">80 Classical thermodynamics, heat transfer </option>
+	  <option  value="81-XX">81 Quantum theory</option>
+	  <option  value="82-XX">82 Statistical mechanics, structure of matter</option>
+	  <option  value="83-XX">83 Relativity and gravitational theory</option>
+	  <option  value="85-XX">85 Astronomy and astrophysics </option>
+	  <option  value="86-XX">86 Geophysics </option>
+	  <option  value="90-XX">90 Operations research, mathematical programming</option>
+	  <option  value="91-XX">91 Game theory, economics, social and behavioral sciences</option>
+	  <option  value="92-XX">92 Biology and other natural sciences</option>
+	  <option  value="93-XX">93 Systems theory; control </option>
+	  <option  value="94-XX">94 Information and communication, circuits</option>
+	  <option  value="97-XX">97 Mathematics education</option>
+	</select>
+      </form>
+      <span class="titleselector">Type :</span>
+      <select id="type">
+	<option value="">--</option>
+	<option value="prop">proprièté</option>
+	<option value="th">théorème</option>
+	<option value="lem">lemme</option>
+	<option value="cor">corollaire</option>
+	<option value="def">définition</option>
+	<option value="axiom">axiome</option>
+	<option value="conj">conjecture</option>
+      </select>
+    </div>
 
 
 
-       <div id="result_container" class="two-column">
-	 <h3>Voilà de quoi faire briller vos mirettes</h3>
+  {{#isDisplayGraph}}
+  <script type="application/javascript" >
+    window.onload = function(){
+    var socket = io.connect();
+    
+    socket.emit('graphMath');
+    var s = new sigma('sigma-container');
+    socket.on('dataGraphMath', function(data){
+    console.log(data);
+    // ajout d'events for redirection
+    s.bind('clickNode rightClickNode', function(e) {
+    window.location.assign('/math/'+e.data.node.id);
+    });
+    // update content of the graph 
+    s.graph.clear();
+    s.graph.read(data);
+    s.refresh();
+    //gestion of the layout force
+    s.startForceAtlas2();console.log(s.graph);
+    setTimeout(function(){s.killForceAtlas2();},150*s.graph.nodes().length);
+    })// end of onDataGraphMath
 
-	 <ul id="list_result">
-	   {{#listOfResult}}
-	   <li><a href="/math/{{name}}">{{title}}</a></li>
-	   {{/listOfResult}}
-	 </ul>
+    var typeSelector = document.getElementById('type');
 
-       </div>
-</div>
+    typeSelector.onchange = function(){
+    s.killForceAtlas2();
+    socket.emit('graphMath', typeSelector.value);
+    }
 
-{{#isDisplayGraph}}
-<script type="application/javascript" >
-  window.onload = function(){
-  var socket = io.connect();
-  
-  socket.emit('graphMath');
-  var s = new sigma('sigma-container');
-  socket.on('dataGraphMath', function(data){
-  console.log(data);
-  // ajout d'events for redirection
-  s.bind('clickNode rightClickNode', function(e) {
-  window.location.assign('/math/'+e.data.node.id);
-  });
-  // update content of the graph 
-  s.graph.read(data);
-  s.refresh();
-  //gestion of the layout force
-  s.startForceAtlas2();console.log(s.graph);
-  setTimeout(function(){s.killForceAtlas2();},80*s.graph.nodes().length);
-  })// end of onDataGraphMath
-  } // end of onloadFunction
+    } // end of onloadFunction
 
 
-</script>
-{{/isDisplayGraph}}
+
+  </script>
+  {{/isDisplayGraph}}
 </section>

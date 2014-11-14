@@ -28,8 +28,8 @@ module.exports = function(enName,dbName){
 	find(query,enName,dbName, callback);
     };
 
-    this.findSort = function(query, sortQuery, limit, cb){
-	findSort(query, sortQuery, limit,enName, dbName, cb)
+    this.findPlus = function(query, projection, sortQuery, limit, cb){
+	findPlus(query, projection, sortQuery, limit, enName, dbName, cb)
     }
     this.remove = function(query){
 	remove(query,enName,dbName);
@@ -104,14 +104,15 @@ function find(query, enName, dbName,callback){
     });
 };
 
-function findSort(query, sortQuery, limitSize,  enName, dbName, callback){
+function findPlus(query, projection, sortQuery, limitSize,  enName, dbName, callback){
+
     var db = new Db(enConf[enName].base, new Server(dbConf[dbName].host, dbConf[dbName].port), {safe: true});
 
     db.open(function(err, db) {
 	assert.equal(null,err);
 	var collection = db.collection(enConf[enName].collection);
 	
-	collection.find(query).sort(sortQuery).limit(limitSize).toArray(function(err, docs) { 
+	collection.find(query,projection).sort(sortQuery).limit(limitSize).toArray(function(err, docs) { 
 	    if(err) throw err;
 	    db.close();
 	    callback(docs);
