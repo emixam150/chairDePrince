@@ -106,7 +106,7 @@ var mdCompiler = function(mathSubTrees, cb){
 
 	var segments1 = concat.split('$'),
 	    concat = "";
-	console.log(segments1)
+
 	for(var i = 0;i < segments1.length ; i += 2){
 	    if(i+2<segments1.length)
 		concat += segments1[i] + '$'+(i+1)+'$'
@@ -116,13 +116,13 @@ var mdCompiler = function(mathSubTrees, cb){
 
 	var result=Markdown.toHTML(concat)
 	for(var j =  1;j<segments1.length;j +=2){
-	    result =  result.replace('$'+ j +'$','$'+ segments1[j] +'$')
+	    result =  result.replace('$'+ j +'$',' $ '+ segments1[j] +' $ ')
 	}
 	for(var j =  1;j<segments.length ;j +=2){
 	    console.log(j,segments.length,segments[j],result)
 	    result =  result.replace('~'+ j +'~',' $$$ '+ segments[j] +' $$$ ')
 	}
-
+	console.log(result)
 	cb(result)
     }
 }
