@@ -153,7 +153,6 @@ module.exports = function Math() {
 		cb(err)
 	    else 
 		if(math.content.tree.children[sectionKey] && (newContent || typeof newContent == "string")){
-		    console.log(String(newContent))
 		    math.content.tree.children[sectionKey].content = String(newContent)
 		    math.updateThis(cb)
 		}else

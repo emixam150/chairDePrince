@@ -119,10 +119,10 @@ var mdCompiler = function(mathSubTrees, cb){
 	    result =  result.replace('$'+ j +'$',' $ '+ segments1[j] +' $ ')
 	}
 	for(var j =  1;j<segments.length ;j +=2){
-	    console.log(j,segments.length,segments[j],result)
+
 	    result =  result.replace('~'+ j +'~',' $$$ '+ segments[j] +' $$$ ')
 	}
-	console.log(result)
+
 	cb(result)
     }
 }
