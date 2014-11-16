@@ -228,8 +228,14 @@ exports.exec = function(socket){
 
 var emitListOfMath = function(cb){
     //listage des éléments mathématiques
-    var MathUseList = new MathOb();
-    MathUseList.find({},function(listOfElt){
+    var MathUseList = new MathOb(),
+    limitSize = 100000,
+    query ={},
+    projection = {name: 1,
+		  'content.title': 1
+		 };
+    
+    MathUseList.findPlus(query, projection, { lastUpdate: -1 }, limitSize, function(listOfElt){
 	var listOfMath = [],
 	cpt = 0;
 	for(var elt in listOfElt){
