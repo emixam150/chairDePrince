@@ -4,7 +4,8 @@
 
 var Mustache = $.require('mustache');
 
-var paths = require($.paths);
+var paths = require($.paths),
+    domain = require('domain');
 
 
 var mapNext = function(temp, mapTemp, cb){
@@ -40,8 +41,15 @@ var mapTemp = function(temp, cb){
 };
 
 var compileMustache = function(temp, cb){
+    var d = domain.create();
+    d.on('error',function(err){
+	console.error("Mustache error", err);
+	cb("")
+    })
+    d.run(function(){
 	var output = Mustache.render(temp.content, temp.queries);
 	cb(output);
+    })
 };
 
 exports.constructOutput = function(tempTree, cb){

@@ -7,7 +7,7 @@ MathOb = require(paths.models + '/math.js')
 exports.exec = function(socket){
 
     socket.on('graphMath', function(type){
-	console.log(type);
+
 	var MathBrowser = new MathOb(),
 	limitSize = 1000,
 	query =(type)? {'content.type': type}
@@ -20,7 +20,7 @@ exports.exec = function(socket){
 		     };
 
 	MathBrowser.findPlus(query, projection, { lastUpdate: 1 }, limitSize, function(docs){
-	    console.log(docs[0])
+
 	    preConstructGraph(docs, function(graphObject){
 		socket.emit('dataGraphMath',graphObject);
 	    }); //end of constructGraphObjet

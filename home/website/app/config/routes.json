@@ -244,5 +244,18 @@
       },
       "preloading":false,
       "maxAge": -1
+   },
+  "robots":{
+      "type":"html",
+      "format":"^/robots.txt$",
+      "mime":"plain/text",
+      "method":"GET",
+      "ressource":"robots.txt",
+      "controller":"text-control.js",
+      "url":"/robots.txt",
+      "query":{
+      },
+      "preloading":true,
+      "maxAge": -1
    }
 }
