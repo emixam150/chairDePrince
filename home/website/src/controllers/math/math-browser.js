@@ -24,9 +24,9 @@ exports.exec = function(support) {
 	],
 	sessionDisplay: typeof support.session.user != "undefined",
 	userName: (typeof support.session.user != "undefined")? support.session.user.name : '',
-	cssLinked:[],
-	jsLinked:jsLinked,
-	jsSpe: false, //'<script type="application/javascript"></script>'
+	cssLinked: [],
+	jsLinked: jsLinked,
+	jsSpe:  support.file.js['math-browserSpe'],
 	cssSpe: support.file.css['math-browserSpe']
     };
 

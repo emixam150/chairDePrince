@@ -159,12 +159,12 @@
       "format":"/js/sigma.min.js$",
       "mime":"application/javascript",
       "method":"GET",
-      "ressource":"sigma.min.js",
+      "ressource":"libs/sigma.min.js",
       "controller":"text-control.js",
       "url":"/js/sigma.min.js",
       "query":{
       },
-      "preloading":true,
+      "preloading":false,
       "maxAge": 86400
    },
     "mainCss":{
@@ -177,8 +177,8 @@
       "url":"/css/main.css",
       "query":{
       },
-      "preloading":true,
-      "maxAge": 1
+      "preloading": true,
+      "maxAge": -1
    },
    "mathCss":{
       "type":"css",
@@ -191,7 +191,7 @@
       "query":{
       },
       "preloading":true,
-      "maxAge": 1
+      "maxAge": -1
    },
    "error404":{
       "type":"html",

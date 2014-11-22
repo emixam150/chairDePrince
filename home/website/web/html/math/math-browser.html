@@ -11,7 +11,9 @@
 
       <ul id="list-result">
 	{{#listOfResult}}
-	<li data-name="{{name}}" style="color:{{colorOfType}}" ><a  href="/math/{{name}}">{{title}}</a></li>
+	<li data-name="{{name}}" style="color:{{colorOfType}}" >
+	  <a  href="/math/{{name}}">{{title}}</a>
+	</li>
 	{{/listOfResult}}
       </ul>
 
@@ -104,40 +106,4 @@
     </div>
 
 
-
-  {{#isDisplayGraph}}
-  <script type="application/javascript" >
-    window.onload = function(){
-    var socket = io.connect();
-    
-    socket.emit('graphMath');
-    var s = new sigma('sigma-container');
-    socket.on('dataGraphMath', function(data){
-    console.log(data);
-    // ajout d'events for redirection
-    s.bind('clickNode rightClickNode', function(e) {
-    window.location.assign('/math/'+e.data.node.id);
-    });
-    // update content of the graph 
-    s.graph.clear();
-    s.graph.read(data);
-    s.refresh();
-    //gestion of the layout force
-    s.startForceAtlas2();console.log(s.graph);
-    setTimeout(function(){s.killForceAtlas2();},150*s.graph.nodes().length);
-    })// end of onDataGraphMath
-
-    var typeSelector = document.getElementById('type');
-
-    typeSelector.onchange = function(){
-    s.killForceAtlas2();
-    socket.emit('graphMath', typeSelector.value);
-    }
-
-    } // end of onloadFunction
-
-
-
-  </script>
-  {{/isDisplayGraph}}
 </section>
