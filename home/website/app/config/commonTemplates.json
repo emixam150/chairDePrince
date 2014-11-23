@@ -23,9 +23,8 @@
 	"file":"common/header.html",
 	"children":["nav","sessionInfo"],
 	"queries":{
-		"figTitle": "",
-		"topHeaderBar": "",
-		"banniereHeader": "undefined"
+		"figTitle": "/svg/common/logo.svg",
+		"topHeaderBar": ""
 	}
     },
     "nav": {

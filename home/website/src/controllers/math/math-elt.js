@@ -2,10 +2,10 @@
  *Math Controller
  */
 var paths = require($.paths),
-commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
-tempModel = require(paths.models + '/template.js'),
-Math = require(paths.models + '/math.js'),
-mathEltDisplay = require('./math-elt-display.js');
+    commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
+    tempModel = require(paths.models + '/template.js'),
+    Math = require(paths.models + '/math.js'),
+    mathEltDisplay = require('./math-elt-display.js');
 
 exports.exec = function(support) {
     var mathElt = new Math();
@@ -16,11 +16,6 @@ exports.exec = function(support) {
 		var queriesTemp = {
 		    title : mathElt.content.title + " - Math - Chere de prince",
 		    lang: "fr",
-		    figTitle: support.file.svg.logoCommon,
-		    banniereHeader: {
-			link:"/svg/bannieres/pimp_my_math.svg",
-			alt:"Pimp My Math"
-		    },
 		    links: [
 		    ],
 		    sessionDisplay: typeof support.session.user != "undefined",

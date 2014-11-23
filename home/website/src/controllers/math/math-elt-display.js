@@ -24,7 +24,11 @@ exports.exec = function(mathElt, htmlFile, cb) {
 		    parents: parentsDisplay,
 		    parentsVisibility: parentsDisplay.length != 0,
 		    children: childrenDisplay,
-		    childrenVisibility: childrenDisplay.length != 0
+		    childrenVisibility: childrenDisplay.length != 0,
+		    banniereHeader: {
+			link:"/svg/bannieres/pimp_my_math.svg",
+			alt:"Pimp My Math"
+		    }
 		},
 		content: htmlFile
 	    };

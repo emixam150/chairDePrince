@@ -1,9 +1,23 @@
 <section>
-  <h2>Mate mes Maths</h2>
+  <header>
+    <div id="fig_present">
+      {{#banniereHeader}}
+      <img alt="{{alt}}" src="{{link}}"/>
+      {{/banniereHeader}}
+    </div>
+  </header>
+  <div id="section-container">
+    {{#cssSpe}}
+    <style type="text/css" scoped>
+      {{{cssSpe}}}
+    </style>
+    {{/cssSpe}}
+ 
+    <h2>Mate mes Maths</h2>
 
-  {{#isDisplayGraph}}
-  <div id="sigma-container" class="center-container" ></div>
-  {{/isDisplayGraph}}
+    {{#isDisplayGraph}}
+    <div id="sigma-container" class="center-container" ></div>
+    {{/isDisplayGraph}}
 
 
     <div id="result-container" class="two-column">
@@ -18,8 +32,6 @@
       </ul>
 
     </div>
-
-    
 
     <div id="selectors" class="two-column">
       <h3>Filtres</h3>
@@ -104,6 +116,9 @@
 	<option value="conj">conjecture</option>
       </select>
     </div>
+  </div>
+</section>    
 
 
-</section>
+
+

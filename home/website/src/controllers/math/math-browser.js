@@ -15,19 +15,13 @@ exports.exec = function(support) {
     var queriesTemp = {
 	title : "Mate les maths - Chere de prince",
 	lang: "fr",
-	figTitle: support.file.svg.logoCommon,
-	banniereHeader :  {
-	    link:"/svg/bannieres/pimp_my_math.svg",
-	    alt:"Pimp My Math"
-	},
 	links: [
 	],
 	sessionDisplay: typeof support.session.user != "undefined",
 	userName: (typeof support.session.user != "undefined")? support.session.user.name : '',
 	cssLinked: [],
 	jsLinked: jsLinked,
-	jsSpe:  support.file.js['math-browserSpe'],
-	cssSpe: support.file.css['math-browserSpe']
+	jsSpe:  support.file.js['math-browserSpe']
     };
 
     var MathBrowser = new Math(),
@@ -46,6 +40,11 @@ exports.exec = function(support) {
 		type: "part",
 		children:{},
 		queries: {
+		    banniereHeader: {
+			link:"/svg/bannieres/pimp_my_math.svg",
+			alt:"Pimp My Math"
+		    },
+		    cssSpe: support.file.css['math-browserSpe'],
 		    isDisplayGraph: isDisplayGraph,
 		    listOfResult: listOfDisplayMath
 		},
