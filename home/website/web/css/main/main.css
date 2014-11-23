@@ -8,12 +8,11 @@ img{
 }
 
 
-
 /* header */
 
 header{
     display: block;
-    margin-top: 15px;
+    padding-top: 5px;
 }
 
 #logo{
@@ -24,7 +23,7 @@ header{
 
  /* lead-in*/
 #leadin-container{
-    margin: 0 14.28%;
+    margin: -7px 14.28% 0;
 }
 
 #leadin-container .triangle{
@@ -38,7 +37,7 @@ header{
 }
 
 #leadin-container .content{
-    display:table;
+    display: table;
     margin: 0 auto;
     border-right: 1px solid gray;
 }
@@ -90,6 +89,10 @@ nav a {
 
 nav a:hover{
     text-decoration: underline;
+}
+
+.active{
+    color: gray;
 }
 
 /* Classes génériques */

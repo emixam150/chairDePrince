@@ -16,8 +16,7 @@ exports.exec = function(support) {
 		var queriesTemp = {
 		    title : mathElt.content.title + " - Math - Chere de prince",
 		    lang: "fr",
-		    links: [
-		    ],
+		    math: true,
 		    sessionDisplay: typeof support.session.user != "undefined",
 		    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 		    cssLinked:[{path:'math.css'}],

@@ -15,8 +15,7 @@ exports.exec = function(support) {
     var queriesTemp = {
 	title : "Mate les maths - Chere de prince",
 	lang: "fr",
-	links: [
-	],
+	math: true,
 	sessionDisplay: typeof support.session.user != "undefined",
 	userName: (typeof support.session.user != "undefined")? support.session.user.name : '',
 	cssLinked: [],

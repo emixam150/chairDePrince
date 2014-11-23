@@ -1,7 +1,8 @@
 <nav>
   <ul class="border-underline">
-    {{#links}}
-    <li> <a href="{{link}}">{{name}}</a> </li>
-   {{/links}}
+    <li> <a href="/" {{#index}} class="active" {{/index}} >Accueil</a> </li>
+    <li> <a href="/math-browser" {{#math}} class="active" {{/math}} > Math </a> </li>
+    <li> <a href="#" {{#blog}} class="active" {{/blog}}>Blog</a> </li>
+    <li> <a href="/contact" {{#contact}} class="active" {{/contact}} >Contact</a> </li>
   </ul>
 </nav>
