@@ -1,16 +1,23 @@
+
 body{
-    margin: 0;
-    padding: 0;    
+    font-family: "Playfair Display", serif;
 }
 
 img{
     max-width : 100%;
 }
 
+p,span,div,nav,header,section,body,h1,h2{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
 
 /* header */
 
-header{
+.page-header{
     display: block;
     padding-top: 5px;
 }
@@ -97,15 +104,74 @@ nav a:hover{
 
 /* Classes génériques */
 
-
 .border-underline{
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #DB162F;
     padding-bottom:4px;
 }
 .border-underline::after{
     display:block;
     content: "";
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #DB162F;
     width: 90%;
     margin: 0 auto;
+}
+
+/* section */
+
+/*header*/
+section{
+    margin-top: 15px;
+}
+
+.section-header{
+    
+}
+
+.section-header .banniere{
+    display: block;
+    margin: 0 auto;
+}
+
+.section-header h1{
+    display: block;
+    text-align: center;
+    font-size: 1.7em;
+    margin: 0.7em 0;
+}
+
+/*container*/
+
+.section-content{
+    line-height:1.5em;
+    padding: 0 5%;
+}
+.section-content h2{
+    font-size: 1.3em;
+    text-indent: 3%;
+    margin: 0.5em 0;
+}
+
+.section-content p {
+    margin-top: 0.9em; 
+    font-size: 0.9em;
+}
+
+
+/* footer*/
+
+.page-footer{
+    margin-top: 20px;
+    padding-top: 20px;
+    height: 50px;
+    background-color: #DB162F;
+}
+
+.page-footer p {
+    text-align: center;
+    color: black;
+}
+
+.page-footer p a {
+    color: black;
+    margin: 0 2%;
 }

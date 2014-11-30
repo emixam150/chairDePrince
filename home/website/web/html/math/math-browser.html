@@ -1,19 +1,20 @@
 <section>
-  <header>
-    <div id="fig_present">
-      {{#banniereHeader}}
-      <img alt="{{alt}}" src="{{link}}"/>
-      {{/banniereHeader}}
-    </div>
+  <header class="section-header">
+    
+    {{#banniereHeader}}
+    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+    {{/banniereHeader}}
+
+    <h1>Graff tes Maths</h1>
   </header>
-  <div id="section-container">
+
+  <div id="section-content">
+    
     {{#cssSpe}}
     <style type="text/css" scoped>
       {{{cssSpe}}}
     </style>
     {{/cssSpe}}
- 
-    <h2>Mate mes Maths</h2>
 
     {{#isDisplayGraph}}
     <div id="sigma-container" class="center-container" ></div>
