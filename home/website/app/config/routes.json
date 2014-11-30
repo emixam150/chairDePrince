@@ -180,14 +180,14 @@
       "preloading": true,
       "maxAge": -1
    },
-   "mathCss":{
+   "math-eltCss":{
       "type":"css",
-      "format":"/css/math.css$",
+      "format":"/css/math-elt.css$",
       "mime":"text/css",
       "method":"GET",
-      "ressource":"math.css",
+      "ressource":"math-elt.css",
       "controller":"text-control.js",
-      "url":"/css/math.css",
+      "url":"/css/math-elt.css",
       "query":{
       },
       "preloading":true,

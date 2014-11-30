@@ -19,7 +19,7 @@ exports.exec = function(support) {
 		    math: true,
 		    sessionDisplay: typeof support.session.user != "undefined",
 		    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
-		    cssLinked:[{path:'math.css'}],
+		    cssLinked:[{path:'math-elt.css'}],
 		    jsLinked:[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
 		    jsSpe:false
 		};

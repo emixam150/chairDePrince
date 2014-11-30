@@ -13,7 +13,12 @@ p,span,div,nav,header,section,body,h1,h2{
     
 }
 
-
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
 
 /* header */
 
@@ -114,6 +119,29 @@ nav a:hover{
     border-bottom: 1px solid #DB162F;
     width: 90%;
     margin: 0 auto;
+}
+
+.main-content{
+    margin-top: 2px;
+}
+
+.inline-list{
+    display:inline;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.inline-list li{
+    display:inline;
+    padding-left:2px;
+}
+.inline-list li:after{
+    content:",";
+    position: relative;
+    right:0.1em;
+}
+.inline-list li:last-child:after{
+    content:".";
 }
 
 /* section */

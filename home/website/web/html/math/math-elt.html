@@ -1,60 +1,81 @@
-<div id="math_elt">
-  <span class="type_container" style="color:{{typeColor}};">{{type}}</span>
-  <span class="type_container" style="float:right">{{bornDate}}</span>
-  <h2 class="title_elt_math">{{title}}</h2>
-  <div id="math_section">
-    <div class="cont container">
+<section itemscope itemType="http://schema.org/Article">
+  <header class="section-header">
+    
+    {{#banniereHeader}}
+    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+    {{/banniereHeader}}
+
+    <h1 itemprop="headline">{{title}}</h1>
+    <p class="article_details">
+      <span style="color:{{typeColor}};">{{type}}</span>
+      <time datetime="{{CbornDate}}" itemprop="datePublished">{{HbornDate}} </time>
+    </p>
+  </header>
+  
+  <div class="section-content" itemprop="articleBoby">
+    
+    {{#cssSpe}}
+    <style type="text/css" scoped>
+      {{{cssSpe}}}
+    </style>
+    {{/cssSpe}}
+
+    <div class="main-content cont">
       {{{cont}}}
     </div>
-    <div class="container">
-      {{#parentsVisibility}}
-      <div class="generation_container">
-	<span class="ident_part">Parents</span>
-	<ul class="generation_list">
-	  {{#parents}}
-	  <li class="inline_list">
-	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	  </li>
-	  {{/parents}}
+
+    {{#parentsVisibility}}
+    <div class="main-content">
+      <span class="part-label">Parents</span>
+      <ul class="inline-list info-text">
+	{{#parents}}
+	<li>
+	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	</li>
+	{{/parents}}
       </ul>
-      </div>
-      {{/parentsVisibility}}
+    </div>
+    {{/parentsVisibility}}
       {{#childrenVisibility}}
-      <div>
-	<span class="ident_part ident_generation">Enfants</span>
-	<ul class="generation_list">
-	  {{#children}}
-	  <li class="inline_list">
-	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	  </li>
-	  {{/children}}
-	</ul>
-      </div>
-      {{/childrenVisibility}}
-      </div>
+    <div class="main-content">
+      <span class="part-label">Enfants</span>
+      <ul class="inline-list info-text">
+	{{#children}}
+	<li>
+	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	</li>
+	{{/children}}
+      </ul>
+    </div>
+    {{/childrenVisibility}}
+
     {{#dem}}
-    <div class="container">
-      <span class="ident_part">Démonstration</span>
+    <div class="main-content">
+      <span class="part-label">Démonstration</span>
       {{{dem}}}
     </div>
     {{/dem}}
+
     {{#rem}}
-    <div class="container">
-      <span class="ident_part">Remarques</span>
+    <div class="main-content">
+      <span class="part-label">Remarques</span>
       {{{rem}}}
     </div>
     {{/rem}}
+
     {{#ex}}
-    <div class="container">
-      <span class="ident_part">Exemples</span>
+    <div class="main-content">
+      <span class="part-label">Exemples</span>
       {{{ex}}}
     </div>
     {{/ex}}
+
     {{#exo}}
-    <div class="container">
-      <span class="ident_part">Exercices</span>
+    <div class="main-content">
+      <span class="part-label">Exercices</span>
       {{{exo}}}
     </div>
     {{/exo}}
   </div>
-</div> 
+  
+</section>

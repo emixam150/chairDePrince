@@ -18,7 +18,8 @@ exports.exec = function(mathElt, htmlFile, cb) {
 		children: (typeof mathElt.content.tree != 'undefined')? mathElt.content.tree.children: {},
 		queries: {
 		    title: mathElt.content.title,
-		    bornDate: formatDate(mathElt.bornDate),
+		    HbornDate: formatDate(mathElt.bornDate,'H'),
+		    CbornDate: formatDate(mathElt.bornDate,'C'),
 		    type: mathElt.translateTypeName(mathElt.content.type),
 		    typeColor: mathElt.translateTypeColor(mathElt.content.type),
 		    parents: parentsDisplay,
@@ -37,10 +38,16 @@ exports.exec = function(mathElt, htmlFile, cb) {
     })
 };
 
-var formatDate = function(date){
+var formatDate = function(date,dateType){
     if(date){
-	var month = (date.getMonth()<9)? "0"+(date.getMonth()+1):date.getMonth()+1
-	return date.getDate()+"/"+month+"/"+date.getFullYear();
+	var month = (date.getMonth()<9)? "0"+(date.getMonth()+1):date.getMonth()+1,
+	    cDay = (date.getDate()<9)? "0"+(date.getDate()+1):date.getDate()+1
+	if(dateType == 'H')
+	    return date.getDate()+"/"+month+"/"+date.getFullYear();
+	else if(dateType == 'C')
+	    return date.getFullYear()+ '-' +month+ '-' +cDay;
+	else
+	    return ""
     }else
 	return ""
 }
