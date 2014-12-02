@@ -24,60 +24,17 @@ exports.load = function(next) {
 
     console.log('loading ressources...');
     var commonTemp = require(paths.config + '/commonTemplates.json'),
-    uglifyJs = $.require('uglify-js'),
-    commonSvg = paths.svg + '/common',
-    mainJs = paths.js + '/main',
-    mainCss = paths.css + '/main',
-    speCss = paths.css + '/spe';
+	uglifyJs = $.require('uglify-js'),
+	commonSvg = paths.svg + '/common',
+	mainJs = paths.js + '/main',
+	speJs = paths.js + '/spe',
+	libsJs = paths.js + '/libs',
+	mainCss = paths.css + '/main',
+	speCss = paths.css + '/spe';
     var loadingLevel = 0,
 	nbFileToLoad = 0;
 
 
- //Chargement des svg
-    fs.readdir(commonSvg, function(err,files){
-	if(err) throw err;
-	for(var file in files){
-	    nbFileToLoad++;
-	    loadFile(path.basename(files[file], '.svg') + 'Common',commonSvg+'/'+files[file], 'svg');
-	}
-    });
-
-    //chargement des js principaux
-    	file.js = {};
-	var listMainJs = require(mainJs +'/listmainjs.json').map(function(name){return mainJs +'/'+ name;}),
-	    mainFile = uglifyJs.minify(listMainJs);
-	file.js.mainJs = mainFile.code;
-
- //Chargement des css spe
-    fs.readdir(speCss, function(err,files){
-	if(err) throw err;
-	for(var file in files){
-	    nbFileToLoad++;
-	    loadFile(path.basename(files[file], '.css') +'Spe',speCss+'/'+files[file], 'css');
-	}
-    });
-    //chargement des css principaux
-/*    file.css = {};
-    var listMainCss = require(mainCss +'/listmaincss.json').map(function(name){return mainCss +'/'+ name;}),
-*/	
-
-// Chargement des sessions
-
-    fs.readFile(paths.config +'/'+ SessionsFile, function(err, data){
-	if(err) throw err;
-	if(data.toString().trim() != ''){
-	    nbFileToLoad ++;
-	    sessionsInit(sessions,JSON.parse(data), function(){
-		loadingLevel++;
-	    });
-	}
-    });
-
-    //au cas où le fichier session ne soit pas chargé avant les temp
-    setTimeout(function(){
-	if(loadingLevel == nbFileToLoad)
-	    next();
-    },500);
 
     var loadFile = function(name, path, type) {
         var option = (type !== 'image') ? 'utf8' : 'binary';
@@ -111,11 +68,11 @@ exports.load = function(next) {
    		    file[type][name] += chunk; 
 		});
 		stream.on('end', function(){
-			var watcher = fs.watch(path, function(event,filename){
-			    console.log(filename + ' est modifié');
-			    loadFile(name, path, type);
-			    watcher.close();
-			});
+		    var watcher = fs.watch(path, function(event,filename){
+			console.log(filename + ' est modifié');
+			loadFile(name, path, type);
+			watcher.close();
+		    });
 		    if(loadingLevel != -1){
 			loadingLevel ++;
 		    }
@@ -128,6 +85,64 @@ exports.load = function(next) {
             }
         });
     };
+
+    //Chargement des svg
+    fs.readdir(commonSvg, function(err,files){
+	if(err) throw err;
+	for(var file in files){
+	    nbFileToLoad++;
+	    loadFile(path.basename(files[file], '.svg') + 'Common',commonSvg+'/'+files[file], 'svg');
+	}
+    });
+
+    //chargement des js principaux
+    file.js = {};
+    var listMainJs = require(mainJs +'/list.json').map(function(name){return mainJs +'/'+ name;}),
+	mainFile =  uglifyJs.minify(listMainJs);
+    file.js.mainJs = mainFile.code;
+
+    // chargement des lib js  principales
+    var libsJsList = require(libsJs + '/list.json')
+    Object.keys(libsJsList).forEach(function(name){
+	loadFile(name, libsJs +'/'+ libsJsList[name], 'js');
+    })
+
+    //chargement des js spe
+    require(speJs +'/list.json').forEach(function(name){	
+	var minFile = uglifyJs.minify(speJs +'/'+ name);
+	file.js[path.basename(name,'.js') + 'Spe'] = minFile.code;
+    })
+
+    //Chargement des css spe
+    fs.readdir(speCss, function(err,files){
+	if(err) throw err;
+	for(var file in files){
+	    nbFileToLoad++;
+	    loadFile(path.basename(files[file], '.css') +'Spe',speCss+'/'+files[file], 'css');
+	}
+    });
+    //chargement des css principaux
+    /*    file.css = {};
+     var listMainCss = require(mainCss +'/listmaincss.json').map(function(name){return mainCss +'/'+ name;}),
+     */	
+
+    // Chargement des sessions
+
+    fs.readFile(paths.config +'/'+ SessionsFile, function(err, data){
+	if(err) throw err;
+	if(data.toString().trim() != ''){
+	    nbFileToLoad ++;
+	    sessionsInit(sessions,JSON.parse(data), function(){
+		loadingLevel++;
+	    });
+	}
+    });
+
+    //au cas où le fichier session ne soit pas chargé avant les temp
+    setTimeout(function(){
+	if(loadingLevel == nbFileToLoad)
+	    next();
+    },500);
     
     for (var i in routes) {
 	var indexPaths;
@@ -150,8 +165,8 @@ exports.load = function(next) {
 
     for(var temp in commonTemp) {
 
-	    nbFileToLoad ++;
-            loadFile(commonTemp[temp].id, paths.html+ '/' +commonTemp[temp].file, 'html');
+	nbFileToLoad ++;
+        loadFile(commonTemp[temp].id, paths.html+ '/' +commonTemp[temp].file, 'html');
     }
 
     return this;
@@ -184,7 +199,7 @@ exports.start = function(req, res, server,body) {
     //var truc = new User("becasse");
     //truc.find({},function(tab){console.log(tab);});
     //truc.removeThis();
-	
+    
     if (typeof support.page.ctrl !== 'undefined' && typeof support.page.method !== 'undefined'){
 	var controller = require(paths.controllers + '/' + support.page.ctrl);
 	if(controller.exec){
@@ -231,19 +246,19 @@ function constructRessourcePath(page){
     case 'image':
 	ressourcePath = join(paths['images'],page.file);
 	/*if((ressourcePath.indexOf(paths['images']) !== 0)){
-	    ressourcePath = null;
-	}*/	break;
+	 ressourcePath = null;
+	 }*/	break;
     case 'svg':
 	ressourcePath = join(paths['svg'],page.file);
 	/*if((ressourcePath.indexOf(paths['svg']) !== 0)){
-	    ressourcePath = null;
-	}*/
+	 ressourcePath = null;
+	 }*/
 	break;
     case 'html' :
 	ressourcePath = join(paths['html'],page.file);
 	/*if((ressourcePath.indexOf(paths['html']) !== 0)){
-	    ressourcePath = null;
-	}*/
+	 ressourcePath = null;
+	 }*/
 	break;
     case 'share':
 	ressourcePath = join(paths['share'], page.file);
@@ -257,7 +272,7 @@ function constructRessourcePath(page){
 
 /*
  * Sessions
-*/
+ */
 
 var TimeOfValidity = 60 * 48, //en minutes 
     SessionLog = 'frequentation.txt',
@@ -272,8 +287,8 @@ var TimeOfValidity = 60 * 48, //en minutes
 eventEmitter.on('addUser', saveSessions);
 
 function sessionsInit(result, data, cb){
-	for(var session in data){
-	    result[session] = new Session(data[session].client, data[session].user, data[session].bornDate);
+    for(var session in data){
+	result[session] = new Session(data[session].client, data[session].user, data[session].bornDate);
     };
     setTimeout(cb,100);
 }
@@ -289,12 +304,12 @@ function Session(client, user, lastDate){
 			     client.userAgent, 
 			     client.nReq);
     this.user = (typeof user != 'undefined')? new User(user.name,
-			user.avatar,
-			user.password,
-			user.email,
-			user.locale,
-			user.bornDate,
-			user.salt): undefined;
+						       user.avatar,
+						       user.password,
+						       user.email,
+						       user.locale,
+						       user.bornDate,
+						       user.salt): undefined;
     this.sessionsEvent = eventEmitter;
 
     this.setUser = function(user,cb){
@@ -308,14 +323,14 @@ function Session(client, user, lastDate){
 function getSession(req, res, locale, cookies, headers){
     var session = {},
 	log = $.require('log').log;
-							
+    
     if(typeof cookies.index != "undefined"){
 	if(typeof sessions[String(cookies.index)] != 'undefined'){
 	    session = sessions[String(cookies.index)];
 	    session.lastDate = new Date().getTime();
 	    session.client.incReq();
 	    createCookie(res,'truc', session.client.sessionIndex, TimeOfValidity);
-    
+	    
 	    return session;
 	}else{
 	    //si on admet que ça puisse arriver
@@ -342,7 +357,7 @@ function getSession(req, res, locale, cookies, headers){
 	session = new Session(client, user, lastDate);
 	sessions[newIndex] = session;
 	log('new session of index: ' + newIndex, paths['logs']+'/'+SessionLog);
-saveSessions();
+	saveSessions();
 
 	session.client.incReq();
 	createCookie(res,'index', newIndex, TimeOfValidity);
@@ -362,7 +377,7 @@ setInterval(function(){
     for(var session in sessions){
 	if(new Date().getTime() - sessions[session].lastDate > TimeOfValidity * 60*1000)
 	    delete sessions[session];
-	}
+    }
     setTimeout(function(){
 	//console.log(sessions);
 	saveSessions();

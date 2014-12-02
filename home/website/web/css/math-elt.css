@@ -1,0 +1,46 @@
+
+/*article header */
+
+
+
+.article_details{
+    font-size: 0.7em;
+    text-align:center;
+}
+.article_details time:before{
+    position:relative;
+    bottom: 0.25em;
+    content:" . ";
+}
+
+/*math*/
+.cont{
+    margin-top: 10px;
+    border-bottom: 2px solid #72ffff;
+}
+
+.cont:after{
+    border-bottom: 1px solid #72ffff;
+    content: "";
+    display: block;
+    margin:0 auto 2px;
+    width: 90%;
+}
+
+.part-label{
+    font-size:0.7em;
+    font-family:sans;
+}
+
+.part-label:after{
+    content: " :";
+}
+
+.info-text{
+    font-size: 0.8em
+}
+
+.main-content p:first-of-type{
+    text-indent: 1em;
+    margin-top:0;
+}

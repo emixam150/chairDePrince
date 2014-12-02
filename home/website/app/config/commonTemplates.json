@@ -23,9 +23,8 @@
 	"file":"common/header.html",
 	"children":["nav","sessionInfo"],
 	"queries":{
-		"figTitle": "",
-		"topHeaderBar": "",
-		"banniereHeader": "undefined"
+		"figTitle": "/svg/common/logo.svg",
+		"topHeaderBar": ""
 	}
     },
     "nav": {
@@ -34,16 +33,11 @@
 	"file":"common/nav.html",
 	"children":[],
 	"queries":{
-	    "links":[ {"name": "Accueil",
-		  "link": "/"},
-			{"name": "Math",
-		  "link": "/math-browser"},
-			{"name": "Blog",
-		  "link": "#"},
-		 {"name": "Contact",
-		  "link": "/contact"}
-		    ]
-			}
+	    "index": false,
+	    "math": false,
+	    "blog": false,
+	    "contact": false
+	}
     },
     "sessionInfo": {
 	"id": "sessionInfo",
