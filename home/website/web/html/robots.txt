@@ -1,0 +1,8 @@
+User-agent : *
+Allow : /
+Allow : /math-browser
+Allow : /math/*
+Disallow : /admin
+Disallow : /contact
+Disallow : /session
+Disallow : /login

@@ -1,12 +1,10 @@
 {
     "726128829": {
-        "lastDate": 1416765037474,
         "client": {
             "sessionIndex": 726128829,
             "ip": "127.0.0.1",
             "locale": "FR_fr",
-            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0",
-            "nbReq": null
+            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0"
         },
         "sessionsEvent": {
             "domain": null,
@@ -20,6 +18,20 @@
             "ip": "192.168.1.111",
             "locale": "FR_fr",
             "userAgent": "Mozilla/5.0 (Linux; Android 4.1.2; CINK PEAX 2 Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "2680234965": {
+        "lastDate": 1417531619365,
+        "client": {
+            "sessionIndex": 2680234965,
+            "ip": "109.190.59.114",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0"
         },
         "sessionsEvent": {
             "domain": null,
