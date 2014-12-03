@@ -250,12 +250,25 @@
       "format":"^/robots.txt$",
       "mime":"plain/text",
       "method":"GET",
-      "ressource":"robots.txt",
+      "ressource":"/info/robots.txt",
       "controller":"text-control.js",
       "url":"/robots.txt",
       "query":{
       },
       "preloading":true,
       "maxAge": -1
-   }
+   },
+    "sitemap":{
+	"type":"html",
+	"format":"^/sitemap.xml$",
+	"mime":"text/xml",
+	"method":"GET",
+	"ressource":"/info/sitemap.xml",
+	"controller":"text-control.js",
+	"url":"/sitemap.xml",
+	"query":{
+	},
+	"preloading":true,
+	"maxAge": -1
+    }
 }
