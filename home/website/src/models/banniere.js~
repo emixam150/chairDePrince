@@ -1,0 +1,7 @@
+/*
+ * Banniere Module
+*/
+
+var paths = $.paths,
+    local = paths.svg +'/bannieres/'; 
+module.exports = function Banniere() {

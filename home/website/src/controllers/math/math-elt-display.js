@@ -27,8 +27,8 @@ exports.exec = function(mathElt, htmlFile, cb) {
 		    children: childrenDisplay,
 		    childrenVisibility: childrenDisplay.length != 0,
 		    banniereHeader: {
-			link:"/svg/bannieres/pimp_my_math.svg",
-			alt:"Pimp My Math"
+			link: mathElt.banniere.url,
+			alt: mathElt.banniere.altMes
 		    }
 		},
 		content: htmlFile

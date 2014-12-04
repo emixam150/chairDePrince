@@ -1,17 +1,21 @@
 /*
  * Publication's Model 
  */
-var MongoSession = require(__dirname +'/mongoSession.js');
+var MongoSession = require(__dirname +'/mongoSession.js'),
+    Banniere  = require(__dirname +'/banniere.js');
 
 
-module.exports = function Publication(enName,dbName) {
+module.exports = function Publication(enName, dbName) {
     
     MongoSession.call(this, enName, dbName);
+    
+    var pub = this;
 
     this.name = '';
     this.bornDate =  new Date();
     this.lastUpdate =  new Date();
-    this.content =  {title:""};
+    this.content =  {title: ""};
+    this.banniere =  new Banniere(enName);
 
     // on ajout une publication à la base de donnée
     this.addByTitle = function(title,cb){ 
@@ -23,8 +27,10 @@ module.exports = function Publication(enName,dbName) {
 		if(docs.length == 0){
 		    pub.content.title = title
 		    pub.name = nameTest
-		    pub.add(pub, function(){
-			cb(null,pub);
+		    pub.banniere.changeName(pub.name, function(err){
+			pub.add(pub, function(){
+			    cb(null,pub);
+			})
 		    })
 		}else
 		    cb(new Error("title already exists"));
@@ -60,8 +66,9 @@ module.exports = function Publication(enName,dbName) {
 		pub.lastUpdate = docs[0].lastUpdate;
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
-		
-		cb(null,pub);
+		pub.banniere.get(docs[0].name,function(err){    
+		    cb(null,pub);
+		})
 	    }else
 		if(docs.length == 0)
 		    cb(new Error('no elt with this name :' + name))
@@ -80,8 +87,9 @@ module.exports = function Publication(enName,dbName) {
 		pub.lastUpdate = docs[0].lastUpdate;
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
-
-		cb(null,pub);
+		pub.banniere.get(docs[0].name, function(err){    
+		    cb(null,pub);
+		})
 	    }else
 		if(docs.length == 0)
 		    cb(new Error('no elt with this id'))
@@ -106,7 +114,9 @@ module.exports = function Publication(enName,dbName) {
 			    if(docs.length == 0){
 				pub.name = simplify(String(title))
 				pub.content.title = String(title)
-				pub.updateThis(cb)
+				pub.banniere.changeName(pub.name, function(err){
+				    pub.updateThis(cb)
+				})
 			    }else
 				cb(new Error("title is linked to a already used name"))
 			})
