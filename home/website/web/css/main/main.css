@@ -168,6 +168,9 @@ section{
     margin: 0.7em 0;
 }
 
+.section-header h1::first-letter{
+    text-transform: uppercase;
+}
 
 .section-header .text-intro{
     font-size: 1.1em;
