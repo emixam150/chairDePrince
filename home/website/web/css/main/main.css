@@ -149,6 +149,7 @@ nav a:hover{
 /*header*/
 section{
     margin-top: 15px;
+    padding: 0 5%;
 }
 
 .section-header{
@@ -167,11 +168,15 @@ section{
     margin: 0.7em 0;
 }
 
+
+.section-header .text-intro{
+    font-size: 1.1em;
+}
+
 /*container*/
 
 .section-content{
     line-height:1.5em;
-    padding: 0 5%;
 }
 .section-content h2{
     font-size: 1.3em;
