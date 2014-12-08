@@ -7,9 +7,9 @@
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width"/>
     {{#cssLinked}}
-    <link rel="stylesheet" type="text/css" href="css/{{path}}" />
+    <link rel="stylesheet" href="css/{{path}}" />
     {{/cssLinked}}
-    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700' rel='stylesheet' />
     <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
 	  extensions: ["tex2jax.js"],
@@ -32,7 +32,7 @@
 	});
       </script>
   
-    <!--<script type="application/javascript" src="/socket.io/socket.io.js"></script>-->
+
   </head>
   <body>
 
@@ -44,11 +44,11 @@
   
     
     {{#jsLinked}}
-    <script type="application/javascript" src="{{{path}}}"></script>
+    <script src="{{{path}}}"></script>
     {{/jsLinked}}
     
     {{#jsSpe}}
-    <script type="application/javascript" >
+    <script >
       {{{jsSpe}}}
     </script>
     {{/jsSpe}}  
