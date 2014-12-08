@@ -23,6 +23,7 @@ module.exports = function Banniere(type){
     this.alt = DEFAULT.alt
 
     this.get = function(name,cb){
+
 	isHere(local + '/' + type + '/' + name + '.svg', function(response){
 	    if(response){
 		banniere.path = local + '/' + type + '/' + name + '.svg';

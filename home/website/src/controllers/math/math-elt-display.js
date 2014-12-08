@@ -28,7 +28,7 @@ exports.exec = function(mathElt, htmlFile, cb) {
 		    childrenVisibility: childrenDisplay.length != 0,
 		    banniereHeader: {
 			link: mathElt.banniere.url,
-			alt: mathElt.banniere.altMes
+			alt: mathElt.banniere.alt
 		    }
 		},
 		content: htmlFile
