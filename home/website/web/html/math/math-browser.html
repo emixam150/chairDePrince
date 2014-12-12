@@ -28,6 +28,7 @@
 	{{#listOfResult}}
 	<li data-name="{{name}}" style="color:{{colorOfType}}" >
 	  <a  href="/math/{{name}}">{{title}}</a>
+	  <input type="checkbox" />
 	</li>
 	{{/listOfResult}}
       </ul>
@@ -106,16 +107,22 @@
 	</select>
       </form>
       <span class="titleselector">Type :</span>
-      <select id="type">
-	<option value="">--</option>
-	<option value="prop">proprièté</option>
-	<option value="th">théorème</option>
-	<option value="lem">lemme</option>
-	<option value="cor">corollaire</option>
-	<option value="def">définition</option>
-	<option value="axiom">axiome</option>
-	<option value="conj">conjecture</option>
-      </select>
+      <form id="type">
+	<label for="def-type">Définition</label>
+	<input type="checkbox" id="def-type" value="def">
+	<label for="th-type">Théorème</label>
+	<input type="checkbox" id="th-type" value="th">
+	<label for="prop-type">Propriété</label>
+	<input type="checkbox" id="prop-type" value="prop">
+	<label for="cor-type">Corollaire</label>
+	<input type="checkbox" id="cor-type" value="cor">
+	<label for="axiom-type">Axiome</label>
+	<input type="checkbox" id="axiom-type" value="axiom">
+	<label for="lem-type">Lemme</label>
+	<input type="checkbox" id="lem-type" value="lem">
+	<label for="conj-type">Conjecture</label>
+	<input type="checkbox" id="conj-type" value="conj">
+      </form>
     </div>
   </div>
 </section>    

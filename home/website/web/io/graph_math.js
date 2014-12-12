@@ -6,84 +6,82 @@ MathOb = require(paths.models + '/math.js')
 
 exports.exec = function(socket){
 
-    socket.on('graphMath', function(type){
+    socket.on('reqMB', function(req){
 
 	var MathBrowser = new MathOb(),
-	limitSize = 1000,
-	query =(type)? {'content.type': type}
-	:{},
+	limitSize = 1997,
 	projection = {name: 1, 
 		      'content.parents': 1, 
 		      'content.children': 1,
 		      'content.title': 1,
 		      'content.type': 1
 		     };
+	buildQuery(req, function(query){
 
-	MathBrowser.findPlus(query, projection, { lastUpdate: 1 }, limitSize, function(docs){
-
-	    preConstructGraph(docs, function(graphObject){
-		socket.emit('dataGraphMath',graphObject);
-	    }); //end of constructGraphObjet
-	}); //end of MathOb.findSort
-    }); //end of onGraphMath
+	    MathBrowser.findPlus(query, projection, { lastUpdate: 1 }, limitSize, function(docs){
+		responseCreator(docs, function(res){
+		    socket.emit('resMB',res);
+		}); //end of constructGraphObjet
+	    }); //end of MathOb.findSort
+	}); //end of onGraphMath
+    }); //end of buildQuery
 }
 
-function preConstructGraph(docs,cb){
-    var cpt = 0,
-    nameFromId ={}
 
+function buildQuery(req,cb){
+    var query ={};
+    query['content.type'] = {$in: req.types};
+    console.log(query);
+    cb(query);
+}
+
+function responseCreator(docs, cb){
+    var res = {}, nameFromId = {}, cpt = 0, mathStyle = new MathOb();
+    
     docs.forEach(function(mathElt){
-	nameFromId[mathElt._id] = mathElt.name
-	cpt++
+	nameFromId[String(mathElt._id)] = mathElt.name
+	res[mathElt.name] = {}
+	res[mathElt.name].title = mathElt.content.title
+	res[mathElt.name].type = mathStyle.translateTypeColor(mathElt.content.type)
+	res[mathElt.name].oldChildren = mathElt.content.children
+	res[mathElt.name].children = [];
+	cpt++;
 	if(docs.length == cpt)
-	    constructGraphObject(docs,nameFromId,cb)
+	    responseCleaner(res,nameFromId,cb)
     })
     if(docs.length == 0)
-	constructGraphObject(docs,nameFromId,cb)
+	cb(res);
+
+//    setTimeout(function(){cb(res)},10000);
 }
 
-function constructGraphObject(docs,nameFromId, cb){
-    var graphObject ={
-	nodes: [],
-	edges:[]
-    },
-    cpt= 0,
-    mathStyle = new MathOb();
+function responseCleaner(res, nameFromId, cb){
     
-    docs.forEach(function(mathElt){
-	graphObject.nodes.push({
-	    id: mathElt.name,
-	    label: mathElt.content.title,
-	    x: Math.random(),
-	    y: Math.random(),
-	    size: mathElt.content.children.length+1,
-	    color: mathStyle.translateTypeColor(mathElt.content.type)
-	});
-	var subcpt = 0;
-	mathElt.content.children.forEach(function(childId){
+    var cpt= 0;
+    
+    Object.keys(res).forEach(function(key){
+	checkGenerations(res[key],nameFromId ,function(){
+	    cpt ++;
+	    if(Object.keys(res).length == cpt)
+		cb(res)
+	})
+    }); // end of forEach mathCont
+}
 
-	    if(nameFromId[childId])
-		graphObject.edges.push({
-		    id: nameFromId[childId] +'-'+ mathElt.name,
-		    source : nameFromId[childId],
-		    target: mathElt.name,
-		    size: 1,
-		    color: mathStyle.translateTypeColor(mathElt.content.type)
-		})
-	    subcpt ++;
-	    if(mathElt.content.children.length == subcpt)
-		next();
-	}); // end of forEach children
-	
-	if(mathElt.content.children.length == 0)
-	    next()
-    }); // end of forEach docs
-    
-    function next(){
-	cpt ++;
-	if(cpt == docs.length)
-	    cb(graphObject);
-    }
-    if(docs.length == 0)
-	cb(graphObject);
-};
+function checkGenerations(content, nameFromId, cb){
+    var cpt = 0;
+    content.oldChildren.forEach( function(childId,index){
+	if(typeof nameFromId[String(childId)] != 'undefined')
+	    content.children.push(nameFromId[String(childId)]);
+	cpt++
+	if(cpt == content.oldChildren.length){
+	    console.log(content.children);
+	    
+	    cb();
+	}
+    })
+    if(content.children.length == 0){
+	cb()}
+}
+
+
