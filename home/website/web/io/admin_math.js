@@ -132,7 +132,7 @@ exports.exec = function(socket){
 		}
 		currentMath.updateSubTree(sectionKey, newContent,function(err){
 		    refreshDisplay()
-		    oldContent = newContent // initialisation
+		    OldContent = newContent // initialisation
 		    oldSectionKey = sectionKey
 		    if(err)
 			socket.emit('warning',"impossible to upadate the subTree " + oldSectionKey+ " : "+ err.message)
@@ -140,12 +140,12 @@ exports.exec = function(socket){
 			socket.emit('subTreeUpdated')
 		})
 	    }else{
-		oldContent = newContent    // on stocke
+		OldContent = newContent    // on stocke
 		if(!isTipping){ // ca fait plus d'une sec
 		    isTipping = true
 		    setTimeout(function(){
 			isTipping = false
-			currentMath.updateSubTree(oldSectionKey, oldContent,function(err){
+			currentMath.updateSubTree(oldSectionKey, OldContent,function(err){
 			    refreshDisplay()
 			    if(err)
 				socket.emit('warning',"impossible to upadate the subTree " + sectionKey+ " : "+ err.message)
