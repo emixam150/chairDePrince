@@ -43,16 +43,13 @@ function responseCreator(docs, cb){
 	res[mathElt.name] = {}
 	res[mathElt.name].title = mathElt.content.title
 	res[mathElt.name].type = mathStyle.translateTypeColor(mathElt.content.type)
-	res[mathElt.name].oldChildren = mathElt.content.children
-	res[mathElt.name].children = [];
+	res[mathElt.name].children = mathElt.content.children
 	cpt++;
 	if(docs.length == cpt)
 	    responseCleaner(res,nameFromId,cb)
     })
     if(docs.length == 0)
 	cb(res);
-
-//    setTimeout(function(){cb(res)},10000);
 }
 
 function responseCleaner(res, nameFromId, cb){
@@ -70,18 +67,16 @@ function responseCleaner(res, nameFromId, cb){
 
 function checkGenerations(content, nameFromId, cb){
     var cpt = 0;
-    content.oldChildren.forEach( function(childId,index){
-	if(typeof nameFromId[String(childId)] != 'undefined')
-	    content.children.push(nameFromId[String(childId)]);
+    content.children.forEach( function(childId,index){
+	if(nameFromId[String(childId)])
+	    content.children[index] = nameFromId[String(childId)];
 	cpt++
-	if(cpt == content.oldChildren.length){
-	    console.log(content.children);
-	    
+	if(cpt == content.children.length){
 	    cb();
 	}
     })
-    if(content.children.length == 0){
-	cb()}
+    if(content.children.length == 0)
+	cb();
 }
 
 

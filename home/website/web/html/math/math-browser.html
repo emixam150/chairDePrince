@@ -23,7 +23,8 @@
 
     <div id="result-container" class="two-column">
       <h3>Voilà de quoi faire briller vos mirettes</h3>
-
+      <input type="search" id="result-search" placeholder="Recherche"/>
+      <form id="roots">
       <ul id="list-result">
 	{{#listOfResult}}
 	<li data-name="{{name}}" style="color:{{colorOfType}}" >
@@ -32,7 +33,7 @@
 	</li>
 	{{/listOfResult}}
       </ul>
-
+      </form>
     </div>
 
     <div id="selectors" class="two-column">
