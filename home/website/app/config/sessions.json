@@ -1,7 +1,7 @@
 {
-    "726128829": {
+    "665253799": {
         "client": {
-            "sessionIndex": 726128829,
+            "sessionIndex": 665253799,
             "ip": "127.0.0.1",
             "locale": "FR_fr",
             "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0"
@@ -12,12 +12,12 @@
             "_maxListeners": 10
         }
     },
-    "1039359259": {
+    "1602638230": {
         "client": {
-            "sessionIndex": 1039359259,
-            "ip": "192.168.1.111",
+            "sessionIndex": 1602638230,
+            "ip": "127.0.0.1",
             "locale": "FR_fr",
-            "userAgent": "Mozilla/5.0 (Linux; Android 4.1.2; CINK PEAX 2 Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36"
+            "userAgent": "Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23"
         },
         "sessionsEvent": {
             "domain": null,
@@ -25,13 +25,42 @@
             "_maxListeners": 10
         }
     },
-    "2680234965": {
-        "lastDate": 1417531619365,
+    "2915015968": {
         "client": {
-            "sessionIndex": 2680234965,
-            "ip": "109.190.59.114",
+            "sessionIndex": 2915015968,
+            "ip": "127.0.0.1",
             "locale": "FR_fr",
             "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0"
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "3601829849": {
+        "lastDate": 1418483531954,
+        "client": {
+            "sessionIndex": 3601829849,
+            "ip": "127.0.0.1",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:33.0) Gecko/20100101 Firefox/33.0",
+            "nbReq": null
+        },
+        "sessionsEvent": {
+            "domain": null,
+            "_events": {},
+            "_maxListeners": 10
+        }
+    },
+    "4345153839": {
+        "lastDate": 1418483262452,
+        "client": {
+            "sessionIndex": 4345153839,
+            "ip": "192.168.1.136",
+            "locale": "FR_fr",
+            "userAgent": "Mozilla/5.0 (Linux; Android 4.1.2; CINK PEAX 2 Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.93 Mobile Safari/537.36",
+            "nbReq": null
         },
         "sessionsEvent": {
             "domain": null,
