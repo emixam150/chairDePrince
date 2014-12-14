@@ -13,7 +13,7 @@ exports.exec = function(support) {
         
 
     var queriesTemp = {
-	title : "Mate les maths - Chere de prince",
+	title : "Graphe tes Maths - Chère de prince",
 	lang: "fr",
 	math: true,
 	sessionDisplay: typeof support.session.user != "undefined",

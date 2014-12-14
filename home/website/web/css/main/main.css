@@ -165,7 +165,7 @@ section{
     display: block;
     text-align: center;
     font-size: 1.7em;
-    margin: 0.7em 0;
+    margin-bottom: 0.5em;
 }
 
 .section-header h1::first-letter{

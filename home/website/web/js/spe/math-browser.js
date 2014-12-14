@@ -173,7 +173,7 @@ window.onload = function(){
 	    s.refresh();
 	    
 	    //gestion of the layout force
-	    s.startForceAtlas2();
+	    s.startForceAtlas2({adjustSizes:true,gravity:4});
 	    this.chrono = setTimeout(function(){
 		this.chrono = null;
 		s.killForceAtlas2();

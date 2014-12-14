@@ -7,7 +7,7 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
     var queriesTemp = {
-	title : "index - Chere de prince",
+	title : "Accueil - Chère de prince",
 	lang: "fr",
 	index: true,
 	sessionDisplay: typeof support.session.user != "undefined",
