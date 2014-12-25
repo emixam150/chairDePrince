@@ -1,5 +1,4 @@
 <section>
-
   <header class="section-header">
     {{#banniereHeader}}
     <img class="banniere" alt="{{alt}}" src="{{link}}"/>
@@ -10,7 +9,7 @@
       Passionnée de mathématique, mordue par le web et avant tout curieuse, je suis la Bécasse qui veille sur <em>Chère de Prince</em>. Je partage ici toutes mes créations, connaissances et avis, le tout accompagné par une présentation personnalisée. Graphes, dessins, et jeux sont de mise.  
     </p>
   </header>
-
+  
   <div class="section-content">
 
     {{#cssSpe}}

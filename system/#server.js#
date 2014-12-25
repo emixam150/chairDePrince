@@ -1,7 +1,7 @@
 
 /*
-** Load virtual hosts configuration
-*/
+ ** Load virtual hosts configuration
+ */
 var vhost = require('../config/vhost.json');
 global.$ = require('framework');
 /*
@@ -10,30 +10,24 @@ global.$ = require('framework');
 
 httpServer = function(server) {
     var http = require('http'),
-    io = require('socket.io');
+	io = require('socket.io');
 
     var app = require(server.hosts['default'].index);
     
     var srv = http.createServer(function (req, res) {
         /** 3 **/
-       /* var host = req.headers.host;console.log(host);
-        
-        if (typeof server.hosts[host] !== 'undefined') {
-            var app = require(server.hosts[host].index);
-        } else {
-            var app = require(server.hosts['default'].index);
-	}*/
-       
-       app.run(req, res, server.hosts['default']);
+	
+	app.run(req, res, server.hosts['default']);
     }).listen(server.port);
+
     var ioServer = io.listen(srv);
     ioServer.sockets.on('connection', function(socket){
 	app.execSocket(socket);
     });
 };
 /*
-** method of HTTPS Server
-*/
+ ** method of HTTPS Server
+ */
 httpsServer = function(server) {
     var https = require('https');
     var fs = require("fs");
@@ -67,5 +61,5 @@ for (var i in vhost) {
     var method = server.protocol+'Server';
     
     /** 4 **/
-   global[method](server);
+    global[method](server);
 }
