@@ -1,0 +1,58 @@
+/*
+ * Lead In Model 
+ */
+var MongoSession = require(__dirname +'/mongoSession.js');
+
+
+module.exports = function LeadIn() {
+    
+    MongoSession.call(this, "leadIn", "main");
+    
+    var lead = this;
+
+    this.content = '';
+    this.bornDate =  new Date();
+    this.lastUpdate =  new Date();
+
+    // on ajout une publication à la base de donnée
+    this.add = function(content,cb){ 
+	lead.content = content;
+	lead.add(lead, function(){
+	    cb(null,pub);
+	})
+    };
+    
+    //met à jour le contenu de la publication suivant l'id sans vérification du contenu
+    this.updateThis = function(cb){
+	if(lead._id){
+	    lead.lastUpdate = new Date();
+	    lead.update({_id: lead._id}, lead, function(result){
+		if(result != 0)
+		    if(typeof cb != 'undefined'){ 
+			cb(null,lead);
+		    }else
+			if(typeof cb != 'undefined')
+			    cb(new Error('no result for update'));
+	    })
+	}
+    }
+
+    this.removeThis = function(){ this.remove({_id :this._id}); };
+
+    this.getById = function(id,cb){
+	var query = { _id: id};
+	this.find(query ,function(docs){
+	    if(docs.length == 1){
+		lead.bornDate = docs[0].bornDate;
+		lead.lastUpdate = docs[0].lastUpdate;
+		lead.content = docs[0].content;
+		lead._id = docs[0]._id;
+	    }else
+		if(docs.length == 0)
+		    cb(new Error('no elt with this id'))
+	    else
+		cb(new Error('several elts with this id!!'))
+	});
+    };
+
+}    //end of model

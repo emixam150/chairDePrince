@@ -49,6 +49,7 @@ var paths = require($.paths),
 tempModel = require(paths.models + '/template.js'),
 MathOb = require(paths.models + '/math.js'),
 adminMath = require(paths.io + '/admin_math.js'),
+adminLeadIn = require(paths.io + '/admin_leadin.js'),
 graphMath = require(paths.io + '/graph_math.js'),
 fs = require('fs');
 var listMath = [];
@@ -96,6 +97,12 @@ exports.execSocket= function(socket){
     switch(socket.request.headers.referer){
     case 'http://cheredeprince.net/admin/math':
 	adminMath.exec(socket)
+	break
+    case 'http://cheredeprince.net/admin/leadin':
+	adminLeadIn.exec(socket)
+	break
+    case 'http://localhost:8042/admin/leadin':
+	adminLeadIn.exec(socket)
 	break
     case 'http://localhost:8042/admin/math':
 	adminMath.exec(socket)

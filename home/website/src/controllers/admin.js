@@ -5,7 +5,8 @@ var paths = require($.paths),
     tempModel = require(paths.models + '/template.js'),
     bcrypt = $.require('bcrypt-nodejs');
 var mustache = $.require('mustache'),
-    log = $.require('log').log;
+    log = $.require('log').log,
+    error404 = require(paths.controllers + '/error404.js');
 
 exports.exec = function(support) {
     post(support,get);
@@ -60,9 +61,28 @@ function get(support){
 		accueil.children.right = right
 		send(support,accueil);
 	    });
-	}else
+	}else{
+	    support.res.statusCode = '401';
 	    send(support, accueil);
-	
+	}
+	break;
+    case 'leadin':
+	if(accueil.acces){
+	    require(__dirname+'/admin/leadin.js').exec(support,function(left,center,right,jsSpe){
+		accueil.js = jsSpe;
+		accueil.children.left = left
+		accueil.children.center = center
+		accueil.children.right = right
+		send(support,accueil);
+	    });
+	}else{
+	    support.res.statusCode = '401';
+	    send(support, accueil);
+	}
+	break;
+
+    default:
+	error404.exec(support);
     }
 }
 
