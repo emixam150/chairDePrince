@@ -1,0 +1,21 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'update', 'package.json' ]
+2 info using npm@2.1.15
+3 info using node@v0.10.34
+4 verbose type called_on_non_object
+5 verbose stack TypeError: Object.keys called on non-object
+5 verbose stack     at Function.keys (native)
+5 verbose stack     at unmarkExtraneous (/usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:362:10)
+5 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:137:5
+5 verbose stack     at next (/usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:185:14)
+5 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:169:14
+5 verbose stack     at Object.oncomplete (evalmachine.<anonymous>:108:15)
+6 verbose cwd /home/paul/chairDePrince/system
+7 error Linux 3.17.6-1-ARCH
+8 error argv "/usr/bin/node" "/usr/bin/npm" "update" "package.json"
+9 error node v0.10.34
+10 error npm  v2.1.15
+11 error Object.keys called on non-object
+12 error If you need help, you may report this error at:
+12 error     <http://github.com/npm/npm/issues>
+13 verbose exit [ 1, true ]
