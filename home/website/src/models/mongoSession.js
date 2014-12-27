@@ -37,7 +37,9 @@ module.exports = function(enName,dbName){
 
     this.update = function(selector, document, cb){
 	update(selector,document,enName,dbName,cb);
-    }; 
+    };
+
+    this.ObjectId = ObjectID;
 }
 
 function add(objet,enName, dbName, callback){

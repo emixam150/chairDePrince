@@ -1,0 +1,404 @@
+/*
+ * Math's Model 
+ */
+var dbName = "main",
+    enName = "math",
+    Publication = require(__dirname +'/publication.js');
+
+
+module.exports = funoction Math() {
+    
+    Publication.call(this, enName, dbName );
+
+    this.content.parents = []
+    this.content.children = []
+    this.content.tree =  {
+     	"id": "section",
+     	"content": "",
+     	"children": {
+	    "cont": {
+		"id": "cont",
+		"type": "part",
+		"content":"",
+		"children":{},
+		"queries":{}
+	    }
+	},
+     	"queries":{}
+    }
+    this.content.type = null
+
+    this.addParentByName = function(name,cb){
+	var parentToAdd = new Math(),
+	math = this;
+	math.getById(math._id, function(err){
+	    parentToAdd.getByName(name, function(err,result){
+		if(err){
+		    cb(err)
+		}else{
+		    if(math.name != name){
+			ObjIdArrToStrArr(parentToAdd.content.children,function(parentChildren){
+			    ObjIdArrToStrArr(math.content.parents,function(mathParents){
+				if(parentChildren.indexOf(String(math._id)) == -1){
+				    if(mathParents.indexOf(String(parentToAdd._id)) == -1){
+					math.content.parents.push(parentToAdd._id)
+					parentToAdd.content.children.push(math._id)
+					math.updateThis(function(err){
+					    if(err)
+						cb(err)
+					    else
+						parentToAdd.updateThis(function(err){
+						    if(err)
+							cb(err)
+						    else{
+							cb()
+						    }
+						})
+					})
+				    }else
+					cb(new Error("parent already exists in current elt"))
+				}else
+				    cb(new Error("current elt already exists in children's parent"))
+			    })
+			})
+		    }else
+			cb(new Error("Can't add itself as parent"))
+		}
+	    })
+	})	
+    }
+    
+    this.removeParentByName = function(name,cb){
+	var parentToRemove = new Math(),
+	math = this;
+	math.getById(math._id,function(err){
+	    parentToRemove.getByName(name, function(err,result){
+		if(err){
+		    cb(err);
+		}else{
+		    if(math.name != name){
+			ObjIdArrToStrArr(parentToRemove.content.children,function(parentChildren){
+			    ObjIdArrToStrArr(math.content.parents,function(mathParents){
+				if(parentChildren.indexOf(String(math._id)) != -1){
+				    if(mathParents.indexOf(String(parentToRemove._id)) != -1){
+					math.content.parents.splice(mathParents.indexOf(String(parentToRemove._id)),1)
+					parentToRemove.content.children.splice(parentChildren.indexOf(String(math._id)),1)
+					math.updateThis(function(err){
+					    if(err)
+						cb(err)
+					    else
+						parentToRemove.updateThis(function(err){
+						    if(err)
+							cb(err)
+						    else{
+							cb()
+						    }
+						})
+					})
+				    }else
+					cb(new Error("parent don't exists in current elt"))
+				}else
+				    cb(new Error("current elt don't exists in children's parent"))
+			    })
+			})
+		    }else
+			cb(new Error("Can't remove itself as parent"))
+		}
+	    })
+	})
+    }
+
+    this.addSubTree = function(sectionKey,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		//on ajout une partie non présente
+		if((sectionKey == 'dem' || sectionKey == 'rem' || sectionKey == 'ex' || sectionKey == 'exo') && !math.content.tree.children[sectionKey] ){
+		    math.content.tree.children[sectionKey] = {
+			"id": sectionKey,
+			"type": "part",
+			"content":"",
+			"children":{},
+			"queries":{}
+		    }
+		    math.updateThis(cb)
+		}else
+		    cb(new Error("sectionKey already exists or isn't correct"))
+	})
+    }
+    
+    this.rmSubTree = function(sectionKey,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		//on supprime une partie déjà présente
+		if(math.content.tree.children[sectionKey] && sectionKey != 'cont'){
+		    delete math.content.tree.children[sectionKey]
+		    math.updateThis(cb)
+		    
+		}else
+		    cb(new Error("Content or keySection isn't correct"))
+	})
+    }
+    
+
+    this.updateSubTree = function(sectionKey, newContent,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		if(math.content.tree.children[sectionKey] && (newContent || typeof newContent == "string")){
+		    math.content.tree.children[sectionKey].content = String(newContent)
+		    math.updateThis(cb)
+		}else
+		    cb(new Error("Content or keySection isn't correct"))
+	})
+    }
+
+    this.changeType = function(type,cb){
+	var math = this
+	math.getById(math._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		math.checkType(type, function(err){
+		    if(err)
+			cb(err)
+		    else{
+			math.content.type = type
+			math.updateThis(cb);
+		    }
+		})
+	})
+    }
+    
+    this.checkType = function(type,cb){
+
+	switch(type){
+	case 'prop': cb()
+	    break;
+	case 'th': cb()
+	    break;
+	case 'lem': cb()
+	    break;
+	case 'cor': cb()
+	    break;
+	case 'def': cb()
+	    break;
+	case 'axiom': cb()
+	    break;
+	case 'conj': cb()
+	    break;
+	default: 
+	    if(type != null)
+		cb(new Error("type isn't correct"))
+	    else
+		cb()
+	    break;
+	}
+    }
+
+    this.translateTypeColor = function(type){
+	var result = 'black';
+	switch(type){
+	case 'prop': result = '#0D0FB6'
+	    break;
+	case 'th': result = '#C20707'
+	    break;
+	case 'lem': result = '#610DB6'
+	    break;
+	case 'cor': result = '#FF4000'
+	    break;
+	case 'def': result = '#01DF01'
+	    break;
+	case 'axiom': result = '#CADC09'
+	    break;
+	case 'conj': result = '#2C2C2C'
+	    break;
+	default: result = 'pink'
+	    break;
+	}
+	return result;
+    };
+
+    this.translateTypeName = function(type){
+	var result = '';
+	switch(type){
+	case 'prop': result = 'propriété'
+	    break;
+	case 'th': result = 'théorème'
+	    break;
+	case 'lem': result = 'lemme'
+	    break;
+	case 'cor': result = 'corollaire'
+	    break;
+	case 'def': result = 'définition'
+	    break;
+	case 'axiom': result = 'axiome'
+	    break;
+	case 'conj': result = 'conjecture'
+	    break;
+	default: result = ''
+	    break;
+	}
+	return result;
+    }
+
+
+
+    // this.changeTitle = function(title, cb){
+    // 	var math = this,
+    // 	cptParent = 0 ,
+    // 	cptChild = 0
+    // 	if(math.content.parents){
+    // 	    var parentsLength = math.content.parents.length,
+    // 	    parentsList = []}
+    // 	if(math.content.children){
+    // 	    var childrenLength = math.content.children.length,
+    // 	    childrenList = []}
+
+    // 	var addChildren = function(n){
+    // 	    if(n!=0){
+    // 		var childName = childrenList[n-1],
+    // 		child = new Math()
+    // 		child.getByName(childName, function(err, result){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			child.addParentByName(math.name, function(err){
+    // 			    if(err)
+    // 				cb(err)
+    // 			    else{
+    // 				addChildren(n-1)
+    // 			    }
+    // 			})
+    // 		    }
+    // 		})
+    // 	    }else
+    // 		math.getById(math._id, function(err){ //mise a jour av l'ajout des parents
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			if(math.content.parents)
+    // 			    addParents(parentsLength)
+    // 			else
+    // 			    cb()
+    // 		    }
+    // 		})
+    // 	},
+    // 	addParents = function(n){
+    // 	    if(n!=0){
+    // 		var parentName = parentsList[n-1]
+    // 		math.addParentByName(parentName, function(err){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			addParents(n-1)
+    // 		    }
+    // 		})
+    // 	    }else
+    // 		cb()  
+    // 	},
+    // 	update = function(){
+    // 	    math.getById(math._id,function(err){ //mise a jour avant changement du titre
+    // 		if(err)
+    // 		    cb(err)
+    // 		else
+    // 		    math.setTitle(title, function(err){
+    // 			if(err)
+    // 			    cb(err)
+    // 			else
+    // 			    math.updateThis(function(err){
+    // 				if(err)
+    // 				    cb(err)
+    // 				else{
+    // 				    if(math.content.children)
+    // 					addChildren(childrenLength)
+    // 				    else{ 
+    // 					if(math.content.parents)
+    // 					    addParents(parentsLength)
+    // 					else
+    // 					    cb()
+    // 				    }
+    // 				}
+    // 			    })
+    // 		    })
+    // 	    })
+    // 	},
+    // 	rmChildren = function(k){
+    // 	    if(k != 0){
+    // 		var child = new Math(),
+    // 		childName = math.content.children[k-1]
+    // 		child.getByName(childName, function(err,result){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else
+    // 			child.removeParentByName(math.name,function(err){
+    // 			    if(err)
+    // 				cb(err)
+    // 			    else{
+    // 				childrenList.push(childName)
+    // 				rmChildren(k-1)
+    // 			    }
+    // 			})
+    // 		})
+    // 	    }else
+    // 		update()
+    // 	},
+    // 	rmParents = function(k){
+    // 	    if(k!=0){
+    // 		console.log('begin',math)
+    // 		var parentName = math.content.parents[k-1] 
+    // 		math.removeParentByName(parentName, function(err){
+    // 		    if(err)
+    // 			cb(err)
+    // 		    else{
+    // 			console.log('end',math)
+    // 			parentsList.push(parentName)
+    // 			rmParents(k-1)
+    // 		    }
+    // 		})   
+    // 	    }else{
+    // 		math.content.parents = []
+    // 		if(math.content.children)
+    // 		    rmChildren(childrenLength)
+    // 		else
+    // 		    update()
+    // 	    }
+    // 	}
+    // 	// on supprime les parents de l'elt et on le supprime dans la liste des parents de chacun de ses enfants
+
+    // 	this.checkTitle(title,function(err){
+    // 	    if(err)
+    // 		cb(err);
+    // 	    else{
+    // 		if(math.content.parents){
+    // 		    rmParents(parentsLength)
+    // 		}else{
+    // 		    if(math.content.children)
+    // 			rmChildren(childrenLength)
+    // 		    else
+    // 			upadte()
+    // 		}
+    // 	    }
+    // 	})
+    // }
+};
+
+var ObjIdArrToStrArr = function(objArr,cb){
+    var strArr = [],
+    cpt = 0
+    objArr.forEach(function(ObjectId,index){
+	strArr[index]=String(ObjectId)
+	cpt++
+	if(cpt == objArr.length)
+	    cb(strArr)
+    })
+    if(objArr.length == 0)
+	cb(strArr)
+}

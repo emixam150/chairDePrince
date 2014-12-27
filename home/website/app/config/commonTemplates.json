@@ -23,8 +23,9 @@
 	"file":"common/header.html",
 	"children":["nav","sessionInfo"],
 	"queries":{
-		"figTitle": "/svg/common/logo.svg",
-		"topHeaderBar": ""
+	    "figTitle": "/svg/common/logo.svg",
+	    "topHeaderBar": "",
+	    "leadIn": "Bienvenue à la bécasserie!"
 	}
     },
     "nav": {

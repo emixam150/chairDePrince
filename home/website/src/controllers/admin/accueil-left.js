@@ -19,6 +19,8 @@ exports.exec = function(support,cb){
 		links:[
 		    {name: 'math',
 		     link:'/admin/math'},
+		    {name: 'accroche',
+		     link:'/admin/leadin'},
 		    {name: 'blog',
 		     link:'/admin/blog'}
 		]

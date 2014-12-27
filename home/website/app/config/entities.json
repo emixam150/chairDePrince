@@ -8,5 +8,10 @@
 	"connection":"main",
 	"base":"becasse",
 	"collection":"math"
+    },
+    "leadIn":{
+	"connection":"main",
+	"base":"becasse",
+	"collection":"leadIn"
     }
 }
