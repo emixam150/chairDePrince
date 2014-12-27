@@ -20,6 +20,7 @@ a:hover{
     text-decoration: underline;
 }
 
+
 /* header */
 
 .page-header{
@@ -33,7 +34,7 @@ a:hover{
     max-width: 45.4545%;
 }
 
- /* lead-in*/
+/* lead-in*/
 #leadin-container{
     margin: -7px 14.28% 0;
 }
@@ -74,7 +75,7 @@ a:hover{
     font-size: 0.7em;
 }
 
-   /*nav*/
+/*nav*/
 
 nav{
     display: block;
@@ -178,7 +179,7 @@ section{
 
 /*container*/
 
-.section-content{
+v.section-content{
     line-height:1.5em;
 }
 .section-content h2{
@@ -211,3 +212,111 @@ section{
     color: black;
     margin: 0 2%;
 }
+
+@media screen and (min-width: 360px){
+    #logo{
+	width: 163.6362px;
+    }
+}
+
+
+
+@media screen and (min-width: 640px) {
+
+    /* header */
+
+    .page-header{
+	width: 98%;
+	margin: 3px auto 0;
+    }
+
+    .container-fibo{
+	display: inline-block;
+	width: 23.0769%; /*3/13*/
+    }
+    
+    #logo{
+	display:block;
+	width:180px;
+	max-width: 100%;
+    }
+
+        /*nav*/
+
+    nav{
+	display:block;
+	position: absolute;
+	top: 18px;
+	margin: 0 0 0 23.0769% ; /* 10/13 */
+	width: 76.923077%;
+    }
+
+    nav ul{
+	margin:0 auto;
+	width: 90%;
+	max-width: 800px;
+    }
+
+    /* lead-in*/
+    #leadin-container{
+	display: inline-block;
+	margin:  0;
+	position: relative;
+	bottom:7px;
+    }
+    
+    #leadin-container .triangle{
+	position:relative;
+	left: 5px;
+	display: inline-block;
+	vertical-align:top;
+	margin:0;
+	border-width:  5px 10px 5px 0;
+	border-color: transparent grey transparent transparent;
+    }
+
+    #leadin-container .content{
+	display: inline-block;
+	margin: 0;
+	border-left: 1px solid gray;
+	border-right:none;
+    }
+    #leadin-container .top-border{
+	display: none;
+    }
+
+    #leadin-container .bottom-border{
+	float: left;
+	width: 37%;
+    }
+}
+
+@media screen and (min-width:768px){
+    #leadin-container{
+	position:relative;
+	left: calc(90px - 1.5/13 * 100%); /* pour ne pas s'éloingner du logo*/
+    }
+}
+
+/*
+@media screen and (orientation: portrait){
+    .page-header{
+	max-width: 1024px;
+	margin: 0 auto;
+    }
+}
+
+
+@media screen and (orientation: landscape) and (min-width: 960px){
+    .page-header{
+	width: 864px;
+	margin: 0 auto;
+    }
+
+    nav{
+	margin: 0 0 0 259.2px;
+	width: 604.8px;
+    }
+}
+
+*/
