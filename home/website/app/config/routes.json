@@ -167,6 +167,19 @@
       "preloading":false,
       "maxAge": 86400
    },
+    "xyjax":{
+      "type":"js",
+      "format":"/js/xyjax.min.js",
+      "mime":"application/javascript",
+      "method":"GET",
+      "ressource":"libs/xyjax.min.js",
+      "controller":"text-control.js",
+      "url":"/js/xyjax.min.js",
+      "query":{
+      },
+      "preloading":false,
+      "maxAge": -1
+   },
     "mainCss":{
       "type":"css",
       "format":"/css/main.css$",

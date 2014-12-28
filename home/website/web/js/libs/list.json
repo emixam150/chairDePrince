@@ -1,3 +1,4 @@
 {
-    "sigmaJs": "sigma.min.js"
+    "sigmaJs": "sigma.min.js",
+    "xyjax":"xyjax.min.js"
 }
