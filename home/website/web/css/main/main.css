@@ -179,7 +179,7 @@ section{
 
 /*container*/
 
-v.section-content{
+.section-content{
     line-height:1.5em;
 }
 .section-content h2{
@@ -241,7 +241,7 @@ v.section-content{
 	max-width: 100%;
     }
 
-        /*nav*/
+    /*nav*/
 
     nav{
 	display:block;
@@ -289,34 +289,52 @@ v.section-content{
 	float: left;
 	width: 37%;
     }
+
+    /* section */
+
+    /*header*/
+    section{
+	margin-top: 5px; 
+	font-size:1.1em; 
+    }
+
+    .section-header .banniere{
+	width: 55%
+    }
 }
+
 
 @media screen and (min-width:768px){
     #leadin-container{
 	position:relative;
 	left: calc(90px - 1.5/13 * 100%); /* pour ne pas s'éloingner du logo*/
     }
+
+        /*section*/
+
+    /*header*/
+
+    .section-header .text-intro{
+	padding: 0 2%;
+    }
+    /*container*/
+
+    .section-content{
+	padding: 0 5%;
+    }
+    
 }
 
-/*
-@media screen and (orientation: portrait){
-    .page-header{
-	max-width: 1024px;
-	margin: 0 auto;
+@media screen and (min-width: 1024px){
+    /*section*/
+
+    /*header*/
+    section{
+	font-size: 1.2em;
     }
+    .section-header .banniere{
+	max-width:633.6px;
+    }
+    
+ 
 }
-
-
-@media screen and (orientation: landscape) and (min-width: 960px){
-    .page-header{
-	width: 864px;
-	margin: 0 auto;
-    }
-
-    nav{
-	margin: 0 0 0 259.2px;
-	width: 604.8px;
-    }
-}
-
-*/
