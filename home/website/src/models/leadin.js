@@ -13,6 +13,7 @@ module.exports = function LeadIn() {
     this.bornDate =  new Date();
     this.lastUpdate =  new Date();
     this.random = 0;
+    this.sections = [];
 
     // on ajout une publication à la base de donnée
     this.addThis = function(content,cb){ 
@@ -22,6 +23,24 @@ module.exports = function LeadIn() {
 	    cb(null,lead);
 	})
     };
+
+    this.sectionsChange = function(section,cb){
+	if(lead._id){
+	    if(lead.sections.indexOf(section) != -1)
+		lead.sections.splice(lead.sections.indexOf(section),1);
+	    else
+		lead.sections.push(section)
+	    lead.lastUpdate = new Date();
+	    lead.update({_id: lead._id},lead, function(result){
+		if(result != 0)
+		    if(typeof cb != 'undefined'){ 
+			cb(null,lead);
+		    }else
+			if(typeof cb != 'undefined')
+			    cb(new Error('no result for update'));
+	    })
+	}
+    }
     
     //met à jour le contenu de la publication suivant l'id sans vérification du contenu
     this.updateThis = function(content,cb){
@@ -46,8 +65,10 @@ module.exports = function LeadIn() {
 	lead.bornDate = elt.bornDate;
 	lead.lastUpdate = elt.lastUpdate;
 	lead.content = elt.content;
+	lead.random = elt.random;
+	lead.sections = (elt.sections)? elt.sections : [];
 	lead._id = elt._id
-//	cb(null);
+
     }
 
     this.get = function(id,cb){
@@ -55,11 +76,6 @@ module.exports = function LeadIn() {
 	this.find(query ,function(docs){
 	    if(docs.length == 1){
 		lead.set(docs[0])
-		// lead.random = docs[0].random;
-		// lead.bornDate = docs[0].bornDate;
-		// lead.lastUpdate = docs[0].lastUpdate;
-		// lead.content = docs[0].content;
-		// lead._id = docs[0]._id
 		cb(null);
 	    }else
 		if(docs.length == 0)
@@ -69,22 +85,24 @@ module.exports = function LeadIn() {
 	});
     };
 
-    this.getRandom = function(cb){
-	var rand = Math.random(),
-	    query = {random: {$gte: rand}},
-	    query2 = {random: {$lte: rand}};
-	lead.findPlus(query,{},{random:1},1 ,function(docs){
-	    if(docs.length !=0){
-		console.log(docs[0].random,'>',rand)
-		lead.set(docs[0])
-		cb(null);
-	    }else
-		lead.findPlus(query2,{},{random:1},1 ,function(docs2){
-		    console.log(docs2[0].random,'<',rand)
-		    lead.set(docs2[0])
-		    cb(null)
-		})
-	})
+    this.getRandom = function(section,cb){
+    	var rand = Math.random(),
+    	    query = {random: {$gte: rand}, sections: section},
+    	    query2 = {random: {$lte: rand}, sections: section};
+    	lead.findPlus(query,{},{random:1},1 ,function(docs){
+    	    if(docs.length !=0){
+    		lead.set(docs[0])
+    		cb(null);
+    	    }else
+    		lead.findPlus(query2,{},{random:1},1 ,function(docs2){
+		    if(docs2.length !=0){
+    			lead.set(docs2[0])
+    			cb(null)
+		    }else
+			lead.content = "Bienvenue ici chère voyageur internaute"
+			cb(null);
+    		})
+    	})
     }
 
 }    //end of model

@@ -48,7 +48,6 @@ exports.exec = function(socket){
     
      socket.on('get', function(id){
 	 var l = new LeadIn();
-	 l.getRandom(function(){console.log()})
  	 var loadingElt = new LeadIn()
  	loadingElt.get(id, function(err){
  	    if(err){
@@ -61,12 +60,17 @@ exports.exec = function(socket){
 // 		refreshDisplay()
  		    socket.emit('new', {content: current.content,
  					bornDate: current.bornDate,
- 					lastUpdate: current.lastUpdate})
+ 					lastUpdate: current.lastUpdate,
+					sections: current.sections})
 
  	    }
  	})
      })
 
+    socket.on('sectionsChange', function(ob){
+	current.sectionsChange(ob.section,function(err){;})
+    })
+    
      var oldSectionKey = "",
      OldContent = " " ,
      isTipping = false

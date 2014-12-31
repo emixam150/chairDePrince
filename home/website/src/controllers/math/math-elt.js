@@ -12,7 +12,7 @@ exports.exec = function(support) {
 
     var leadIn = new LeadIn();
 
-    leadIn.getRandom(function(){
+    leadIn.getRandom('math',function(){
 
 	var mathElt = new Math();
 	mathElt.getByName(support.page.query.eltName, function(err,result){

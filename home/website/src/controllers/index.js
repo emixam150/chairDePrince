@@ -10,7 +10,7 @@ exports.exec = function(support) {
 
     var leadIn = new LeadIn();
 
-    leadIn.getRandom(function(){
+    leadIn.getRandom('accueil', function(){
 
 	var queriesTemp = {
 	    title : "Accueil - Chère de prince",

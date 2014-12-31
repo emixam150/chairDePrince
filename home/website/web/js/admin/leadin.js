@@ -15,7 +15,8 @@ var listHTML = document.getElementById('lead-list'),
     lastUpdateHTML = document.getElementById('last_update'),
     contentTXT = document.getElementsByName('cont')[0],
     controlHTML = document.getElementById('control'),
-    newBUT = controlHTML[0];
+    newBUT = controlHTML[0],
+    sectionsHTML = document.getElementById('sections');
 
 var Admin= function(){
     
@@ -42,6 +43,18 @@ var Admin= function(){
 	lastUpdateHTML.innerHTML = new Date(elt.lastUpdate).toLocaleDateString();
 	contentTXT.value = elt.content;
 	adm.current = elt;
+
+	if(elt.sections){
+	    for(var i=0;i<sectionsHTML.children.length;i++){
+		if(elt.sections.indexOf(sectionsHTML.children[i].value) != -1)
+		    sectionsHTML.children[i].checked = true;
+		else
+		    sectionsHTML.children[i].checked = false;
+	    }
+	}else
+	    for(var i=0;i<sectionsHTML.children.length;i++){
+		sectionsHTML.children[i].checked = true;
+	    }
     }
 
     this.update = function(content){
@@ -68,6 +81,11 @@ var Admin= function(){
 	contentTXT.onkeyup = function(e){
 	    console.log(e.target.value);
 	    socket.emit('update',e.target.value);
+	}
+
+	sectionsHTML.onchange = function(e){
+	    console.log(e.target);
+	    socket.emit('sectionsChange',{"section": e.target.value, "checked": e.target.cheked});
 	}
 	
 	socket.emit('list');

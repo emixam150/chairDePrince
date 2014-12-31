@@ -8,11 +8,11 @@ var paths = require($.paths),
     LeadIn = require(paths.models + '/leadin.js');
 
 exports.exec = function(support) {
-    //console.log(support.page.query.displayType,support.page.query.classification);
+
 
     var leadIn = new LeadIn();
 
-    leadIn.getRandom(function(){
+    leadIn.getRandom('math',function(){
 
 	var isDisplayGraph = typeof support.page.query.displayType == 'undefined' || support.page.query.displayType == 'graph',
 	    jsLinked =  (isDisplayGraph)? [{path:'https://cdn.socket.io/socket.io-1.2.0.js'},{path:'/js/sigma.min.js'}]:[];
