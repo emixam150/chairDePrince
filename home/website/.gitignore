@@ -1,2 +1,3 @@
 app/config/sessions.json
 app/logs/frequentation.txt
+web/html/info/*

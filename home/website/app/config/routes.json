@@ -178,7 +178,7 @@
       "query":{
       },
       "preloading":false,
-      "maxAge": -1
+      "maxAge": 86400
    },
     "mainCss":{
       "type":"css",

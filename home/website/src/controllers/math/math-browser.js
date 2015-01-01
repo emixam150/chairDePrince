@@ -59,9 +59,9 @@ exports.exec = function(support) {
 
 		commonTreeTemplate.constructTree( queriesTemp, function(tree){
 		    tree.children.section = section;
+		    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
+		    support.res.setHeader('Content-Type', 'text/html');
 		    tempModel.constructOutput(tree, function(output){
-			support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
-			support.res.setHeader('Content-Type', 'text/html');
 			$.require('makeTextResponse').send(output, support.headers, support.res);
 		    });
 		});

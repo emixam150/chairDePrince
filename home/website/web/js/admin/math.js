@@ -228,6 +228,10 @@ window.onload =function() {
 		value: '\\mathrm ',
 		cursIndent: 0
 	    },
+	    52: {	
+		value: '\\mathcal ',
+		cursIndent: 0
+	    },
 	    56: {
 		value: '_{}',
 		cursIndent: -1
@@ -267,6 +271,18 @@ window.onload =function() {
 	    74: {
 		value: '\n$$$$\n',
 		cursIndent: -3
+	    },
+	    76: {	
+		value: '\\{ ',
+		cursIndent: 0
+	    },
+	    77: {
+		value: '\\} ',
+		cursIndent: 0
+	    },
+	    81: {
+		value: '\\subset ',
+		cursIndent: 0
 	    },
 	    83: {
 		value: '\\sum ',

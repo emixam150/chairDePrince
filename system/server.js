@@ -15,6 +15,7 @@ httpServer = function(server) {
     var app = require(server.hosts['default'].index);
     
     var srv = http.createServer(function (req, res) {
+
         /** 3 **/
        /* var host = req.headers.host;console.log(host);
         
@@ -34,6 +35,7 @@ httpServer = function(server) {
 /*
 ** method of HTTPS Server
 */
+
 httpsServer = function(server) {
     var https = require('https');
     var fs = require("fs");

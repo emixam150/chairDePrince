@@ -41,15 +41,15 @@ var mapTemp = function(temp, cb){
 };
 
 var compileMustache = function(temp, cb){
-    var d = domain.create();
-    d.on('error',function(err){
-	console.error("Mustache error", err);
-	cb("")
-    })
-    d.run(function(){
+//    var d = domain.create();
+//    d.on('error',function(err){
+//	console.error("Mustache error", err);
+//	cb("")
+  //  })
+   // d.run(function(){
 	var output = Mustache.render(temp.content, temp.queries);
 	cb(output);
-    })
+   // })
 };
 
 exports.constructOutput = function(tempTree, cb){
