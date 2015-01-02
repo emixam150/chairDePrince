@@ -9,6 +9,7 @@ error404 = require(paths.controllers +'/error404.js').exec;
 
 exports.exec = function(support) {
     if(support.content != null){
+	support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 	support.res.setHeader('Content-Type', support.page.mime);
 	$.require('makeTextResponse').send(support.content, support.headers, support.res);
     }else
@@ -26,6 +27,7 @@ exports.exec = function(support) {
 		    support.res.end('Internal Server Error');
 		}
 	    }else{
+		support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 		support.res.setHeader('Content-Type', support.page.mime);
 		$.require('makeTextResponse').send(file, support.headers, support.res);
 	    }

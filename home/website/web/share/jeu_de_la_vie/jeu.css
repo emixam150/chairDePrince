@@ -6,7 +6,7 @@
 body {
     min-width: 500px;
     overflow:hidden;
-    background-image:url(background9.png);
+    background-image:url(./background9.png);
     color:black;
     font-family: underwood_champion;
     font-size:0.9em;
@@ -18,7 +18,7 @@ body {
     height:120px;
     width:100px;
     margin-right: 35px;
-    background-image: url(becasse3.png);
+    background-image: url(./becasse3.png);
     background-repeat: no-repeat;
     background-position: center top;
 }
@@ -36,7 +36,7 @@ input,select{
 }
 input[type=button]{
     color:#E1170D;
-    background-image: url(button2.png);
+    background-image: url(./button2.png);
     border:3px double black;
     font-family: underwood_champion;
     cursor:pointer;
@@ -60,7 +60,7 @@ select{
     vertical-align: middle;
 }
 .button{
-    background-image: url(button2.png);
+    background-image: url(./button2.png);
     background-color: #E8DBC7;
     color:#E1170D;
     border: 3px double black;
@@ -129,7 +129,7 @@ select{
     
     border: 3px double black;
     border-right: none;
-    background-image: url(background9.png);
+    background-image: url(./background9.png);
 }
 .hidden{
     display:none;

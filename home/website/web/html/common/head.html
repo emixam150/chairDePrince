@@ -7,7 +7,7 @@
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width"/>
     {{#cssLinked}}
-    <link rel="stylesheet" href="css/{{path}}" />
+    <link rel="stylesheet" href="/css/{{path}}" />
     {{/cssLinked}}
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700' rel='stylesheet' />
     <script type="text/x-mathjax-config">
@@ -26,9 +26,12 @@
 	      ".MathJax":{"font-weigth": "100"}
 	    }
 	  },
-	  TeX: {
-	    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js","http://cheredeprince.net/js/xyjax.min.js"]
-	  }
+	TeX: {
+	extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js","http://cheredeprince.net/js/xyjax.min.js"],
+	   Macros: {
+        	prodscal : ["{\\left\\langle #1 ,#2 \\right\\rangle}",2]
+	   }
+	}
 	});
       </script>
   

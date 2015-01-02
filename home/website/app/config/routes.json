@@ -69,7 +69,7 @@
 	  "file":"$1"
       },
       "preloading": false,
-      "maxAge": -1
+      "maxAge": 3600
    },
     "favicon":{
       "type":"image",

@@ -31,7 +31,6 @@ exports.exec = function(socket){
 function buildQuery(req,cb){
     var query ={};
     query['content.type'] = {$in: req.types};
-    console.log(query);
     cb(query);
 }
 
