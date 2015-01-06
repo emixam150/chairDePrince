@@ -10,9 +10,13 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
-    var leadIn = new LeadIn();
+    console.log(support.path);
 
-    leadIn.getRandom('math',function(){
+    var lead = new LeadIn();
+
+    lead.getRandom('math',function(){
+
+	console.log('outLead')
 
 	var mathElt = new Math();
 	mathElt.getByName(support.page.query.eltName, function(err,result){
@@ -23,7 +27,7 @@ exports.exec = function(support) {
 			title : mathElt.content.title + " - Math - Chere de prince",
 			lang: "fr",
 			math: true,
-			leadIn: leadIn.content,
+			leadIn: lead.content,
 			sessionDisplay: typeof support.session.user != "undefined",
 			userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 			cssLinked:[{path:'math-elt.css'}],

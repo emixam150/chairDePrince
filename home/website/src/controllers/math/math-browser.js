@@ -9,6 +9,7 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
+    console.log(support.path);
 
     var leadIn = new LeadIn();
 

@@ -8,6 +8,8 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
+    console.log("accueil");
+
     var leadIn = new LeadIn();
 
     leadIn.getRandom('accueil', function(){

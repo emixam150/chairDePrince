@@ -86,6 +86,7 @@ module.exports = function LeadIn() {
     };
 
     this.getRandom = function(section,cb){
+//	console.log("lead",section);
     	var rand = Math.random(),
     	    query = {random: {$gte: rand}, sections: section},
     	    query2 = {random: {$lte: rand}, sections: section};
@@ -98,9 +99,10 @@ module.exports = function LeadIn() {
 		    if(docs2.length !=0){
     			lead.set(docs2[0])
     			cb(null)
-		    }else
+		    }else{
 			lead.content = "Bienvenue ici chère voyageur internaute"
 			cb(null);
+		    }
     		})
     	})
     }

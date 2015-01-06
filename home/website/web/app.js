@@ -195,7 +195,7 @@ exports.start = function(req, res, server,body) {
     support.res = res;
     support.req = req;
     support.paths = paths;
-    //console.log(support.page);
+    //console.log(support.path);
     //var truc = new User("becasse");
     //truc.find({},function(tab){console.log(tab);});
     //truc.removeThis();
@@ -341,7 +341,7 @@ function getSession(req, res, locale, cookies, headers){
 		lastDate = new Date().getTime();
 	    session = new Session(client, user, lastDate);
 	    sessions[newIndex] = session;
-	    log('new session of index: ' + newIndex, paths['logs']+'/'+SessionLog);
+	    log('new session of index: ' + newIndex + ' ip : '+ client.ip+' agent: '+ client.userAgent, paths['logs']+'/'+SessionLog);
 	    saveSessions();
 
 	    session.client.incReq();
@@ -356,7 +356,7 @@ function getSession(req, res, locale, cookies, headers){
 	    lastDate = new Date().getTime();
 	session = new Session(client, user, lastDate);
 	sessions[newIndex] = session;
-	log('new session of index: ' + newIndex, paths['logs']+'/'+SessionLog);
+	    log('new session of index: ' + newIndex + ' ip : '+ client.ip+' agent: '+ client.userAgent, paths['logs']+'/'+SessionLog);
 	saveSessions();
 
 	session.client.incReq();
