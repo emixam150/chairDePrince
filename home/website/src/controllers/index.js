@@ -22,7 +22,7 @@ exports.exec = function(support) {
 	    sessionDisplay: typeof support.session.user != "undefined",
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],
-	    jsLinked:[],
+	    jsLinked: false,//[{path: /path.js}],
 	    cssSpe: support.file.css.indexSpe
 	};
 	

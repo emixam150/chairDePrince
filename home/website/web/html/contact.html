@@ -1,25 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-</head>
-<body>
+<section>
 
-  <h1> Contact vers le cher Prince</h1>
+  <header class="section-header">
+    {{#banniereHeader}}
+    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+    {{/banniereHeader}}
 
-  <p> Je suis tout ouïe</p>
-  <form action="contact" method="post">
-    <p>Nom</p>
-    <input name="name"/>
-    <p>Sujet</p>
-    <input name="subject"/>
-    <p>Message</p>
-    <textarea rows="4" cols="50"  name="message" ></textarea>
-    <input type="submit"/>
-  </form>
-  <h3>Lire les messages</h3>
-  <p>
-    {{&messages}}
-  </p>
-</body>
-</html>
+    <h1> Contact</h1>
+
+    <p class="text-intro">
+      Tu souhaites prendre contact avec moi? Tu es au bon endroit. Ici, tu peux me faire parvenir tes avis sur mon site, tes conseils, me poser une question ou me rapporter une erreur. Tu veux me proposer de visiter un site, je suis toute ouïe! Quelque soit ce que tu veuilles me dire, je t'invite à remplir le formulaire suivant.
+    </p>
+  </header>
+  <div class="section-content">
+    <p class="info">Les champs obligatoires sont indiqués par un astérisque.  </p>
+    <div class="contact-body">
+      <form action="./contact" method="post">
+	<p class="field">
+	  <label for="name">ton nom ou speudo *</label>
+	  <input type="text"  name="name" id="name"/>
+	</p>
+	<p class="field">
+	  <label for="email">ton adresse email *</label>
+	  <input type="email" name="email" id="email"/>
+	</p>
+	<p class="field">
+	  <label for="site">l'URL de ton site</label>
+	  <input type="url"  name="site" id="site" value="http://"/>
+	</p>
+	<p class="field">
+	  <label for="subject">le sujet de ton message *</label>
+	  <input type="text" name="subject" id="subject"/>
+	</p>
+	<p class="field">
+	  <label for="message">ton message *</label>
+	  <textarea rows="9" cols="90"  name="message" id="message" ></textarea>
+	</p>
+	<input type="submit" value="Envoie ton message" class="button"/>
+      </form>
+    </div>
+  </div>
+</section>    
+

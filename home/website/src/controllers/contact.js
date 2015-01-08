@@ -5,36 +5,93 @@ var fs = require('fs'),
     stream  = require('stream'),
     mustache = $.require('mustache');
 
-var messagePath = "message.txt";
+var paths = require($.paths),
+    commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
+    tempModel = require(paths.models + '/template.js'),
+    LeadIn = require(paths.models + '/leadin.js'),
+    nodemailer = $.require('nodemailer');
 
+var messagePath = "message.txt";
+var transporter = nodemailer.createTransport();
 exports.exec = function(support) {
 
     post(support, get);
 };
 
 function get(support){
-    var streammessage = fs.createReadStream(support.paths.html+ '/' + messagePath),
-	messages = '';
-    streammessage.setEncoding('utf8');
 
-    streammessage.on('data', function(chunk){
-	messages += chunk;
-    });
+    var leadIn = new LeadIn();
 
-    streammessage.on('end', function(){
+    leadIn.getRandom('accueil', function(){
 
-	var output = mustache.to_html(support.content, {'messages': messages });
+	var queriesTemp = {
+	    title : "Contact - Chère de prince",
+	    lang: "fr",
+	    index: true,
+	    leadIn: leadIn.content,
+	    sessionDisplay: typeof support.session.user != "undefined",
+	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
+	    cssLinked:[],
+	    jsLinked: false,//[{path: /path.js}],
+	    cssSpe: false //support.file.css.indexSpe
+	};
 	
-	support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
-	support.res.setHeader('Content-Type', 'text/html');
-	$.require('makeTextResponse').send(output, support.headers, support.res);
+	var section ={
+	    id: "section",
+	    type: "part",
+	    children:{},
+	    queries: {
+		banniereHeader: {
+		    link: "/svg/bannieres/contact.svg",
+		    alt: "Tunnel vers la becasserie"
+		},
+		jsSpe: false
+	    },
+	    content: support.file.html.contact
+	};
+	
+	commonTreeTemplate.constructTree( queriesTemp, function(tree){
+	    tree.children.section = section;
+	    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
+	    support.res.setHeader('Content-Type', 'text/html');
+	    tempModel.constructOutput(tree, function(output){
+		$.require('makeTextResponse').send(output, support.headers, support.res);
+	    });
+	});
     });
+
+    // var streammessage = fs.createReadStream(support.paths.html+ '/' + messagePath),
+    // 	messages = '';
+    // streammessage.setEncoding('utf8');
+
+    // streammessage.on('data', function(chunk){
+    // 	messages += chunk;
+    // });
+
+    // streammessage.on('end', function(){
+
+    // 	var output = mustache.to_html(support.content, {'messages': messages });
+    
+    // 	support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
+    // 	support.res.setHeader('Content-Type', 'text/html');
+    // 	$.require('makeTextResponse').send(output, support.headers, support.res);
+    // });
 }
 
 function post(support, getcall){
     if(isValidPost(support.post)){
-	fs.appendFile(support.paths.html +'/'+ messagePath, writeHtmlMessage(support.post), function(){
-	    getcall(support);
+	transporter.sendMail({
+	    from: support.post.name + ' <'+support.post.email +'>',
+	    to: ' "La Bécasse" <becasse@ovh.fr>',
+	    subject: support.post.subject,
+	    text: support.post.message +'\n'+ support.post.site
+	}, function(err, info){
+	    if(err)
+		console.log(err);
+	    else{
+		getcall(support);
+		console.log(info);
+	    }
 	});
     }else{
 	getcall(support);
@@ -45,7 +102,9 @@ function isValidPost(post){
     return typeof post.message != 'undefined' 
 	&& post.message != ''
 	&& typeof post.name != 'undefined' 
-	&& post.name != ''
+	&& post.name != '' 
+	&& typeof post.email != 'undefined'
+	&& post.email != ''    
 	&& typeof post.subject != 'undefined' 
 	&& post.subject != '';
 }
