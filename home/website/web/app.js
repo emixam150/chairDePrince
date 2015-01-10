@@ -176,9 +176,14 @@ exports.load = function(next) {
 /*
  **entry point
  */
-exports.start = function(req, res, server,body) {
+exports.start = function(req, res, server,body){
     var url = require("url"),
 	querystring = require("querystring");
+    console.log(req.headers.host.slice(0,3));
+    if(req.headers.host.slice(0, 3) == 'www'){
+	res.writeHead(301, { Location: 'http://' +req.headers.host + req.url});
+	res.end()
+    }else{
 
     var support = {}; 
     support.start = this;
@@ -221,7 +226,7 @@ exports.start = function(req, res, server,body) {
 	res.statusCode = 500;
 	res.end('Error Internal Server');
     }
-
+	}
 
 
 };
