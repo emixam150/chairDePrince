@@ -281,11 +281,15 @@ window.onload =function() {
 		cursIndent: 0
 	    },
 	    81: {
-		value: '\\subset ',
-		cursIndent: 0
+		value: '\\frac{}{} ',
+		cursIndent: -4
+	    },
+	    82: {
+		value: '\\prodscal{}{} ',
+		cursIndent: -4
 	    },
 	    83: {
-		value: '\\sum ',
+		value: '\\sum',
 		cursIndent: 0
 	    },
 	    84: {
@@ -298,6 +302,10 @@ window.onload =function() {
 	    },
 	    89: {
 		value: '\\infty',
+		cursIndent: 0
+	    },
+	    90: {
+		value: '\\subset ',
 		cursIndent: 0
 	    }
 	};
