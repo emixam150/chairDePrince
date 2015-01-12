@@ -179,9 +179,9 @@ exports.load = function(next) {
 exports.start = function(req, res, server,body){
     var url = require("url"),
 	querystring = require("querystring");
-    console.log(req.headers.host.slice(0,3));
-    if(req.headers.host.slice(0, 3) == 'www'){
-	res.writeHead(301, { Location: 'http://' +req.headers.host + req.url});
+    
+    if(req.headers.host && req.headers.host.slice(0, 3) == 'www'){
+	res.writeHead(301, { Location: 'http://' +req.headers.host.slice(4,req.headers.host.length) + req.url});
 	res.end()
     }else{
 

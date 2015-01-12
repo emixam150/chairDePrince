@@ -280,6 +280,10 @@ window.onload =function() {
 		value: '\\} ',
 		cursIndent: 0
 	    },
+	    80: {
+		value: '\\partial ',
+		cursIndent: 0
+	    },
 	    81: {
 		value: '\\frac{}{} ',
 		cursIndent: -4
