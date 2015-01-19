@@ -28,7 +28,8 @@ exports.exec = function(support) {
 	    userName: (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked: [],
 	    jsLinked: jsLinked,
-	    jsSpe:  support.file.js['math-browserSpe']
+	    jsSpe:  support.file.js['math-browserSpe'],
+	    bannierePath :  "images/bannieres/math.png"
 	};
 
 	var MathBrowser = new Math(),

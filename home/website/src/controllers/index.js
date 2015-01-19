@@ -23,7 +23,8 @@ exports.exec = function(support) {
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],
 	    jsLinked: false,//[{path: /path.js}],
-	    cssSpe: support.file.css.indexSpe
+	    cssSpe: support.file.css.indexSpe,
+	    bannierePath :  "images/bannieres/accueil.png"
 	};
 	
 	var section ={
@@ -35,12 +36,13 @@ exports.exec = function(support) {
 		    link: "/svg/bannieres/tunnel.svg",
 		    alt: "Tunnel vers la becasserie"
 		},
-		jsSpe: false
+		jsSpe: 'l'
 	    },
 	    content: support.file.html.index
 	};
 	
 	commonTreeTemplate.constructTree( queriesTemp, function(tree){
+	    console.log(tree);
 	    tree.children.section = section;
 	    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 	    support.res.setHeader('Content-Type', 'text/html');

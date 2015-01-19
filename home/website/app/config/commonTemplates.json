@@ -12,7 +12,8 @@
 		{"path": "main.css"}
 	    ],
 	    "jsSpe": "",
-	    "cssSpe": ""
+	    "cssSpe": "",
+	    "bannierePath": false
 	}
     },
     "header": {

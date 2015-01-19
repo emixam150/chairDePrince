@@ -57,6 +57,20 @@
       "preloading": false,
       "maxAge": 2592000
    },
+    "img-png":{
+      "type":"image",
+      "format":"images/([-_/a-z0-9]+)\\.png$",
+      "mime":"image/png",
+      "method":"GET",
+      "ressource":"[file].png",
+      "controller":"image.js",
+      "url":"images/[file].png",
+      "query":{
+	  "file":"$1"
+      },
+      "preloading": false,
+      "maxAge": 2592000
+   },
     "svg":{
       "type":"svg",
       "format":"svg/([-_/a-z0-9]+)\\.svg$",

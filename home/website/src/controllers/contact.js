@@ -33,7 +33,8 @@ function get(support){
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],
 	    jsLinked: false,//[{path: /path.js}],
-	    cssSpe: false //support.file.css.indexSpe
+	    cssSpe: false, //support.file.css.indexSpe
+	    bannierePath :  "images/bannieres/contact.png"
 	};
 	
 	var section ={
@@ -43,7 +44,7 @@ function get(support){
 	    queries: {
 		banniereHeader: {
 		    link: "/svg/bannieres/contact.svg",
-		    alt: "Tunnel vers la becasserie"
+		    alt: "la Bécasse allongée écontant les news"
 		},
 		jsSpe: false
 	    },
