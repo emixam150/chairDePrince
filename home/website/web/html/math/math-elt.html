@@ -20,62 +20,64 @@
     </style>
     {{/cssSpe}}
 
-    <div class="main-content cont">
-      {{{cont}}}
-    </div>
+    <div class="column">
+      <div class="main-content cont">
+	{{{cont}}}
+      </div>
 
-    {{#parentsVisibility}}
-    <div class="main-content">
-      <span class="part-label">Parents</span>
-      <ul class="inline-list info-text">
-	{{#parents}}
-	<li>
-	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	</li>
-	{{/parents}}
-      </ul>
-    </div>
-    {{/parentsVisibility}}
+      {{#parentsVisibility}}
+      <div class="main-content">
+	<span class="part-label">Parents</span>
+	<ul class="inline-list info-text">
+	  {{#parents}}
+	  <li>
+	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	  </li>
+	  {{/parents}}
+	</ul>
+      </div>
+      {{/parentsVisibility}}
       {{#childrenVisibility}}
-    <div class="main-content">
-      <span class="part-label">Enfants</span>
-      <ul class="inline-list info-text">
-	{{#children}}
-	<li>
-	  <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
-	</li>
-	{{/children}}
-      </ul>
-    </div>
-    {{/childrenVisibility}}
+      <div class="main-content">
+	<span class="part-label">Enfants</span>
+	<ul class="inline-list info-text">
+	  {{#children}}
+	  <li>
+	    <a href="/math/{{name}}" style="color:{{colorOfType}}">{{title}}</a>
+	  </li>
+	  {{/children}}
+	</ul>
+      </div>
+      {{/childrenVisibility}}
 
-    {{#dem}}
-    <div class="main-content">
-      <span class="part-label">Démonstration</span>
-      {{{dem}}}
-    </div>
-    {{/dem}}
+      {{#dem}}
+      <div class="main-content">
+	<span class="part-label">Démonstration</span>
+	{{{dem}}}
+      </div>
+      {{/dem}}
 
-    {{#rem}}
-    <div class="main-content">
-      <span class="part-label">Remarques</span>
-      {{{rem}}}
-    </div>
-    {{/rem}}
+      {{#rem}}
+      <div class="main-content">
+	<span class="part-label">Remarques</span>
+	{{{rem}}}
+      </div>
+      {{/rem}}
 
-    {{#ex}}
-    <div class="main-content">
-      <span class="part-label">Exemples</span>
-      {{{ex}}}
-    </div>
-    {{/ex}}
+      {{#ex}}
+      <div class="main-content">
+	<span class="part-label">Exemples</span>
+	{{{ex}}}
+      </div>
+      {{/ex}}
 
-    {{#exo}}
-    <div class="main-content">
-      <span class="part-label">Exercices</span>
-      {{{exo}}}
+      {{#exo}}
+      <div class="main-content">
+	<span class="part-label">Exercices</span>
+	{{{exo}}}
+      </div>
+      {{/exo}}
     </div>
-    {{/exo}}
   </div>
   
 </section>

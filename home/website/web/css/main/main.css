@@ -4,8 +4,6 @@ body{
 }
 
 
-
-
 p,span,div,nav,header,section,body,h1,h2,input,textarea{
     margin: 0;
     padding: 0;
@@ -126,15 +124,13 @@ nav a:hover{
 
 /* section */
 
-/*header*/
 section{
     margin-top: 15px;
     padding: 0 5%;
 }
 
-.section-header{
-    
-}
+/*header*/
+
 
 .section-header .banniere{
     display: block;
@@ -161,6 +157,7 @@ section{
 .section-content{
     line-height:1.5em;
 }
+
 .section-content h2{
     font-size: 1.3em;
     text-indent: 3%;
@@ -239,7 +236,7 @@ section{
 
 
 .contact-body{
-  margin: 0 auto;
+    margin: 0 auto;
     width: 88.88888%;  /**/
 }
 
@@ -250,7 +247,7 @@ section{
 }
 
 .contact-body label{
-   display: block;
+    display: block;
 }   
 
 
@@ -333,16 +330,18 @@ section{
     }
 
     /* section */
-
-    /*header*/
+    
     section{
 	margin-top: 5px; 
 	font-size:1.1em; 
     }
+    
+    /*header*/
 
     .section-header .banniere{
 	width: 55%
     }
+
 }
 
 
@@ -352,18 +351,15 @@ section{
 	left: calc(90px - 1.5/13 * 100%); /* pour ne pas s'éloingner du logo*/
     }
 
-        /*section*/
+    /*section*/
 
-    /*header*/
-
-    .section-header .text-intro{
-	padding: 0 2%;
-    }
     /*container*/
 
-    .section-content{
-	padding: 0 5%;
+    .column{
+	width: 691.2px;
+	margin:0 auto ;
     }
+
     
 }
 
@@ -377,6 +373,10 @@ section{
     .section-header .banniere{
 	max-width:633.6px;
     }
+    .section-header .text-intro{
+	width: 921.6px;
+	margin: 0 auto;
+    }
     
- 
+    
 }

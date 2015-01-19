@@ -12,31 +12,33 @@
     </p>
   </header>
   <div class="section-content">
-    <p class="info">Les champs obligatoires sont indiqués par un astérisque.  </p>
-    <div class="contact-body">
-      <form action="./contact" method="post">
-	<p class="field">
-	  <label for="name">ton nom ou pseudo *</label>
-	  <input type="text"  name="name" id="name"/>
-	</p>
-	<p class="field">
-	  <label for="email">ton adresse email *</label>
-	  <input type="email" name="email" id="email"/>
-	</p>
-	<p class="field">
-	  <label for="site">URL de ton site</label>
-	  <input type="text"  name="site" id="site" value="http://"/>
-	</p>
-	<p class="field">
-	  <label for="subject">sujet de ton message *</label>
-	  <input type="text" name="subject" id="subject"/>
-	</p>
-	<p class="field">
-	  <label for="message">ton message *</label>
-	  <textarea rows="9" cols="90"  name="message" id="message" ></textarea>
-	</p>
-	<input type="submit" value="Envoie ton message" class="button"/>
-      </form>
+    <div class="column">
+      <p class="info">Les champs obligatoires sont indiqués par un astérisque.  </p>
+      <div class="contact-body">
+	<form action="./contact" method="post">
+	  <p class="field">
+	    <label for="name">ton nom ou pseudo *</label>
+	    <input type="text"  name="name" id="name"/>
+	  </p>
+	  <p class="field">
+	    <label for="email">ton adresse email *</label>
+	    <input type="email" name="email" id="email"/>
+	  </p>
+	  <p class="field">
+	    <label for="site">URL de ton site</label>
+	    <input type="text"  name="site" id="site" value="http://"/>
+	  </p>
+	  <p class="field">
+	    <label for="subject">sujet de ton message *</label>
+	    <input type="text" name="subject" id="subject"/>
+	  </p>
+	  <p class="field">
+	    <label for="message">ton message *</label>
+	    <textarea rows="9" cols="90"  name="message" id="message" ></textarea>
+	  </p>
+	  <input type="submit" value="Envoie ton message" class="button"/>
+	</form>
+      </div>
     </div>
   </div>
 </section>    
