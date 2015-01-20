@@ -26,6 +26,7 @@ input[type=submit]{
     font-family: sans;
     background: none;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 textarea{
@@ -386,6 +387,8 @@ section{
     
     
 }
+
+/*contact*/
 
 .send-box {
     display: block;
