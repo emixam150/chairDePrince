@@ -1,0 +1,100 @@
+
+      
+      
+      
+#selectors{
+    display:inline-block;
+    vertical-align:top;
+}
+
+#sigma-container{
+    border-top: 1px #72ffff solid;
+    border-bottom: 1px #72ffff solid;
+    height:500px;
+}
+
+/*#list-result{
+   display: block;
+    font-size:0.8em;
+   height: 100%;
+    overflow: hidden;
+    border-bottom: black 1px solid;
+}*/
+
+#list-result li{
+    padding : 0.3em;
+}
+
+.center-container{
+    /*display: block;*/
+    width: 95%;
+    margin: 0 auto;
+}
+
+/*.two-column{
+    display: inline-block;
+    width: 45%;
+    margin: 2%;
+    vertical-align:top;
+}*/
+
+.tabs {
+  position: relative;
+  height:1000px;/*This part sucks */
+  clear: both;
+  margin: 25px 0;
+  
+}
+.tab {
+  float: left;
+}
+.tab> label {
+  background: #eee; 
+  padding: 0px 20px; 
+  border: 1px solid #ccc; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.tab-content {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #ccc;
+}
+
+
+.tab >[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+.tab> [type=radio]:checked ~ label ~ .tab-content {
+  z-index: 1;
+}
+
+@media screen and (min-width: 860px){
+    #sigma-container{
+	display:inline-block;
+	width: 65%;
+	vertical-align:top;
+	height:700px;
+    }
+    #result-container{
+	display: inline-block;
+	width:30%;
+	height:700px;
+	margin:0;
+	vertical-align: top;
+    }
+    selectors{
+	display:block;
+    }
+}
+
+    
+    
+    
