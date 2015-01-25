@@ -1,57 +1,167 @@
-section{
-    display: block;
-}
 
-#selectors{
-    display:inline-block;
-    vertical-align:top;
-}
-
-#sigma-container{
+      
+      
+      
+      
+      
+      
+      #sigma-container{
     border-top: 1px #72ffff solid;
     border-bottom: 1px #72ffff solid;
     height:500px;
+    width: 100%;
 }
 
-#list-result{
-    font-size:0.8em;
-    overflow: auto;
-    height:600px;
-    border-bottom: black 1px solid;
+.search-bar{
+    margin-top: 10px;
+    padding: 10px 0;
 }
 
-#list-result li{
-    padding : 0.3em;
+.search-bar input{
+    font-size: 1.2em;
 }
 
-.center-container{
-    /*display: block;*/
-    width: 95%;
-    margin: 0 auto;
-}
-
-.two-column{
+.search-icon{
+    content: "";
+    background: url('./svg/common/search.svg') no-repeat top left;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
     display: inline-block;
-    width: 45%;
-    margin: 2%;
-    vertical-align:top;
+    vertical-align: bottom;
 }
 
-@media screen and (min-width: 860px){
-    #sigma-container{
-	display:inline-block;
-	width: 65%;
-	vertical-align:top;
-	height:700px;
-    }
-    #result-container{
-	display: inline-block;
-	width:30%;
-	height:700px;
-	margin:0;
-	vertical-align: top;
-    }
-    selectors{
-	display:block;
-    }
+.tabs {
+    position: relative;
+    height:1000px;
+    width:100%;
+    overflow: hidden;/*This part sucks */
+    clear: both;
+    margin-top: 10px;
 }
+
+.tab {
+    float: left;
+}
+
+.tab> label {
+    background: #eee; 
+    padding: 0px 20px; 
+    border: 1px solid #ccc; 
+}
+.tab>[type=radio] {
+    display: none;   
+}
+.tab-content {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+}
+
+
+.tab >[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+}
+
+.tab> [type=radio]:checked ~ label ~ .tab-content {
+    z-index: 1;
+}
+
+#largelist{
+    position: absolute; 
+    bottom: 0px;
+    left:0px;
+    z-index: 3;
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    }
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+.elt-box:nth-child(2n+0){
+    background-color: #F5F5F5;
+}
+
+.elt-box{
+
+    
+}
+.elt-title{
+    /*padding:0.3em 0 0.3em 0.5em;*/
+    font-size: 0.9em;
+    line-height: 1.1em;
+    width: 80%;
+    text-align: left;
+}
+
+.elt-point{
+    text-align: center;
+    font-size : 0.5em;
+    width: 3%;
+}
+
+.elt-zoom,.elt-root{
+    text-align: center;
+    padding:0 5px ;
+    width: 8.5%;
+}
+
+
+
+.elt-root>label{
+    background: url('.svg/common/root.svg') no-repeat left top;
+}
+.elt-root>[type=checkbox]{
+    display: none;
+}
+
+.elt-root>[type=checkbox]:checked ~label{
+    background: url('.svg/common/root_selected.svg') no-repeat left top; 
+    background-size: contain;
+}
+
+
+.elt-zoom>button{
+    background: url('./svg/common/zoom.svg') no-repeat left top;
+}
+.elt-root>label,.elt-zoom>button {
+    background-size: contain;
+    display: block;
+    width: 1em;
+    height: 1em;
+    }
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

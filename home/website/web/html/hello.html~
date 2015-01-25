@@ -1,7 +1,0 @@
-
-Le serveur: - Hola Sire {{name}} <br/>
-Vous: - {{cri}} <br/>
-Le serveur: - Quel joli cri !
-<br/><br/>
-Si tu n'as pas compris comment fonctionne cette page;<br/>
-Il faut que tu précises dans l'url, à la suite de l'actuel "ton_nom"/"un_cri".

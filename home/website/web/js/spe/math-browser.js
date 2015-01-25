@@ -1,4 +1,82 @@
 window.onload = function(){
+
+    var Graph = function(){
+	var g = this;
+	this.graphLoaded = false;
+	this.chrono = null;
+
+	sigma.classes.graph.addMethod('getNodeById', function(id){
+	    return this.nodesIndex[id];
+	});
+
+	var s = new sigma({container:'sigma-container',settings:{animationsTime: 1000}});
+
+
+	this.zoomIn = function(name){
+	    var node = s.graph.getNodeById(name);
+	    sigma.misc.animation.camera(s.camera,{x: node['read_cam0:x'],y: node['read_cam0:y'],ratio:0.1},{duration:1200});
+	}
+
+       	this.zoomOut = function(name){
+	    var node = s.graph.getNodeById(name);
+	    sigma.misc.animation.camera(s.camera,{x: node['read_cam0:x'],y: node['read_cam0:y'],ratio:0.8},{duration:1200});
+	}
+
+	this.update = function(data){
+	    this.updateGraph(data);
+
+	    // ajout d'events for redirection
+	    s.bind('clickNode rightClickNode', function(e) {
+		window.location.assign('/math/'+e.data.node.id);
+	    });
+	    s.bind('overNode', function(e){
+
+	    })
+
+	    // update display of the graph 
+	    s.refresh();
+	    
+	    //gestion of the layout force
+	    s.startForceAtlas2({adjustSizes:true,gravity:4});
+	    this.chrono = setTimeout(function(){
+		this.chrono = null;
+		s.killForceAtlas2();
+	    },120*s.graph.nodes().length);
+	}
+
+	this.killLayout = function(){
+	    if(this.chrono != null)
+		clearTimeout(this.chrono)
+	    s.killForceAtlas2();
+	}
+
+	this.updateGraph= function(data){
+	    s.graph.clear();
+	    var dataGraph = {nodes:[], edges:[]};
+	    Object.keys(data).forEach(function(name){
+		dataGraph.nodes.push({
+		    id: name,
+		    label: data[name].title,
+		    x: Math.random(),
+		    y: Math.random(),
+		    size: data[name].children.length +1,
+		    color: data[name].type
+		});
+		data[name].children.forEach(function(childname){
+		    if(data[childname])
+			dataGraph.edges.push({
+			    id: childname +'-'+ name,
+			    source : childname,
+			    target: name,
+			    size: 1,
+			    color: data[name].type
+			});
+		});
+	    });
+	    s.graph.read(dataGraph);
+	};
+    };
+
     var typesForm = document.getElementById('type'), 
 	listResult = document.getElementById('list-result'),
 	resultSearch = document.getElementById('result-search');
@@ -109,7 +187,7 @@ window.onload = function(){
 
 	//roots 
 	
-	this.rootsFilter = function(){
+	this.rootsFilter = function(name){
 	    var newRes = {};
 	    if(ctrl.roots.length>0)
 		ctrl.chooseRoots(ctrl.roots[ctrl.roots.length -1],newRes)
@@ -119,19 +197,19 @@ window.onload = function(){
 	    graph.killLayout();
 	    ctrl.updateList(newRes);
 	    graph.update(newRes);
+	    setTimeout(function(){if(name)graph.zoomOut(name);},1500);
 	}
 
 	var rootsForm = document.getElementById('roots');
 
 	rootsForm.onchange= function(e){
-	    console.log(e.target.parentElement);
-	    var name = e.target.parentNode.getAttribute('data-name');
+	    var name = e.target.parentNode.parentNode.getAttribute('data-name');
 	    if(ctrl.roots.indexOf(name) == -1){
 		ctrl.roots.push(name)
 	    }else{
 		ctrl.roots.splice(ctrl.roots.indexOf(name),1)
 	    }
-	    ctrl.rootsFilter();
+	    ctrl.rootsFilter(name);
 	}
 	
 	this.chooseRoots = function(name,object){
@@ -144,77 +222,38 @@ window.onload = function(){
 	    object[name] = ctrl.res[name];
 	    return object;
 	}
+
+
+	//envenement Zoom sur un element
+
+	var eltZoomList = document.getElementsByClassName('elt-zoom'),
+	    sigBox = document.getElementById('sigma-container');
+
+	for(var k = 0; k<eltZoomList.length;k++){
+	    eltZoomList[k].getElementsByTagName('button')[0].onclick = function(e){
+		graph.zoomIn(e.target.parentNode.parentNode.getAttribute('data-name'));
+		window.scrollTo(sigBox.offsetLeft,sigBox.offsetTop);
+	    };
+	};
+
     }
     
-
-
-    var Graph = function(){
-	var graph = this;
-	this.graphLoaded = false
-	this.graphData = {}
-	this.chrono = null;
-
-	var s = new sigma('sigma-container');
-
-	this.update = function(data){
-	    var dataGraph = builtGraphData(data);
-
-	    // ajout d'events for redirection
-	    s.bind('clickNode rightClickNode', function(e) {
-		window.location.assign('/math/'+e.data.node.id);
-	    });
-	    s.bind('overNode', function(e){
-
-	    })
-
-	    // update content of the graph 
-	    s.graph.clear();
-	    s.graph.read(dataGraph);
-	    s.refresh();
-	    
-	    //gestion of the layout force
-	    s.startForceAtlas2({adjustSizes:true,gravity:4});
-	    this.chrono = setTimeout(function(){
-		this.chrono = null;
-		s.killForceAtlas2();
-	    },120*s.graph.nodes().length);
-	}
-
-	this.killLayout = function(){
-	    if(this.chrono != null)
-		clearTimeout(this.chrono)
-	    s.killForceAtlas2();
-	}
-	
-    }
 
     var ctrl = new Ctrl();
     ctrl.init();
 
-    function builtGraphData(data){
-	var dataGraph = {nodes:[], edges:[]}
-	Object.keys(data).forEach(function(name){
-	    dataGraph.nodes.push({
-		id: name,
-		label: data[name].title,
-		x: Math.random(),
-		y: Math.random(),
-		size: data[name].children.length +1,
-		color: data[name].type
-	    });
-	    data[name].children.forEach(function(childname){
-		if(data[childname])
-		    dataGraph.edges.push({
-			id: childname +'-'+ name,
-			source : childname,
-			target: name,
-			size: 1,
-			color: data[name].type
-		    })
-	    })
-	})
-	return dataGraph;
+
+    // gestion de l'agrandissement de la liste
+
+    var largelistButton = document.getElementById('largelist'),
+	tabs = document.getElementsByClassName('tabs')[0],
+	height = 1000;
+
+    largelistButton.onclick = function(){
+	height+=1000;
+	tabs.style.height = height+"px";
     }
+
 
 } // end of onloadFunction
 
