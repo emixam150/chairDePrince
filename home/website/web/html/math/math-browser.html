@@ -1,91 +1,91 @@
-<section>
- <script src="/share/writing/sigma.js"></script>
-  <header class="section-header">
-    
-    {{#banniereHeader}}
-    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
-    {{/banniereHeader}}
+ <section>
 
-    <h1>Graphe tes Maths</h1>
-  </header>
+   <header class="section-header">
 
-  <div class="section-content">
-    
-    {{#cssSpe}}
-    <style type="text/css" scoped>
-      {{{cssSpe}}}
-    </style>
-    {{/cssSpe}}
+     {{#banniereHeader}}
+     <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+     {{/banniereHeader}}
 
-    {{#isDisplayGraph}}
-    <div id="sigma-container" class="center-container" ></div>
-    {{/isDisplayGraph}}
-    <div class="column">
-      <div class="search-bar">
-	<input type="search" id="result-search" placeholder="anneau, lemme de Schur ..."/>
-	<span class="search-icon"></span>
-      </div>
-      
-      <div class="tabs">
-	
-	<div id="result-container" class="tab">
+     <h1>Graphe tes Maths</h1>
+   </header>
 
-	  <input type="radio" id="tab-1" name="tab-group-1" checked>
-	  <label for="tab-1" class="li">Liste</label>
-	  <div class="tab-content">
+   <div class="section-content">
 
-	    <form id="roots">
-	      <table >
-		<tbody id="list-result">
-		  {{#listOfResult}}
-		  
-		  <tr data-name="{{name}}" class="elt-box" >
-		    <td style="color:{{colorOfType}}" class="elt-point"> &#9679; </td>
-		    <td class="elt-title"><a  href="/math/{{name}}">{{title}}</a></td>
-		    <td class="elt-root">
-		      <input id="{{name}}" type="checkbox" />
-		      <label for="{{name}}"> </label>
-		    </td>
-		    <td class="elt-zoom">
-		      <button type="button" id="zoom-{{name}}" value="" ></button>
-		    </td>
-		  </tr>
+     {{#cssSpe}}
+     <style type="text/css" scoped>
+       {{{cssSpe}}}
+     </style>
+     {{/cssSpe}}
 
-		  {{/listOfResult}}
-		</tbody>
-	      </table>
-	    </form>
-	  </div>
-	</div>
-	<div id="selectors" class="tab">
-	  
-	  <input type="radio" id="tab-2" name="tab-group-1" >
-	  <label for="tab-2" class="op">Options</label>
-	  <div class="tab-content">
-	    <span class="titleselector">Type :</span>
-	    <form id="type">
-	      <label for="def-type">Définition</label>
-	      <input type="checkbox" id="def-type" value="def">
-	      <label for="th-type">Théorème</label>
-	      <input type="checkbox" id="th-type" value="th">
-	      <label for="prop-type">Propriété</label>
-	      <input type="checkbox" id="prop-type" value="prop">
-	      <label for="cor-type">Corollaire</label>
-	      <input type="checkbox" id="cor-type" value="cor">
-	      <label for="axiom-type">Axiome</label>
-	      <input type="checkbox" id="axiom-type" value="axiom">
-	      <label for="lem-type">Lemme</label>
-	      <input type="checkbox" id="lem-type" value="lem">
-	      <label for="conj-type">Conjecture</label>
-	      <input type="checkbox" id="conj-type" value="conj">
-	    </form>
-	  </div>
-	</div>
-      	<input type="button" id="largelist" value="Voir plus"/>
-      </div>
-    </div>
-  </div>
-</section>    
+     {{#isDisplayGraph}}
+     <div id="sigma-container" class="center-container" ></div>
+     {{/isDisplayGraph}}
+     <div class="column">
+       <div class="search-bar">
+	 <input type="search" id="result-search" placeholder="anneau, lemme de Schur ..."/>
+	 <span class="search-icon"></span>
+       </div>
+
+       <div class="tabs">
+
+	 <div id="result-container" class="tab">
+
+	   <input type="radio" id="tab-1" name="tab-group-1" checked>
+	   <label for="tab-1" class="li">Liste</label>
+	   <div class="tab-content">
+
+	     <form id="roots">
+	       <table >
+		 <tbody id="list-result">
+		   {{#listOfResult}}
+
+		   <tr data-name="{{name}}" class="elt-box" >
+		     <td style="color:{{colorOfType}}" class="elt-point"> &#9679; </td>
+		     <td class="elt-title"><a  href="/math/{{name}}">{{title}}</a></td>
+		     <td class="elt-root">
+		       <input id="{{name}}" type="checkbox" />
+		       <label for="{{name}}"> </label>
+		     </td>
+		     <td class="elt-zoom">
+		       <button type="button" id="zoom-{{name}}" value="" ></button>
+		     </td>
+		   </tr>
+
+		   {{/listOfResult}}
+		 </tbody>
+	       </table>
+	     </form>
+	   </div>
+	 </div>
+	 <div id="selectors" class="tab">
+
+	   <input type="radio" id="tab-2" name="tab-group-1" >
+	   <label for="tab-2" class="op">Options</label>
+	   <div class="tab-content">
+	     <span class="titleselector">Type :</span>
+	     <form id="type">
+	       <label for="def-type">Définition</label>
+	       <input type="checkbox" id="def-type" value="def">
+	       <label for="th-type">Théorème</label>
+	       <input type="checkbox" id="th-type" value="th">
+	       <label for="prop-type">Propriété</label>
+	       <input type="checkbox" id="prop-type" value="prop">
+	       <label for="cor-type">Corollaire</label>
+	       <input type="checkbox" id="cor-type" value="cor">
+	       <label for="axiom-type">Axiome</label>
+	       <input type="checkbox" id="axiom-type" value="axiom">
+	       <label for="lem-type">Lemme</label>
+	       <input type="checkbox" id="lem-type" value="lem">
+	       <label for="conj-type">Conjecture</label>
+	       <input type="checkbox" id="conj-type" value="conj">
+	     </form>
+	   </div>
+	 </div>
+	 <input type="button" id="largelist" value="Voir plus"/>
+       </div>
+     </div>
+   </div>
+ </section>    
 
 
 
