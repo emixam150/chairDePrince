@@ -14,6 +14,11 @@
 }
 
 /*math*/
+
+ul,ol{
+  padding-left: 30px;      
+}
+
 .cont{
     margin-top: 10px;
     border-bottom: 2px solid #72ffff;
