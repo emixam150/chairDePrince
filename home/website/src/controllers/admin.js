@@ -80,6 +80,20 @@ function get(support){
 	    send(support, accueil);
 	}
 	break;
+    case 'blog':
+	if(accueil.acces){
+	    require(__dirname+'/admin/blog.js').exec(support,function(left,center,right,jsSpe){
+		accueil.js = jsSpe;
+		accueil.children.left = left
+		accueil.children.center = center
+		accueil.children.right = right
+		send(support,accueil);
+	    });
+	}else{
+	    support.res.statusCode = '401';
+	    send(support, accueil);
+	}
+	break;
 
     default:
 	error404.exec(support);

@@ -8,18 +8,6 @@ fs = require('fs');
 exports.exec = function(socket){
 
      var current = null
-//     currentIntervalMath = null,
-//     htmlMath = '',
-//     mathEltDisplay = require(paths.controllers + '/math/math-elt-display.js'),
-//     isRefreshing = false;
-    
-//     socket.on('start',function(){
-// 	fs.readFile(paths.html +'/math/math-elt.html','utf8',function(err, data){
-// 	    if(err) throw err;
-// 	    htmlMath = data
-// 	})
-// 	socket.emit('mathLoading');
-//     })
 
      socket.on('list',function(){
  	buildList(function(list){
@@ -95,26 +83,7 @@ exports.exec = function(socket){
 	 }
      })
     
-// 	}
-//     })
-    
-//     var completContent = function(tree, type, content, cb){
-// 	if(tree.type == type)
-// 	    tree.content = content;
-// 	var nbChildren = tree.children.length,
-// 	indexChildren = 0;
-// 	for(var child in tree.children){
-// 	    completContent(tree.children[child], type, content, function(){
-// 		indexChildren ++;
-// 		if(nbChildren == indexChildren)
-// 		    cb();
-// 	    });
-// 	}
-// 	if(nbChildren == 0)
-// 	    cb();
-//     };
 
-// }// end of function exec
 
  var buildList = function(cb){
      //listage
@@ -138,48 +107,5 @@ exports.exec = function(socket){
      })
  }
 
-// var extractParentsList = function(mathElt,cb){
-//     var parentsList =[],
-//     cpt = 0
-//     mathElt.content.parents.forEach(function(parentId){
-// 	var parent = new MathOb()
-// 	parent.getById(parentId, function(){
-// 	    parentsList.push(parent.name)
-// 	    cpt++
-// 	    if(mathElt.content.parents.length == cpt)
-// 		cb(parentsList)
-// 	})
-//     })
-//     if(mathElt.content.parents.length == 0)
-// 	cb(parentsList)
-// }
 
-// function clone(obj) {
-//                 // Handle the 3 simple types, and null or undefined             
-//     if (null == obj || "object" != typeof obj) return obj;
-
-//                 // Handle Date                                                  
-//     if (obj instanceof Date) {
-// 	var copy = new Date();
-//         copy.setTime(obj.getTime());
-// 	return copy;
-//     }
-
-//                 // Handle Array                                                 
-//     if (obj instanceof Array) {
-//         var copy = [];
-//         for (var i = 0, len = obj.length; i < len; i++) {
-//             copy[i] = clone(obj[i]);
-//         }
-//         return copy;
-//     }
-
-//                 // Handle Object                                                
-//     if (obj instanceof Object) {
-//         var copy = {};
-//         for (var attr in obj) {
-//             if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-//         }
-//         return copy;
-//     }
 }

@@ -1,0 +1,13 @@
+<h2 class="title_admin">Gestion</h2>
+<ul>
+  <li>
+    <form id="control">
+      <input type="button" value="nouveau"/>
+    </form>
+  </li>
+  <li>
+    <ul id="lead-list">
+      
+    </ul>
+  </li>
+</ul>

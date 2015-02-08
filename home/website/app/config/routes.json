@@ -1,234 +1,249 @@
 {
-   "index":{
-      "type":"html",
-      "format":"^/$",
-      "mime":"text/html",
-      "method":"GET",
-      "ressource":"index.html",
-      "controller":"index.js",
-      "url":"/",
-      "query":{
-	"name":"$1"
-      },
-      "preloading": true,
-      "maxAge": -1
-   },
-   "math-elt":{
-      "type":"html",
-      "format":"^/math/([-_/a-z0-9]+)$",
-      "mime":"text/html",
-      "method":"GET",
-      "ressource":"math/math-elt.html",
-      "controller":"math/math-elt.js",
-      "url":"/math/[eltName]",
-      "query":{
-	"eltName":"$1"
-      },
-      "preloading": true,
-      "maxAge": -1
-   },
-   "mathBrowser":{
-      "type":"html",
-      "format":"^/math-browser(/(list|graph)/([-_a-z0-9]+))?$",
-      "mime":"text/html",
-      "method":"GET",
-      "ressource":"math/math-browser.html",
-      "controller":"math/math-browser.js",
-      "url":"/math-browser/[displayType]/[classification]",
-      "query":{
-      "inutile":"$0",
-      "displayType": "$1",
-      "classification":"$2"
-      },
-      "preloading": true,
-      "maxAge": -1
-   },
+    "index":{
+	"type":"html",
+	"format":"^/$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"index.html",
+	"controller":"index.js",
+	"url":"/",
+	"query":{
+	    "name":"$1"
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
+    "math-elt":{
+	"type":"html",
+	"format":"^/math/([-_/a-z0-9]+)$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"math/math-elt.html",
+	"controller":"math/math-elt.js",
+	"url":"/math/[eltName]",
+	"query":{
+	    "eltName":"$1"
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
+    "mathBrowser":{
+	"type":"html",
+	"format":"^/math-browser(/(list|graph)/([-_a-z0-9]+))?$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"math/math-browser.html",
+	"controller":"math/math-browser.js",
+	"url":"/math-browser/[displayType]/[classification]",
+	"query":{
+	    "inutile":"$0",
+	    "displayType": "$1",
+	    "classification":"$2"
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
+    "blog":{
+	"type":"html",
+	"format":"^/blog(/([-_a-z0-9]*))$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"blog.html",
+	"controller":"blog.js",
+	"url":"/blog/[articleName]",
+	"query":{
+	    "inutile":"$0",
+	    "articleName":"$1"
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
     "img-jpg":{
-      "type":"image",
-      "format":"images/([-_/a-z0-9]+)\\.jpg$",
-      "mime":"image/jpeg",
-      "method":"GET",
-      "ressource":"[file].jpg",
-      "controller":"image.js",
-      "url":"images/[file].jpg",
-      "query":{
-	  "file":"$1"
-      },
-      "preloading": false,
-      "maxAge": 2592000
-   },
+	"type":"image",
+	"format":"images/([-_/a-z0-9]+)\\.jpg$",
+	"mime":"image/jpeg",
+	"method":"GET",
+	"ressource":"[file].jpg",
+	"controller":"image.js",
+	"url":"images/[file].jpg",
+	"query":{
+	    "file":"$1"
+	},
+	"preloading": false,
+	"maxAge": 2592000
+    },
     "img-png":{
-      "type":"image",
-      "format":"images/([-_/a-z0-9]+)\\.png$",
-      "mime":"image/png",
-      "method":"GET",
-      "ressource":"[file].png",
-      "controller":"image.js",
-      "url":"images/[file].png",
-      "query":{
-	  "file":"$1"
-      },
-      "preloading": false,
-      "maxAge": 2592000
-   },
+	"type":"image",
+	"format":"images/([-_/a-z0-9]+)\\.png$",
+	"mime":"image/png",
+	"method":"GET",
+	"ressource":"[file].png",
+	"controller":"image.js",
+	"url":"images/[file].png",
+	"query":{
+	    "file":"$1"
+	},
+	"preloading": false,
+	"maxAge": 2592000
+    },
     "svg":{
-      "type":"svg",
-      "format":"svg/([-_/a-z0-9]+)\\.svg$",
-      "mime":"image/svg+xml",
-      "method":"GET",
-      "ressource":"[file].svg",
-      "controller":"image.js",
-      "url":"svg/[file].svg",
-      "query":{
-	  "file":"$1"
-      },
-      "preloading": false,
-      "maxAge": 3600
-   },
+	"type":"svg",
+	"format":"svg/([-_/a-z0-9]+)\\.svg$",
+	"mime":"image/svg+xml",
+	"method":"GET",
+	"ressource":"[file].svg",
+	"controller":"image.js",
+	"url":"svg/[file].svg",
+	"query":{
+	    "file":"$1"
+	},
+	"preloading": false,
+	"maxAge": 3600
+    },
     "favicon":{
-      "type":"image",
-      "format":"/favicon\\.ico$",
-      "mime":"image/x-icon",
-      "method":"GET",
-      "ressource":"favicon.ico",
-      "controller":"image.js",
-      "url":"/favicon.ico",
-      "preloading": true,
-      "maxAge": 86400
-   },
-   "contact":{
-      "type":"html",
-      "format":"/contact$",
-      "mime":"text/html",
-      "method":"GET,POST",
-      "ressource":"contact.html",
-      "controller":"contact.js",
-      "url":"/contact.html",
-       "preloading": true,
-      "maxAge": -1
-   },
-   "session":{
-      "type":"html",
-      "format":"^/session/?$",
-      "mime":"text/html",
-      "method":"GET,POST",
-      "ressource":"session.html",
-      "controller":"session.js",
-      "url":"/session.html",
-       "preloading": true,
-      "maxAge": -1
-   },
+	"type":"image",
+	"format":"/favicon\\.ico$",
+	"mime":"image/x-icon",
+	"method":"GET",
+	"ressource":"favicon.ico",
+	"controller":"image.js",
+	"url":"/favicon.ico",
+	"preloading": true,
+	"maxAge": 86400
+    },
+    "contact":{
+	"type":"html",
+	"format":"/contact$",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"contact.html",
+	"controller":"contact.js",
+	"url":"/contact.html",
+	"preloading": true,
+	"maxAge": -1
+    },
+    "session":{
+	"type":"html",
+	"format":"^/session/?$",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"session.html",
+	"controller":"session.js",
+	"url":"/session.html",
+	"preloading": true,
+	"maxAge": -1
+    },
     "register":{
-      "type":"html",
-      "format":"^/register/?$",
-      "mime":"text/html",
-      "method":"GET,POST",
-      "ressource":"register.html",
-      "controller":"register.js",
-      "url":"/register.html",
-       "preloading": true,
-      "maxAge": -1
-   },
+	"type":"html",
+	"format":"^/register/?$",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"register.html",
+	"controller":"register.js",
+	"url":"/register.html",
+	"preloading": true,
+	"maxAge": -1
+    },
     "login":{
-      "type":"html",
-      "format":"^/login/?$",
-      "mime":"text/html",
-      "method":"GET,POST",
-      "ressource":"login.html",
-      "controller":"login.js",
-      "url":"/login.html",
-       "preloading": true,
-      "maxAge": -1
-   },
-   "hello":{
-      "type":"html",
-      "format":"/hello/?([-a-zA-Z]*)/?([-a-zA-Z]*)$",
-      "mime":"text/html",
-      "method":"GET",
-      "ressource":"hello.html",
-      "controller":"hello.js",
-      "url":"/hello/[name]/[cri]",
-      "query":{
-         "name":"$1",
-	 "cri": "$2"
-      },
-      "preloading":true,
-      "maxAge": 86400
-   },
-   "mainJs":{
-      "type":"js",
-      "format":"/js/main.js$",
-      "mime":"application/javascript",
-      "method":"GET",
-      "ressource":"main.js",
-      "controller":"text-control.js",
-      "url":"/js/main.js",
-      "query":{
-      },
-      "preloading":false,
-      "maxAge": -1
-   },
-   "sigmaJs":{
-      "type":"js",
-      "format":"/js/sigma.min.js$",
-      "mime":"application/javascript",
-      "method":"GET",
-      "ressource":"libs/sigma.min.js",
-      "controller":"text-control.js",
-      "url":"/js/sigma.min.js",
-      "query":{
-      },
-      "preloading":false,
-      "maxAge": 86400
-   },
+	"type":"html",
+	"format":"^/login/?$",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"login.html",
+	"controller":"login.js",
+	"url":"/login.html",
+	"preloading": true,
+	"maxAge": -1
+    },
+    "hello":{
+	"type":"html",
+	"format":"/hello/?([-a-zA-Z]*)/?([-a-zA-Z]*)$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"hello.html",
+	"controller":"hello.js",
+	"url":"/hello/[name]/[cri]",
+	"query":{
+            "name":"$1",
+	    "cri": "$2"
+	},
+	"preloading":true,
+	"maxAge": 86400
+    },
+    "mainJs":{
+	"type":"js",
+	"format":"/js/main.js$",
+	"mime":"application/javascript",
+	"method":"GET",
+	"ressource":"main.js",
+	"controller":"text-control.js",
+	"url":"/js/main.js",
+	"query":{
+	},
+	"preloading":false,
+	"maxAge": -1
+    },
+    "sigmaJs":{
+	"type":"js",
+	"format":"/js/sigma.min.js$",
+	"mime":"application/javascript",
+	"method":"GET",
+	"ressource":"libs/sigma.min.js",
+	"controller":"text-control.js",
+	"url":"/js/sigma.min.js",
+	"query":{
+	},
+	"preloading":false,
+	"maxAge": 86400
+    },
     "xyjax":{
-      "type":"js",
-      "format":"/js/xyjax.min.js",
-      "mime":"application/javascript",
-      "method":"GET",
-      "ressource":"libs/xyjax.min.js",
-      "controller":"text-control.js",
-      "url":"/js/xyjax.min.js",
-      "query":{
-      },
-      "preloading":false,
-      "maxAge": 86400
-   },
+	"type":"js",
+	"format":"/js/xyjax.min.js",
+	"mime":"application/javascript",
+	"method":"GET",
+	"ressource":"libs/xyjax.min.js",
+	"controller":"text-control.js",
+	"url":"/js/xyjax.min.js",
+	"query":{
+	},
+	"preloading":false,
+	"maxAge": 86400
+    },
     "mainCss":{
-      "type":"css",
-      "format":"/css/main.css$",
-      "mime":"text/css",
-      "method":"GET",
-      "ressource":"main/main.css",
-      "controller":"text-control.js",
-      "url":"/css/main.css",
-      "query":{
-      },
-      "preloading": true,
-      "maxAge": -1
-   },
-   "math-eltCss":{
-      "type":"css",
-      "format":"/css/math-elt.css$",
-      "mime":"text/css",
-      "method":"GET",
-      "ressource":"math-elt.css",
-      "controller":"text-control.js",
-      "url":"/css/math-elt.css",
-      "query":{
-      },
-      "preloading":true,
-      "maxAge": -1
-   },
-   "error404":{
-      "type":"html",
-      "mime":"text/html",
-      "method":"GET,POST",
-      "ressource":"error404.html",
-      "controller":"error404.js",
-      "preloading": true,
-      "maxAge" : 86400
-   },
+	"type":"css",
+	"format":"/css/main.css$",
+	"mime":"text/css",
+	"method":"GET",
+	"ressource":"main/main.css",
+	"controller":"text-control.js",
+	"url":"/css/main.css",
+	"query":{
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
+    "math-eltCss":{
+	"type":"css",
+	"format":"/css/math-elt.css$",
+	"mime":"text/css",
+	"method":"GET",
+	"ressource":"math-elt.css",
+	"controller":"text-control.js",
+	"url":"/css/math-elt.css",
+	"query":{
+	},
+	"preloading":true,
+	"maxAge": -1
+    },
+    "error404":{
+	"type":"html",
+	"mime":"text/html",
+	"method":"GET,POST",
+	"ressource":"error404.html",
+	"controller":"error404.js",
+	"preloading": true,
+	"maxAge" : 86400
+    },
     "admin":{
 	"type":"html",
 	"format":"^/admin/?([-a-zA-Z]*)$",
@@ -244,47 +259,47 @@
 	"maxAge" : -1
     },
     "adminCss":{
-      "type":"css",
-      "format":"^/css/admin.css$",
-      "mime":"text/css",
-      "method":"GET",
-      "ressource":"admin.css",
-      "controller":"text-control.js",
-      "url":"/css/admin.css",
-      "query":{
-      },
-      "preloading":true,
-      "maxAge": 1
-   },
-   "share":{
-      "type":"share",
-      "format":"/share/(([_-a-zA-Z0-9]*)/([_-a-zA-Z0-9]*)\\.([a-z0-9]*))$",
-      "method":"GET",
-      "ressource":"[file]",
-      "controller":"share.js",
-      "url":"/share/$1/$2.$3",
-      "query":{
-	"file":"$0",	
-      	"dir":"$1",
-      	"fileName":"$2",
-      	"extension":"$3"
-      },
-      "preloading":false,
-      "maxAge": -1
-   },
-  "robots":{
-      "type":"html",
-      "format":"^/robots.txt$",
-      "mime":"plain/text",
-      "method":"GET",
-      "ressource":"/info/robots.txt",
-      "controller":"text-control.js",
-      "url":"/robots.txt",
-      "query":{
-      },
-      "preloading":true,
-      "maxAge": -1
-   },
+	"type":"css",
+	"format":"^/css/admin.css$",
+	"mime":"text/css",
+	"method":"GET",
+	"ressource":"admin.css",
+	"controller":"text-control.js",
+	"url":"/css/admin.css",
+	"query":{
+	},
+	"preloading":true,
+	"maxAge": 1
+    },
+    "share":{
+	"type":"share",
+	"format":"/share/(([_-a-zA-Z0-9]*)/([_-a-zA-Z0-9]*)\\.([a-z0-9]*))$",
+	"method":"GET",
+	"ressource":"[file]",
+	"controller":"share.js",
+	"url":"/share/$1/$2.$3",
+	"query":{
+	    "file":"$0",	
+      	    "dir":"$1",
+      	    "fileName":"$2",
+      	    "extension":"$3"
+	},
+	"preloading":false,
+	"maxAge": -1
+    },
+    "robots":{
+	"type":"html",
+	"format":"^/robots.txt$",
+	"mime":"plain/text",
+	"method":"GET",
+	"ressource":"/info/robots.txt",
+	"controller":"text-control.js",
+	"url":"/robots.txt",
+	"query":{
+	},
+	"preloading":true,
+	"maxAge": -1
+    },
     "sitemap":{
 	"type":"html",
 	"format":"^/sitemap.xml$",

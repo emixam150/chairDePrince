@@ -1,0 +1,80 @@
+/*
+ *Blog Controller
+ */
+var paths = require($.paths),
+    commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
+    tempModel = require(paths.models + '/template.js'),
+    Blog = require(paths.models + '/blog.js'),
+    LeadIn = require(paths.models + '/leadin.js');
+
+exports.exec = function(support) {
+
+    console.log(support.path);
+
+    var lead = new LeadIn();
+
+    lead.getRandom('blog',function(){
+	var blogPage = new Blog();	
+
+	if(support.page.query.articleName == ""){
+	    blogPage.findPlus({},{name:-1},{lastUpdate: -1}, 1,function(docs){
+		blogPage.getByName(docs[0].name, function(err,result){
+		    next(support,lead,blogPage,err);
+		})
+	    })
+	    
+	}else{
+	    blogPage.getByName(support.page.query.articleName, function(err,result){
+		next(support,lead,blogPage,err);
+	    })
+	} //end of if articleName
+    });
+} ;
+
+
+var next = function(support,lead,blogPage){
+	    if(!err){
+		    var queriesTemp = {
+			title : blogPage.content.title + " - Blog - Chere de prince",
+			lang: "fr",
+			blog : true,
+			leadIn: lead.content,
+			sessionDisplay: typeof support.session.user != "undefined",
+			userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
+			cssLinked:[],//[{path:'math-elt.css'}],
+			jsLinked: [],//[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
+			jsSpe:false
+			//bannierePath :  "images/bannieres/math.png"
+		    };
+
+		var section ={
+		    id: "section",
+		    type: "part",
+		    children: (typeof blogPage.content.tree != 'undefined')? blogPage.content.tree.children: {},
+		    queries: {
+			banniereHeader: {
+			    link: "/svg/bannieres/tunnel.svg",
+			    alt: "Tunnel vers la becasserie"
+			},
+			jsSpe: false,
+			title: blogPage.content.title
+		    },
+		    content: support.file.html.blog
+		};
+
+
+		commonTreeTemplate.constructTree( queriesTemp, function(tree){
+		    tree.children.section = section;
+		    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
+		    support.res.setHeader('Content-Type', 'text/html');
+		    tempModel.constructOutput(tree, function(output){
+			$.require('makeTextResponse').send(output, support.headers, support.res);
+		    });
+		});
+
+	    }else{
+		require(paths.controllers +'/error404.js').exec(support);
+	    }
+
+}
+

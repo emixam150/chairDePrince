@@ -14,6 +14,7 @@ module.exports = function Publication(enName, dbName) {
     this.name = '';
     this.bornDate =  new Date();
     this.lastUpdate =  new Date();
+    this.published = true;
     this.content =  {title: ""};
     this.banniere =  new Banniere(enName);
 
@@ -60,10 +61,12 @@ module.exports = function Publication(enName, dbName) {
 	var pub = this,
 	query = {"name": name};
 	this.find(query ,function(docs){
+//	    console.log(docs[0].content.tree);
 	    if(docs.length == 1){
 		pub.name = docs[0].name;
 		pub.bornDate = docs[0].bornDate;
 		pub.lastUpdate = docs[0].lastUpdate;
+		pub.published = (typeof docs[0].published == "boolean")? docs[0].published : true
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
 		pub.banniere.get(docs[0].name,function(err){    
@@ -79,12 +82,13 @@ module.exports = function Publication(enName, dbName) {
 
     this.getById = function(id,cb){
 	var pub = this,
-	query = { _id: id};
+	query = { _id: pub.ObjectId(id)};
 	this.find(query ,function(docs){
 	    if(docs.length == 1){
 		pub.name = docs[0].name;
 		pub.bornDate = docs[0].bornDate;
 		pub.lastUpdate = docs[0].lastUpdate;
+		pub.published = (typeof docs[0].published == "boolean")? docs[0].published : true;
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
 		pub.banniere.get(docs[0].name, function(err){    
@@ -110,7 +114,7 @@ module.exports = function Publication(enName, dbName) {
 			pub.content.title = String(title)
 			pub.updateThis(cb)
 		    }else
-			pub.find(query,function(docs){
+		pub.find(query,function(docs){
 			    if(docs.length == 0){
 				pub.name = simplify(String(title))
 				pub.content.title = String(title)
@@ -126,7 +130,15 @@ module.exports = function Publication(enName, dbName) {
 	    cb(new Error("title's format is invalid"))
     }
 
-
+    this.setPublishState = function(state,cb){
+	var pub = this;
+	if(typeof state == "boolean"){
+	    pub.published  = state;
+	    pub.updateThis(cb);
+	}else
+	    cb(new Error("publish's state must be a boolean"))
+    }
+    
 }//end of model
 
 function simplify(title){

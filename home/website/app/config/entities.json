@@ -13,5 +13,10 @@
 	"connection":"main",
 	"base":"becasse",
 	"collection":"leadIn"
+    },
+    "blog":{
+	"connection":"main",
+	"base":"becasse",
+	"collection":"blog"
     }
 }

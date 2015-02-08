@@ -97,7 +97,7 @@ function find(query, enName, dbName,callback){
     db.open(function(err, db) {
 	assert.equal(null,err);
 	var collection = db.collection(enConf[enName].collection);
-	
+
 	collection.find(query).toArray(function(err, docs) { 
 	    if(err) throw err;
 	    db.close();
