@@ -13,10 +13,241 @@
   <loc>http://cheredeprince.net/math-browser</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/division_euclidienne_des_polynomes</loc>
+  <loc>http://cheredeprince.net/math/communication__dans_une_chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/noyau_de_transition_irreductible</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/communication_et_recurrrence_dans_une_chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/point_reccurent_et_transcient_dune_chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/potentiel_dune_chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/puissance_de_noyau_de_transition</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/temps_de_premier_retour_dans_un_processus_aleatoire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/nombre_de_visites_dun_point_dans_un_processus_aleatoire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/temps_darret</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/processus_aleatoire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/tribu_associee_a_un_temps_darret</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/propriete_de_markov_forte</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/realisation_canonique_dune_chaine_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/propriete_de_markov_simple</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/construction_dun_espace_de_realisation</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/matrice_stochastique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/proprietes_elementaires_des_chaines_de_markov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_euclidien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/liens_entre_anneau_euclidien_et_principal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_principal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_de_polynome_factoriel</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/anneau_des_polynomes</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_factoriel</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/caracterisation_de_danneau_de_polynome_euclidien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_integre</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/corps</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/lanneau_des_entiers_de_gauss</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/element_irreductible_dun_anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/element_premier_dun_anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/decomposition_en_elements_premiers</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theoreme_de_gauss</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/elements_copremiers</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theoreme_de_bezout</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/plus_petit_commun_multiple</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/existence_dun_pgcd_et_ppcm_dans_un_anneau_principal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/plus_grand_commun_diviseur</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/proprietes_dans_un_anneau_principal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideal_maximal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideal_premier</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideal_principal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/divisibilite_dans_un_annneau_integre</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/unite_dans_un_anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideaux_etrangers</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theroreme_chinois</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/representation_irreductibles_dun_groupe_abelien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/representation_irreductible</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe_abelien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/base_orthogonale_des_fonctions_de_classe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_de_classe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/la_dimension_de_lespace_des_fonctions_de_classe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/proprietes_des_representations_irreductibles_dun_groupe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/representation_irreductible_au_sein_de_la_representation_reguliere</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/unicite_de_la_decomposition_en_representations_irreductibles</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/caractere_de_la_representation_reguliere</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/caractere_de_representation</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/representation_reguliere_dun_groupe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theoreme_disomorphisme_de_representations_lineaires</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theoremes_disomorphisme</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/representation_lineaire_quotient</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/sous-representation_lineaire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/convergence_presque_sure_des_martingales_dans_l_1</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/lemme_de_borel-cantelli</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/tribu</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_absolument_continue</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/variation_dune_fonction</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/partition_simple</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/proprietes_des_racines_positives</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/racines_positives</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/base_de_systeme_de_racines</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/existence_dune_base_dun_systeme_de_racines</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe_de_weyl</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/sous-groupe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/systeme_de_racines</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/systeme_de_racines_reduit</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/division_euclidienne_des_polynomes</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/fonction_polynomiale</loc>
@@ -25,13 +256,7 @@
   <loc>http://cheredeprince.net/math/degre_dun_polynome</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/anneau</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/corps_des_fractions</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/anneau_integre</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/caracterisation_de_lintegrite</loc>
@@ -41,9 +266,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoremes_disomorphismes_pour_les_anneaux</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/theoremes_disomorphisme</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/proprietes_des_morphismes_danneaux</loc>
@@ -61,22 +283,10 @@
   <loc>http://cheredeprince.net/math/anneau_quotient</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/ideal</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/corps</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/algebre_sur_un_corps</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/espace_vectoriel</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/unite_dans_un_anneau</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/sous-groupe</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/espace_de_banach</loc>
@@ -104,9 +314,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/martingale</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/convegence_presque_sure_des_martingales_dans_l_1</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/proprietes_elementaires_de_lintegrale_de_kurzweil_et_henstock</loc>
@@ -142,9 +349,6 @@
   <loc>http://cheredeprince.net/math/uniforme_integrabilite</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/temps_darret</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/proprietes_des_martingales_arretees</loc>
 </url>
 <url>
@@ -170,9 +374,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/espace_vectoriel_de_dimension_finie</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/systeme_de_racines</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/sysmetrie_dun_point</loc>
@@ -220,15 +421,6 @@
   <loc>http://cheredeprince.net/math/transformation_naturelle</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/processus_aleatoire</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/groupe_abelien</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/groupe</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/produit_des_caracteres_de_representation_irreductible</loc>
 </url>
 <url>
@@ -241,9 +433,6 @@
   <loc>http://cheredeprince.net/math/somme_de_representations_lineaires</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/unicite_de_la_decomposition_en_representations_irreductibles</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/representation_lineaire</loc>
 </url>
 <url>
@@ -251,9 +440,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/morphisme_de_representation_lineaire</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/representation_irreductible</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/lemme_de_schur</loc>
@@ -295,13 +481,7 @@
   <loc>http://cheredeprince.net/math/sommes_de_darboux</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/partition_simple</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/propriete_des_fonctions_riemann-integrables</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/tribu_associee_a_un_temps_darret</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/filtration</loc>
@@ -316,13 +496,7 @@
   <loc>http://cheredeprince.net/math/proprietes_elementaires_des_martingales</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/chaine_de_markov</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/axiomatique_de_kolmogorov</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/tribu</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/variable_aleatoire</loc>
@@ -355,16 +529,7 @@
   <loc>http://cheredeprince.net/math/esperance_dune_variable_aleatoire</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/representation_reguliere_dun_groupe</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/caractere_de_representation</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/division_dans_un_intervalle</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/fonction_absolument_continue</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/integrale_de_lebesgue_dune_fonction_etagee</loc>
@@ -449,9 +614,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/caracterisation_de_luniforme_integrabilite</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/sous-representation_lineaire</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/degre_dune_representation_lineaire</loc>
@@ -611,9 +773,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoreme_de_parseval</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/lemme_de_borel-cantelli</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoreme_de_banach</loc>
