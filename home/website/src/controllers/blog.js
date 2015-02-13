@@ -54,10 +54,10 @@ var next = function(support,lead,blogPage,docs,err){
 	    type: "part",
 	    children: (typeof blogPage.content.tree != 'undefined')? blogPage.content.tree.children: {},
 	    queries: {
-		banniereHeader: {
-		    link: "/svg/bannieres/tunnel.svg",
-		    alt: "Tunnel vers la becasserie"
-		},
+		    banniereHeader: {
+			link: blogPage.banniere.url,
+			alt: blogPage.banniere.alt
+		    },
 		jsSpe: false,
 		title: blogPage.content.title
 	    },

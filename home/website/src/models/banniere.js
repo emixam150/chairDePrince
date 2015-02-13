@@ -6,8 +6,11 @@ var paths = require($.paths),
     fs = require('fs'),
     local = paths.svg +'/bannieres'; 
 
-    var DEFAULT = {path: local + 'banniere/math/DEFAULT.svg',
+    var mathDEFAULT = {path: local + 'banniere/math/DEFAULT.svg',
 		   url: '/svg/bannieres/math/DEFAULT.svg',
+		   alt: "Pimp My Math"};
+var blogDEFAULT =  {path: local + 'banniere/blog/DEFAULT.svg',
+		   url: '/svg/bannieres/blog/DEFAULT.svg',
 		   alt: "Pimp My Math"};
 
 /* require name and the type of the publication
@@ -15,7 +18,9 @@ var paths = require($.paths),
 
 module.exports = function Banniere(type){
     var banniere = this;
-    
+
+    var DEFAULT = (type == 'math') ? mathDEFAULT : blogDEFAULT;
+
     this.name = "DEFAULT";
     this.type = type;
     this.path = DEFAULT.path

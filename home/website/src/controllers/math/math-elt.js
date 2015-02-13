@@ -14,14 +14,14 @@ exports.exec = function(support) {
 
     var lead = new LeadIn();
 
-    lead.getRandom('math',function(){
+    lead.getRandom('blog',function(){
 
 	console.log('outLead')
 
 	var mathElt = new Math();
 	mathElt.getByName(support.page.query.eltName, function(err,result){
 	    if(!err){
-console.log(result);
+		console.log(result);
 		mathEltDisplay.exec(mathElt, support.file.html['math-elt'], function(section){
 		    var queriesTemp = {
 			title : mathElt.content.title + " - Math - Chere de prince",
