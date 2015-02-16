@@ -56,7 +56,7 @@ var recupParentChild = function(parents, children, cb){
     var cpt = 0,
     parentsDisplay =[],
     childrenDisplay =[];
-    
+
     function next(){
 	cpt ++;
 	if(cpt == parents.length + children.length)
@@ -68,7 +68,8 @@ var recupParentChild = function(parents, children, cb){
 
     parents.forEach(function(parentId){
 	var MathRecup = new MathOb();
-	MathRecup.getById(parentId,function(result){
+
+	MathRecup.getById(parentId.id,function(result){
 	    parentsDisplay.push({
 		name: MathRecup.name,
 		title: (typeof result != 'undefined')? MathRecup.content.title: 'Non trouvé!!!!',
@@ -79,7 +80,7 @@ var recupParentChild = function(parents, children, cb){
     })
     children.forEach(function(childId){
 	var MathRecup = new MathOb();
-	MathRecup.getById(childId,function(result){
+	MathRecup.getById(childId.id,function(result){
 	    childrenDisplay.push({
 		name: MathRecup.name,
 		title: MathRecup.content.title,
