@@ -43,6 +43,8 @@ input,textarea,select,img{
 
 h1,h2{
     font-family: Impact,Haettenschweiler,"Franklin Gothic Bold",Charcoal,"Helvetica Inserat","Bitstream Vera Sans Bold","Arial Black","Roboto-Bold","sans serif";
+    font-weight: 500;
+    color: #C83737;
 }
 
 
@@ -175,7 +177,7 @@ overflow-x: hidden;
     float: right;
     width: 100%;
     margin-top: -45px;
-    margin-right: -45%;
+    margin-right: -48%;
 }
 
 /*container*/
@@ -202,7 +204,7 @@ overflow-x: hidden;
     margin-top: 20px;
     padding-top: 20px;
     height: 50px;
-    background-color: #DB162F;
+    background-color: #C83737;
 }
 
 .page-footer p {
@@ -219,13 +221,13 @@ overflow-x: hidden;
 
 
 .border-underline{
-    border-bottom: 2px solid #DB162F;
+    border-bottom: 2px solid #C83737;
     padding-bottom:4px;
 }
 .border-underline::after{
     display:block;
     content: "";
-    border-bottom: 1px solid #DB162F;
+    border-bottom: 1px solid #C83737;
     width: 90%;
     margin: 0 auto;
 }
@@ -391,12 +393,12 @@ overflow-x: hidden;
     /*header*/
 
     .section-header .banniere{
-	width: 55%;
+	width: 65.104%;
     }
 
        .section-header .sub-banniere{
-           width: 55%;
-           margin-right: -12px;
+           width: 65.104%;
+           margin-right:-15.104%;
        }
  
     /*bd*/
@@ -449,14 +451,14 @@ overflow-x: hidden;
     section{
 	font-size: 1.2em;
     }
-    .section-header .banniere{
-	max-width:633.6px;
+    .section-header{
+        width: 921.6px;
+        margin: 0 auto;
     }
-    .section-header .text-intro{
-	width: 921.6px;
-	margin: 0 auto;
+
+    .section-header .sub-banniere{
+        max-width:633.6px;
     }
-    
         /*bd*/
     
   .bd-txt{
