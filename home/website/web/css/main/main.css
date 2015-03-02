@@ -7,6 +7,7 @@
 
 body{
     font-family: "Playfair Display", serif;
+
 }
 
 
@@ -38,6 +39,12 @@ textarea{
 input,textarea,select,img{
     max-width : 100%;
 }
+
+
+h1,h2{
+    font-family: Impact,Haettenschweiler,"Franklin Gothic Bold",Charcoal,"Helvetica Inserat","Bitstream Vera Sans Bold","Arial Black","Roboto-Bold","sans serif";
+}
+
 
 /* header */
 
@@ -139,6 +146,9 @@ section{
 
 /*header*/
 
+.section-header{
+overflow-x: hidden;
+}
 
 .section-header .banniere{
     display: block;
@@ -157,7 +167,15 @@ section{
 }
 
 .section-header .text-intro{
+    
     font-size: 1.1em;
+}
+
+.sub-banniere{
+    float: right;
+    width: 100%;
+    margin-top: -45px;
+    margin-right: -45%;
 }
 
 /*container*/
@@ -259,10 +277,36 @@ section{
 }   
 
 
+/*bd*/
+.bd{ 
+    display: block;
+    margin-top: 10px;
+    font-size: 0; 
+}
+
+.bd img{
+    display : inline-block;
+    vertical-align: top;
+    padding: 1%;
+    width : 47%;
+}
+
+.bd img:nth-child(2n+1){
+    border-right: 2px black solid; 
+}
+
+.bd img:nth-child(1),img:nth-child(2){
+    border-bottom: 2px black solid; 
+}
 
 @media screen and (min-width: 360px){
     #logo{
 	width: 163.6362px;
+    }
+    
+    .bd{
+        margin: 0 auto;
+        max-width: 350px;
     }
 }
 
@@ -295,7 +339,7 @@ section{
 	position: absolute;
 	top: 18px;
 	margin: 0 0 0 23.0769% ; /* 10/13 */
-	width: 76.923077%;
+	width: 76%;
     }
 
     nav ul{
@@ -350,6 +394,32 @@ section{
 	width: 55%;
     }
 
+       .section-header .sub-banniere{
+           width: 55%;
+           margin-right: -12px;
+       }
+ 
+    /*bd*/
+    
+    .bd{
+        max-width: none;
+    }
+.bd img{
+    width : 22%;
+}
+.bd img{
+    border-right: 2px black solid; 
+    border-bottom: none;
+}
+.bd img:first-child{
+    border-bottom: none;
+}
+.bd img:last-child{
+    border: none; 
+}
+
+    
+    
 }
 
 
@@ -368,6 +438,7 @@ section{
 	margin:0 auto ;
     }
 
+  
     
 }
 
@@ -386,6 +457,39 @@ section{
 	margin: 0 auto;
     }
     
+        /*bd*/
+    
+  .bd-txt{
+      width: 87.5%;
+     float: right;
+  }  
+    
+ .bd{
+    float:left;
+    width : 25%;
+    margin-left: -15%;
+     margin-top: 3rem;
+    }
+    
+.bd img{
+  width :100%;
+  border: none;
+  border-bottom: 2px black solid;
+}
+.bd img:first-child{
+    border-bottom: 2px black solid;
+}
+.bd img:last-child{
+    border-bottom: none;
+}
+.bd img:nth-child(2n+1){
+    border-right: none;
+}
+    
+    
+    footer{
+        clear: both;
+    }
     
 }
 

@@ -5,13 +5,13 @@
 	"hosts":{
 	    "localhost:10":{
 		"name":"ChairDePrince",
-		"index":"/home/napoleon/creations/chere_de_prince/chairDePrince/home/website/web/index.js",
+		"index":"/home/paul/chairDePrince/home/website/web/index.js",
 		"env":"dev"
 	    },
 	    "default":{
 		"name":"Demo",
-		"index":"/home/napoleon/creations/chere_de_prince/chairDePrince/home/website/web/index.js",
-		"paths":"/home/napoleon/creations/chere_de_prince/chairDePrince/home/website/app/config/paths.js",
+		"index":"/home/paul/chairDePrince/home/website/web/index.js",
+		"paths":"/home/paul/chairDePrince/home/website/app/config/paths.js",
 		"env":"prod"
 	    }
 	}
@@ -22,12 +22,12 @@
 	"hosts":{
 	    "localhost:8081":{
 		"name":"Partage",
-		"index":"/home/napoleon/creations/chere_de_prince/chairDePrince/home/partage/web/index.js",
+		"index":"/home/paul/chairDePrince/home/partage/web/index.js",
 		"env":"prod"
 	    },
 	    "default":{
 		"name":"Default",
-		"index":"/home/napoleon/creations/chere_de_prince/chairDePrince/home/partage/web/index.js",
+		"index":"/home/paul/chairDePrince/home/partage/web/index.js",
 		"env":"dev"
 	    }
 	}
