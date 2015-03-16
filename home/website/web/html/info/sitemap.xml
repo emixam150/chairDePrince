@@ -12,6 +12,265 @@
 <url>
   <loc>http://cheredeprince.net/math-browser</loc>
 </url>
+
+<url>
+  <loc>http://cheredeprince.net/math/ideal</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/ideaux_dun_corps</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/corps</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/rayon_dun_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/excentricite_dun_sommet</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/diametre_dun_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/distance_dans_un_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/chemin_dans_un_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/distance</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/espace_metrique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/variable_aleatoire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/mediane</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/quantile</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/inverse_generalise_dune_fonction_de_repartition</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/loi_dune_variable_aleatoire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_de_repartition</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_de_repartition_et_loi</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/proprietes_de_la_fonction_de_repartion</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/modele_statistique_domine</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/bonne_definition_du_maximum_de_vraissemblance</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/estimateur_maximum_de_vraissemblance</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/existence_dune_dominante_privilegiee_du_modele</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/modele_statistique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/modele_statitique_parametre</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/vraissemblance_dune_observation</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/obervation_statistique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/estimateur_du_maximum_de_vraisemblance</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/estimateur_empirique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/estimateur</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/biais_dun_estimateur</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_mesurable</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/modele_statistique_parametrique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/mesure_absolument_continue</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/mesure_sigma-finie</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/tribu</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/tribu_borelienne</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/mesure_finie</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/axiomatique_de_kolmogorov</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_biparti</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_complet_biparti</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe_des_fonction_arithmetique_multiplicative</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_arithmetique_multiplicative</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_arithmetique_completement_multiplicative</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_arithmetique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/elements_copremiers</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_quotient</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/caractere_cyclique_des_inversibles_des_groupes_cycliques</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe_quotient</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/unite_dans_un_anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/groupe_cyclique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/fonction_deuler</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/plus_grand_commun_diviseur</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/element_irreductible_dun_anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/critere_deisenstein</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/divisibilite_dans_un_annneau_integre</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_des_polynomes</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/caracteristique_danneau</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/morphisme_danneaux</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/anneau_euclidien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/contenu_dun_polynome</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/lemme_de_gauss</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/arbre</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/arbre_couvrant_un_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/cycle_dans_un_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_connexe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/theoreme_des_quatre_couleurs</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_planaire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/coloriage_dun_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/composante_connexe_dun_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/cycle_hamiltonien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/cycle_eulerien</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/cycle_elementaire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_analytique</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/degre_dans_un_graphe_planaire</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/formule_deuler_pour_les_graphes</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_fortement_connexe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_non_oriente</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_complet</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/degre_dun_sommet</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/taille_dun_graphe</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/graphe_simple</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/carquois</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/petit_theoreme_de_fermat</loc>
+</url>
+<url>
+  <loc>http://cheredeprince.net/math/element_premier_dun_anneau</loc>
+</url>
 <url>
   <loc>http://cheredeprince.net/math/communication__dans_une_chaine_de_markov</loc>
 </url>
@@ -67,9 +326,6 @@
   <loc>http://cheredeprince.net/math/proprietes_elementaires_des_chaines_de_markov</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/anneau_euclidien</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/liens_entre_anneau_euclidien_et_principal</loc>
 </url>
 <url>
@@ -77,9 +333,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/anneau_de_polynome_factoriel</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/anneau_des_polynomes</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/anneau_factoriel</loc>
@@ -91,28 +344,13 @@
   <loc>http://cheredeprince.net/math/anneau_integre</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/corps</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/lanneau_des_entiers_de_gauss</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/anneau</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/element_irreductible_dun_anneau</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/element_premier_dun_anneau</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/decomposition_en_elements_premiers</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoreme_de_gauss</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/elements_copremiers</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoreme_de_bezout</loc>
@@ -122,9 +360,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/existence_dun_pgcd_et_ppcm_dans_un_anneau_principal</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/plus_grand_commun_diviseur</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/proprietes_dans_un_anneau_principal</loc>
@@ -137,15 +372,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/ideal_principal</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/divisibilite_dans_un_annneau_integre</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/unite_dans_un_anneau</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/ideal</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/ideaux_etrangers</loc>
@@ -211,9 +437,6 @@
   <loc>http://cheredeprince.net/math/lemme_de_borel-cantelli</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/tribu</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/fonction_absolument_continue</loc>
 </url>
 <url>
@@ -271,16 +494,10 @@
   <loc>http://cheredeprince.net/math/proprietes_des_morphismes_danneaux</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/morphisme_danneaux</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/ideal_bilatere</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/sous-anneau</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/anneau_quotient</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/algebre_sur_un_corps</loc>
@@ -394,9 +611,6 @@
   <loc>http://cheredeprince.net/math/morphisme_de_representation_de_carquois</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/carquois</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/caracterisation_dequivalence_de_categories</loc>
 </url>
 <url>
@@ -496,12 +710,6 @@
   <loc>http://cheredeprince.net/math/proprietes_elementaires_des_martingales</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/axiomatique_de_kolmogorov</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/variable_aleatoire</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/covariance</loc>
 </url>
 <url>
@@ -553,9 +761,6 @@
   <loc>http://cheredeprince.net/math/fonction_lebesgue-mesurable</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/fonction_mesurable</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/espace_mesurable</loc>
 </url>
 <url>
@@ -592,9 +797,6 @@
   <loc>http://cheredeprince.net/math/algebre_des_fonctions_lebesgue-mesurables</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/tribu_borelienne</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/convergence_uniforme</loc>
 </url>
 <url>
@@ -608,9 +810,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/tribu_engendree_par_une_variable_aleatoire</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/loi_dune_variable_aleatoire</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/caracterisation_de_luniforme_integrabilite</loc>
@@ -662,9 +861,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/critere_de_cauchy_uniforme</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/espace_metrique</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/theoreme_de_heine</loc>
@@ -877,9 +1073,6 @@
   <loc>http://cheredeprince.net/math/recouvrement_par_des_intervalles</loc>
 </url>
 <url>
-  <loc>http://cheredeprince.net/math/groupe_quotient</loc>
-</url>
-<url>
   <loc>http://cheredeprince.net/math/groupe_simple</loc>
 </url>
 <url>
@@ -941,9 +1134,6 @@
 </url>
 <url>
   <loc>http://cheredeprince.net/math/formes_des_groupes_cycliques</loc>
-</url>
-<url>
-  <loc>http://cheredeprince.net/math/groupe_cyclique</loc>
 </url>
 <url>
   <loc>http://cheredeprince.net/math/spectre_residuel</loc>
