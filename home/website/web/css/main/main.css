@@ -192,7 +192,7 @@ overflow-x: hidden;
     margin: 0.5em 0;
 }
 
-.section-content .p{
+.column p{
     margin-top: 0.9em;
     font-size: 0.9em;
 }
@@ -458,6 +458,10 @@ overflow-x: hidden;
 
     .section-header .sub-banniere{
         max-width:633.6px;
+    }
+    
+    .column p {
+        font-size: 1em;
     }
         /*bd*/
     
