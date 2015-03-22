@@ -22,8 +22,9 @@ exports.exec = function(support) {
 	    sessionDisplay: typeof support.session.user != "undefined",
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],
-	    jsLinked: false,//[{path: /path.js}],
+	    jsLinked: [{path:'https://cdn.socket.io/socket.io-1.2.0.js'},{path:'/js/sigma.min.js'}],//[{path: /path.js}],
 	    cssSpe: support.file.css.indexSpe,
+	    jsSpe:  support.file.js['accueil-mathSpe'],
 	    bannierePath :  "images/bannieres/accueil.png"
 	};
 	

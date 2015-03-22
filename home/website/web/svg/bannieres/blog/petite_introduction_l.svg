@@ -3,29 +3,25 @@
 <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="600" width="1200" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
 <g>
-  <animateTransform id="rot1"  begin="0s; rot4.end" from="0 600 300" attributeName="transform" to="2 600 300" attributeType="XML" dur="2s" type="rotate" fill="freeze"/>
-  <animateTransform id="rot2"  begin="rot1.end" from="2 600 300" attributeName="transform" to="0 600 300" attributeType="XML" dur="2s" type="rotate" fill="freeze"/>
-  <animateTransform id="rot3" begin="rot2.end" from="0 600 300" attributeName="transform" to="-2 600 300" attributeType="XML" dur="2s" type="rotate" fill="freeze"/>
-  <animateTransform id="rot4"  begin="rot3.end" from="-2 600 300" attributeName="transform" to="0 600 300" attributeType="XML" dur="2s" type="rotate" fill="freeze"/>
   <path opacity="0.98000004" fill="#000000" d="m250.74,498.93c-20.484,27.452,8.051,77.404,28.278,69.707-27.936,5.5496,23.084-14.493,31.224-0.84835,13.987,10.89,48.942,6.004,55.305,7.3652-28.437,1.6056,22.838-4.0639,30.863-12.487,49.012-24.42,102.83-36.787,154.09-55.312,28.467-16.39,58.093-30.199,88.409-42.799,67.224-33.029,126.12-82.796,198.3-105.77,31.798-8.1255,61.996-22.722,87.237-43.26,25.116-20.075,32.62-35.276,31.268-63.983-0.7027-14.912-30.477-49.324,3.5417-37.321,28.431,26.647-6.1894,58.538-0.953,88.548-29.045,13.059-50.971,38.972-81.683,49.114-45.38,13.452-88.209,33.779-128.3,58.804-43.459,26.085-85.609,55.08-133.74,72.22-29.732,13.97-57.166,33.445-90.209,39.392-41.774,14.092-84.214,26.551-123.77,46.317-31.428,12.786-69.012,11.547-101.1,2.9249-19.598-6.8298-2.293-7.365,1.0647-5.5164-30.182,15.863-76.846-0.45115-69.624-40.656-0.269-16.165,0.4247-32.153,19.804-26.44z"/>
 	<path opacity="0.98000004" fill="#000000" d="m296.57,443.68c4.2416,4.0708,93.816-28.309,97.269-43.043,3.4529-14.734-101.51,38.973-97.269,43.043zm591.24-149.99c-36.469,11.602-79.5,21.73-104.99,31.569-25.487,9.8384-7.5902,4.4277-38.047,30.595s-65.769,19.33-120.34,44.967c-54.572,25.637-90.975,63.631-142.99,72.304-23.018,3.8379-52.329,9.1265-77.001,23.6-24.673,14.474-67.191,33.552-92.187,33.586-12.437,0.0166-29.952-15.88-37.138-19.427-7.1858-3.5464-30.071,13.574-39.653-6.2634-14.342-29.691-2.2431-51.571,26.163-71.362,33.056-23.031,67.195-38.181,105.12-53.383,102.15-40.945,218.35-68.151,298.15-122.36,41.928-28.485,77.325-53.165,126.19-62.782,48.907-12.984,101.17-17.467,150.9-7.1714,36.017,21.7,6.652,55.215-1.8801,64.969-8.5321,9.7542-15.836,29.558-52.305,41.16z"/>
 </g>
 	<rect  height="100" width="2" y="340" x="229" fill="#000000">
-	 <animate attributeName="y" from="340" to="340" values="340; 310; 340; 360; 340"  repeatCount="indefinite" begin="0" dur="8s" fill="freeze"/>  
+
 	</rect>
 	<rect  height="120" width="2" y="330" x="215" fill="#000000">
-	 <animate attributeName="y" from="330" to="330" values="330; 315; 330; 345; 330"  repeatCount="indefinite" begin="0s" dur="8s" fill="freeze"/>  
+
 	</rect>
 	<rect  height="110" width="2" y="310" x="253" fill="#000000">
-	  <animate attributeName="y" from="310" to="310" values="310; 300; 310; 320; 310"  repeatCount="indefinite" begin="0s" dur="8s" fill="freeze"/>  
+
 	</rect>
 	<rect  height="120" width="2" y="60" x="920" fill="#000000">
-	  <animate attributeName="y" from="60" to="60" values="60; 70; 60; 50; 60"  repeatCount="indefinite" begin="0s" dur="8s" fill="freeze"/>  
+
 	</rect>
 	<rect  height="100" width="2" y="70" x="900" fill="#000000">
-	  <animate attributeName="y" from="70" to="300" values="70; 85; 70; 55; 70"  repeatCount="indefinite" begin="0s" dur="8s" fill="freeze"/>  
+
 	</rect>
 	<rect  height="90" width="2" y="85" x="950" fill="#000000">
-	  <animate attributeName="y" from="85" to="85" values="85; 105; 85; 65; 85"  repeatCount="indefinite" begin="0s" dur="8s" fill="freeze"/>  
+
 	</rect>
 </svg>

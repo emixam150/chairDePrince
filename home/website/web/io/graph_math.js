@@ -9,7 +9,8 @@ exports.exec = function(socket){
     socket.on('reqMB', function(req){
 
 	var MathBrowser = new MathOb(),
-	limitSize = 1997,
+	    limitSize = (req.size)? req.size :1997,
+	    order = (req.order) ? req.order : 1,
 	projection = {name: 1, 
 		      'content.parents': 1, 
 		      'content.children': 1,
@@ -18,7 +19,7 @@ exports.exec = function(socket){
 		     };
 	buildQuery(req, function(query){
 
-	    MathBrowser.findPlus(query, projection, { lastUpdate: 1 }, limitSize, function(docs){
+	    MathBrowser.findPlus(query, projection, { lastUpdate: order }, limitSize, function(docs){
 		responseCreator(docs, function(res){
 		    socket.emit('resMB',res);
 		}); //end of constructGraphObjet
