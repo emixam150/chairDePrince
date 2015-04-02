@@ -9,8 +9,6 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
-    console.log(support.path);
-
     var lead = new LeadIn();
 
     lead.getRandom('blog',function(){

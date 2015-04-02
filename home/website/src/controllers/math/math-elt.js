@@ -10,8 +10,6 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
-    console.log(support.path);
-
     var lead = new LeadIn();
 
     lead.getRandom('blog',function(){
@@ -21,7 +19,6 @@ exports.exec = function(support) {
 	var mathElt = new Math();
 	mathElt.getByName(support.page.query.eltName, function(err,result){
 	    if(!err){
-		console.log(result);
 		mathEltDisplay.exec(mathElt, support.file.html['math-elt'], function(section){
 		    var queriesTemp = {
 			title : mathElt.content.title + " - Math - Chere de prince",

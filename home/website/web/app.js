@@ -172,6 +172,16 @@ exports.load = function(next) {
     return this;
 };        
 
+var refused =["simple-share-buttons.com","o-o-6-o-o.com","simple-share-buttons.com","humanorightswatch.org","darodar.com","bestwebsitesawards.com","aliexpress.com"]
+
+function matchInArray(string, array) {
+    for (var i in array) {
+        if (string.match(array[i])) {
+            return true;
+        }
+    }
+    return false;
+};
 
 /*
  **entry point
@@ -200,7 +210,16 @@ exports.start = function(req, res, server,body){
     support.res = res;
     support.req = req;
     support.paths = paths;
-    //console.log(support.path);
+
+	console.log(support.headers.referer);
+
+	if(support.page.ctrl == 'index.js' && support.headers.referer && matchInArray(support.headers.referer, refused)){
+	    res.statusCode = 404;
+	    res.end();
+	}else{
+		
+
+
     //var truc = new User("becasse");
     //truc.find({},function(tab){console.log(tab);});
     //truc.removeThis();
@@ -227,8 +246,9 @@ exports.start = function(req, res, server,body){
 	res.end('Error Internal Server');
     }
 	}
+    }
 
-
+    
 };
 
 

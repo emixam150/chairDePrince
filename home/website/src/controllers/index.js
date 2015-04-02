@@ -43,7 +43,7 @@ exports.exec = function(support) {
 	};
 	
 	commonTreeTemplate.constructTree( queriesTemp, function(tree){
-	    console.log(tree);
+	    
 	    tree.children.section = section;
 	    support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge + ',public');
 	    support.res.setHeader('Content-Type', 'text/html');

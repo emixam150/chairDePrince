@@ -6,7 +6,7 @@ var paths = require($.paths),
     fs = require('fs'),
     local = paths.svg +'/bannieres'; 
 
-    var mathDEFAULT = {path: local + 'banniere/math/DEFAULT.svg',
+var mathDEFAULT = {path: local + 'banniere/math/DEFAULT.svg',
 		   url: '/svg/bannieres/math/DEFAULT.svg',
 		   alt: "Pimp My Math"};
 var blogDEFAULT =  {path: local + 'banniere/blog/DEFAULT.svg',

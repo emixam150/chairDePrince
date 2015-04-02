@@ -27,7 +27,7 @@ function get(support){
 	var queriesTemp = {
 	    title : "Contact - Chère de prince",
 	    lang: "fr",
-	    index: true,
+	    contact: true,
 	    leadIn: leadIn.content,
 	    sessionDisplay: typeof support.session.user != "undefined",
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
@@ -61,22 +61,6 @@ function get(support){
 	});
     });
 
-    // var streammessage = fs.createReadStream(support.paths.html+ '/' + messagePath),
-    // 	messages = '';
-    // streammessage.setEncoding('utf8');
-
-    // streammessage.on('data', function(chunk){
-    // 	messages += chunk;
-    // });
-
-    // streammessage.on('end', function(){
-
-    // 	var output = mustache.to_html(support.content, {'messages': messages });
-    
-    // 	support.res.setHeader('Cache-Control','max-age=' + support.page.maxAge );
-    // 	support.res.setHeader('Content-Type', 'text/html');
-    // 	$.require('makeTextResponse').send(output, support.headers, support.res);
-    // });
 }
 
 function post(support, getcall){
