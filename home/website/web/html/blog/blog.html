@@ -1,0 +1,48 @@
+<section>
+  <header class="section-header">
+    {{#banniereHeader}}
+    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+    {{/banniereHeader}}
+    <h1>Derniers titres du blog</h1>
+  </header>
+
+  <div class="section-content">
+
+    {{#cssSpe}}
+    <style  scoped>
+      {{{cssSpe}}}
+    </style>
+    {{/cssSpe}}
+    
+    <div class="column">
+      	 {{#listOfArticle}}
+	 <div class="info-blog">
+	   <div class="date-blog">
+	     <span class="day-date">
+	       {{numberOfDay}}
+	     </span>
+	     <span class="month-date">
+	       {{month}}
+	     </span>
+	     <span class="year-date">
+	       {{year}}
+	     </span>
+	   </div>
+	   <a href="/blog/{{{nameOfArticle}}}">
+	     <h3>
+	       {{titleOfArticle}}
+	     </h3>
+	     <img src="/svg/bannieres/blog/{{{nameOfArticle}}}_l.svg" alt="image descriptive"/>
+	   </a>
+	   <p class="info-blog-p">
+	     {{advertOfArticle}}
+	   </p>
+	 </div>
+	 {{/listOfArticle}}
+  </div>
+</div>
+</section>    
+
+
+
+

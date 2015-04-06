@@ -1,0 +1,29 @@
+<section>
+  <header class="section-header">
+    {{#banniereHeader}}
+    <img class="banniere" alt="{{alt}}" src="{{link}}"/>
+    {{/banniereHeader}}
+    <h1>Dernière publications</h1>
+
+    <p class="text-intro">
+      {{{intro}}}
+    </p>
+  </header>
+
+  <div class="section-content">
+
+    {{#cssSpe}}
+    <style  scoped>
+      {{{cssSpe}}}
+    </style>
+    {{/cssSpe}}
+    
+    <div class="column">
+      {{{article}}}
+    </div>
+  </div>
+</section>    
+
+
+
+

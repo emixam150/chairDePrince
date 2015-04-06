@@ -47,10 +47,12 @@ exports.exec = function(socket){
  		})
  		current = loadingElt;
 // 		refreshDisplay()
+		console.log(current.advert,'ad');
  		    socket.emit('new', {
 			title : current.content.title,
 			published : current.published,
 			intro :(current.content.tree.children.intro)? current.content.tree.children.intro.content: undefined,
+			advert :(current.content.advert)? current.content.advert: undefined,
 			content: current.content.tree.children.article.content,
  			bornDate: current.bornDate,
  			lastUpdate: current.lastUpdate})
@@ -102,6 +104,25 @@ exports.exec = function(socket){
 	}
     })
     
+
+var OldContent2 = "",
+isTipping2 = false;
+socket.on('updateAdvert', function(newContent){
+    OldContent2 = newContent    // on stocke
+    if(!isTipping2){ // ca fait plus d'une sec
+	isTipping2 = true
+	setTimeout(function(){
+	    isTipping2 = false
+	    current.updateAdvert(OldContent2,function(err){
+		//refreshDisplay()
+		if(err)
+		    socket.emit('warning',"impossible to upadate the advert  :" + err.message)
+		else
+		    socket.emit('advert updated')
+	    })		
+	},1000)
+    }
+})
 
     socket.on('changeTitle', function(title){
 	var oldTitle  = current.content.title

@@ -14,6 +14,7 @@ module.exports = function Publication(enName, dbName) {
     this.name = '';
     this.bornDate =  new Date();
     this.lastUpdate =  new Date();
+    this.publishDate = new Date();
     this.published = true;
     this.content =  {title: ""};
     this.banniere =  new Banniere(enName);
@@ -66,6 +67,7 @@ module.exports = function Publication(enName, dbName) {
 		pub.name = docs[0].name;
 		pub.bornDate = docs[0].bornDate;
 		pub.lastUpdate = docs[0].lastUpdate;
+		pub.publishDate = docs[0].publishDate;
 		pub.published = (typeof docs[0].published == "boolean")? docs[0].published : true
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
@@ -88,6 +90,7 @@ module.exports = function Publication(enName, dbName) {
 		pub.name = docs[0].name;
 		pub.bornDate = docs[0].bornDate;
 		pub.lastUpdate = docs[0].lastUpdate;
+		pub.publishDate = docs[0].publishDate;
 		pub.published = (typeof docs[0].published == "boolean")? docs[0].published : true;
 		pub.content = docs[0].content;
 		pub._id = docs[0]._id;
@@ -134,6 +137,7 @@ module.exports = function Publication(enName, dbName) {
 	var pub = this;
 	if(typeof state == "boolean"){
 	    pub.published  = state;
+	    pub.publishDate = new Date();
 	    pub.updateThis(cb);
 	}else
 	    cb(new Error("publish's state must be a boolean"))

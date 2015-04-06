@@ -17,6 +17,7 @@ var listHTML = document.getElementById('objects-list'),
     changeTitleBUT = document.getElementById('change-title'),
     publishCHECK = document.getElementById('publish-check'),
     introTXT = document.getElementById('intro-txt'),
+    advertTXT = document.getElementById('advert-txt'),
     introCHECK = document.getElementById('intro-check'),
     contentTXT = document.getElementById('cont-txt'),
     controlHTML = document.getElementById('control'),
@@ -54,6 +55,8 @@ var Admin= function(){
 	introTXT.disabled = !(typeof elt.intro == "string");
 	if(typeof elt.intro == "string")
 	    introTXT.value = elt.intro;
+	if(typeof elt.advert == "string")
+	    advertTXT.value = elt.advert;
 	adm.current = elt;
     }
 
@@ -92,6 +95,8 @@ var Admin= function(){
 	    introTXT.disabled = !state; 
 	    adm.current.intro = state;
 	})
+
+
 	
 	newBUT.onclick = function(){
 	    var title = prompt("Titre : ");
@@ -110,6 +115,11 @@ var Admin= function(){
 		socket.emit('updateSubTree','intro',e.target.value);
 	}
 
+	advertTXT.onkeyup = function(e){
+	    console.log(e.target.value);
+	    socket.emit('updateAdvert',e.target.value);
+	}
+
 	introCHECK.onchange = function(e){
 	    socket.emit('changeIntro', introCHECK.checked);
 	}
@@ -125,7 +135,7 @@ var Admin= function(){
 	    socket.emit('changePublishState', state);
 	}
 
-	introTXT.value = ""; contentTXT.value = "";
+	introTXT.value = ""; contentTXT.value = ""; advertTXT.value = "";
 	socket.emit('list');
     }
 

@@ -25,6 +25,10 @@ module.exports = function Blog() {
      	"queries":{}
     }
 
+this.content.advert = ""
+
+
+
 
     this.addIntro = function(cb){
 	var blog = this
@@ -77,57 +81,19 @@ module.exports = function Blog() {
 	})
     }
 
-    // this.addSubTree = function(sectionKey,cb){
-    // 	var math = this
-    // 	math.getById(math._id, function(err){ //mise a jour 
-    // 	    if(err)
-    // 		cb(err)
-    // 	    else 
-    // 		//on ajoute une partie non présente
-    // 		if((sectionKey == 'dem' || sectionKey == 'rem' || sectionKey == 'ex' || sectionKey == 'exo') && !math.content.tree.children[sectionKey] ){
-    // 		    math.content.tree.children[sectionKey] = {
-    // 			"id": sectionKey,
-    // 			"type": "part",
-    // 			"content":"",
-    // 			"children":{},
-    // 			"queries":{}
-    // 		    }
-    // 		    math.updateThis(cb)
-    // 		}else
-    // 		    cb(new Error("sectionKey already exists or isn't correct"))
-    // 	})
-    // }
-    
-    // this.rmSubTree = function(sectionKey,cb){
-    // 	var math = this
-    // 	math.getById(math._id, function(err){ //mise a jour 
-    // 	    if(err)
-    // 		cb(err)
-    // 	    else 
-    // 		//on supprime une partie déjà présente
-    // 		if(math.content.tree.children[sectionKey] && sectionKey != 'cont'){
-    // 		    delete math.content.tree.children[sectionKey]
-    // 		    math.updateThis(cb)
-		    
-    // 		}else
-    // 		    cb(new Error("Content or keySection isn't correct"))
-    // 	})
-    // }
-    
-
-    // this.updateSubTree = function(sectionKey, newContent,cb){
-    // 	var math = this
-    // 	math.getById(math._id, function(err){ //mise a jour 
-    // 	    if(err)
-    // 		cb(err)
-    // 	    else 
-    // 		if(math.content.tree.children[sectionKey] && (newContent || typeof newContent == "string")){
-    // 		    math.content.tree.children[sectionKey].content = String(newContent)
-    // 		    math.updateThis(cb)
-    // 		}else
-    // 		    cb(new Error("Content or keySection isn't correct"))
-    // 	})
-    // }
+    this.updateAdvert = function(newContent,cb){
+	var blog = this
+	blog.getById(blog._id, function(err){ //mise a jour 
+	    if(err)
+		cb(err)
+	    else 
+		if(newContent || typeof newContent == "string"){
+		    blog.content.advert = String(newContent)
+		    blog.updateThis(cb)
+		}else
+		    cb(new Error("Content or keySection isn't correct"))
+	})
+    }
 
 
 };

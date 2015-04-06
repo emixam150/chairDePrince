@@ -45,11 +45,24 @@
     },
     "blog":{
 	"type":"html",
-	"format":"^/blog(/([-_a-z0-9]*))$",
+	"format":"^/blog$",
 	"mime":"text/html",
 	"method":"GET",
-	"ressource":"blog.html",
-	"controller":"blog.js",
+	"ressource":"blog/blog.html",
+	"controller":"blog/blog.js",
+	"url":"/blog",
+	"query":{
+	},
+	"preloading": true,
+	"maxAge": -1
+    },
+    "blog-elt":{
+	"type":"html",
+	"format":"^/blog(/([-_a-z0-9]+))$",
+	"mime":"text/html",
+	"method":"GET",
+	"ressource":"blog/blog-elt.html",
+	"controller":"blog/blog-elt.js",
 	"url":"/blog/[articleName]",
 	"query":{
 	    "inutile":"$0",

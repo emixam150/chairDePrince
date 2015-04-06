@@ -1,0 +1,43 @@
+var blogPage = new Blog();
+
+exports.exec = function(cb){
+
+
+var makeListOfArticle = function(support,lead,objects,err){
+    var cpt = 0,
+	listOfArticle = [];
+
+    Object.keys(objects).forEach(function(article){
+	listOfArticle.push({
+	    numberOfDay : "1",
+	    month: "mars",
+	    year: "2015",
+	    titleOfArticle: objects[article].content.title,
+	    nameOfArticle: objects[article].name,
+	    advertOfArticle: objects[article].content.advert
+	});
+     	cpt ++
+     	if(cpt == Object.keys(objects).length)
+     	    next(support,lead,listOfArticle,err);
+    })
+}
+
+var publishedOrNot = function(support,lead,docs,k,objects){
+
+    if(docs[k] && k <10){
+	if(docs[k].published){
+	    blogPage.getByName(docs[k].name, function(err,result){
+		objects[docs[k].name] = result;
+		publishedOrNot(support,lead,docs,k+1,objects);
+	    })
+	}else
+	    publishedOrNot(support,lead,docs,k+1,objects);
+    }else{
+	if(Object.keys(objects).length >0)
+	    makeListOfArticle(support,lead,objects,false);
+	else
+	    next(support,lead,objects,true);
+    }
+}
+
+}
