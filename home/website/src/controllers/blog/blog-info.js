@@ -6,45 +6,43 @@ var blogPage = new Blog();
 exports.exec = function(nb,cb){
 
     blogPage.findPlus({},{name:1, published:1},{publishDate: -1}, 100,function(docs){
-	console.log("docs",docs);
-	publishedOrNot(docs,0,{});		
+	publishedOrNot(docs,0,[]);		
     })//end of findPlus
 
     var makeListOfArticle = function(objects,err){
 	var cpt = 0,
 	    listOfArticle = [];
 
-	Object.keys(objects).forEach(function(article){
-	    var date = formatDate(objects[article].publishDate,'H')
+	objects.forEach(function(article){
+	    var date = formatDate(article.publishDate,'H')
 
 	    listOfArticle.push({
 		numberOfDay : date.day,
 		month: date.month,
 		year: date.year,
-		titleOfArticle: objects[article].content.title,
-		nameOfArticle: objects[article].name,
-		advertOfArticle: objects[article].content.advert
+		titleOfArticle: article.content.title,
+		nameOfArticle: article.name,
+		advertOfArticle: article.content.advert
 	    });
      	    cpt ++
-     	    if(cpt == Object.keys(objects).length)
+     	    if(cpt == objects.length)
      		cb(listOfArticle,err);
 	})
     }
 
     var publishedOrNot = function(docs,k,objects){
 
-	if(docs[k] && k <nb){
-	    console.log(docs[k].name);
+	if(docs[k] && objects.length <nb){
+
 	    if(docs[k].published){
 		blogPage.getByName(docs[k].name, function(err,result){
-		    objects[docs[k].name] = clone(result);
+		    objects.push(clone(result));
 		    publishedOrNot(docs,k+1,objects);
 		})
 	    }else
 		publishedOrNot(docs,k+1,objects);
 	}else{
-	    //	    console.log("objects",objects);
-	    if(Object.keys(objects).length >0)
+	    if(objects.length >0)
 		makeListOfArticle(objects,false);
 	    else
 		cb([],true);

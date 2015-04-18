@@ -172,7 +172,7 @@ exports.load = function(next) {
     return this;
 };        
 
-var refused =["simple-share-buttons.com","o-o-6-o-o.com","simple-share-buttons.com","humanorightswatch.org","darodar.com","bestwebsitesawards.com","aliexpress.com"]
+var refused =["Get-Free-Traffic-Now.com","theguardlan.com","simple-share-buttons.com","o-o-6-o-o.com","simple-share-buttons.com","humanorightswatch.org","darodar.com","bestwebsitesawards.com","aliexpress.com","googlsucks.com"]
 
 function matchInArray(string, array) {
     for (var i in array) {
@@ -211,9 +211,10 @@ exports.start = function(req, res, server,body){
     support.req = req;
     support.paths = paths;
 
-	console.log(support.headers.referer);
 
-	if(support.page.ctrl == 'index.js' && support.headers.referer && matchInArray(support.headers.referer, refused)){
+
+	if(support.headers.referer && matchInArray(support.headers.referer, refused)){
+	    console.log("!!!!! interdit !!!!!  ",support.headers.referer);
 	    res.statusCode = 404;
 	    res.end();
 	}else{
