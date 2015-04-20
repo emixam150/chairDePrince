@@ -15,7 +15,7 @@ exports.exec = function(support) {
 
     leadIn.getRandom('accueil', function(){
     Info.exec(2,function(listOfArticle,err){
-
+	
 	var queriesTemp = {
 	    title : "Accueil - Chère de prince",
 	    lang: "fr",

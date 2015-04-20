@@ -36,30 +36,34 @@
       </div>
       <div class="two-column">
 	<h2>Blog bécasseux</h2>
-      	 {{#listOfArticle}}
-	 <div class="info-blog">
-	   <div class="date-blog">
-	     <span class="day-date">
-	       {{numberOfDay}}
-	     </span>
-	     <span class="month-date">
-	       {{month}}
-	     </span>
-	     <span class="year-date">
-	       {{year}}
-	     </span>
-	   </div>
-	   <a href="/blog/{{{nameOfArticle}}}">
-	     <h3>
-	       {{titleOfArticle}}
-	     </h3>
-	     <img src="/svg/bannieres/blog/{{{nameOfArticle}}}_l.svg" alt="image descriptive"/>
-	   </a>
-	   <p class="info-blog-p">
-	     {{advertOfArticle}}
-	   </p>
-	 </div>
-	 {{/listOfArticle}}
+      	{{#listOfArticle}}
+	<div class="info-blog">
+	  <div class="info-blog-header">
+	    <div class="date-blog">
+	      <span class="day-date">
+		{{numberOfDay}}
+	      </span>
+	      <span class="month-date">
+		{{month}}
+	      </span>
+	      <span class="year-date">
+		{{year}}
+	      </span>
+	    </div>
+	    <a href="/blog/{{{nameOfArticle}}}">
+	      <h3>
+		{{titleOfArticle}}
+	      </h3>
+	    </a>
+	  </div>
+	  <p class="info-blog-p">
+	    <a href="/blog/{{{nameOfArticle}}}">
+	      <img src="/svg/bannieres/blog/{{{nameOfArticle}}}_l.svg" alt="image descriptive"/>
+	    </a>
+	    {{advertOfArticle}}
+	  </p>
+	</div>
+	{{/listOfArticle}}
 	
       </div>
     </div>

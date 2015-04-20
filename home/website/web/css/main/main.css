@@ -46,6 +46,9 @@ h1,h2,h3{
     font-weight: 500;
     color: #C83737;
 }
+.h1-alone{
+    padding:  1em 0;
+}
 h2{
     padding: 0.3em 0 0.3em;
 }
@@ -329,11 +332,17 @@ figcaption{
 
 /* info blog*/
 
+.info-blog-header{
+    display: block;
+    font-size: 0;
+}
+
 .date-blog{
     display: inline-block;
+    font-size: 1rem;
     background-color: #C83737;
-    width: 15%;
-  
+    width: 22.2222222%;
+    margin: 0 3%;
 }
 
 .day-date{
@@ -353,28 +362,30 @@ figcaption{
 }
 
 .info-blog h3{
+    
     color: black;
     text-align: center;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     line-height: 1em;
     display: inline-block;
-    width: 83%;
+    width: 71.7777778%;
     vertical-align: 1.2em;
+}
+
+.info-blog h3:first-letter{
+    text-transform: uppercase;
 }
 
 .info-blog img{
     float:left;
-    width: 30%;
+    width: 28.2222222%;
     margin : 0 1em 0 0
     }
 
 .info-blog-p{
-    
-    
 }
 
 .info-blog{
-    padding: 1em;
     clear: both;
 }
 
@@ -497,7 +508,12 @@ figcaption{
     border: none; 
 }
 
+    /*info-blog*/
     
+    .info-blog{
+       width: 576px;
+        margin: 0 auto;
+    }
     
 }
 
