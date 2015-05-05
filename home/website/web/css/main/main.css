@@ -394,6 +394,22 @@ display:block;
 margin: 0 auto;
 }
 
+/*comment*/
+.comment{
+    padding-top : 5%;
+    font-family: serif;
+    font-size:0.9em;
+    text-align: center;
+}
+
+.comment svg{
+    display: block;
+    margin: 0 auto;
+    width: 10%;
+    height: auto;
+}
+
+
 @media screen and (min-width: 360px){
     #logo{
 	width: 163.6362px;

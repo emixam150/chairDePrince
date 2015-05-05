@@ -35,7 +35,7 @@ var next = function(support,lead,blogPage,docs,err){
 	    cssLinked:[],//[{path:'math-elt.css'}],
 	    jsLinked: [],//[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
 	    jsSpe:false,
-	    bannierePath:  "images/bannieres/blog/petite_introduction.png",
+	    bannierePath:  "images/bannieres/blog/"+blogPage.name+".png",
 	    stat: blogPage.published,
 	    description: blogPage.content.advert
 	};
