@@ -14,7 +14,8 @@
 	    "jsSpe": "",
 	    "cssSpe": "",
 	    "bannierePath": false,
-	    "stat": false
+	    "stat": false,
+	    "description": false
 	}
     },
     "header": {

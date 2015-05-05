@@ -36,7 +36,8 @@ var next = function(support,lead,blogPage,docs,err){
 	    jsLinked: [],//[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
 	    jsSpe:false,
 	    bannierePath:  "images/bannieres/blog/petite_introduction.png",
-	    stat: blogPage.published
+	    stat: blogPage.published,
+	    description: blogPage.content.advert
 	};
 
 	var section ={
