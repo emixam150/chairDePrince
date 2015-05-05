@@ -6,6 +6,8 @@ var  paths = require($.paths),
     tempModel = require(paths.models + '/template.js');
 
 exports.exec = function(support,errorType) {
+    console.log("error",support.path);
+
     var queriesTemp = {
 	title : "404 - Chere de prince",
 	lang: "fr",

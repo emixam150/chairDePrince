@@ -10,6 +10,8 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
+        console.log("blog");
+
     var lead = new LeadIn();
 
     lead.getRandom('blog',function(){
@@ -31,7 +33,8 @@ var next = function(support,lead,listOfArticle,err){
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],//[{path:'math-elt.css'}],
 	    jsLinked: [],//[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
-	    jsSpe:false
+	    jsSpe:false,
+	    stat: true
 	    //bannierePath :  "images/bannieres/math.png"
 	};
 

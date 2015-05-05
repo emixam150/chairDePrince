@@ -27,7 +27,8 @@ exports.exec = function(support) {
 	    jsLinked: [{path:'https://cdn.socket.io/socket.io-1.2.0.js'},{path:'/js/sigma.min.js'}],//[{path: /path.js}],
 	    cssSpe: support.file.css.indexSpe,
 	    jsSpe:  support.file.js['accueil-mathSpe'],
-	    bannierePath :  "images/bannieres/accueil.png"
+	    bannierePath :  "images/bannieres/accueil.png",
+	    stat: true
 	};
 	
 	var section ={

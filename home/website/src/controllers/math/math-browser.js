@@ -9,7 +9,7 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
-    console.log(support.path);
+    console.log('math-browser');
 
     var leadIn = new LeadIn();
 
@@ -29,7 +29,8 @@ exports.exec = function(support) {
 	    cssLinked: [],
 	    jsLinked: jsLinked,
 	    jsSpe:  support.file.js['math-browserSpe'],
-	    bannierePath :  "images/bannieres/math.png"
+	    bannierePath :  "images/bannieres/math.png",
+	    stat: true
 	};
 
 	var MathBrowser = new Math(),

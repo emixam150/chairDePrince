@@ -1,11 +1,4 @@
-
-      
-      
-      
-      
-      
-      
-      #sigma-container{
+#sigma-container{
     border-top: 1px #72ffff solid;
     border-bottom: 1px #72ffff solid;
     height:500px;
@@ -116,7 +109,6 @@ table{
 }
 
 
-
 .elt-root>label{
     background: url('.svg/common/root.svg') no-repeat left top;
 }
@@ -132,6 +124,7 @@ table{
 
 .elt-zoom>button{
     background: url('./svg/common/zoom.svg') no-repeat left top;
+    font-size: 1em;
 }
 .elt-root>label,.elt-zoom>button {
     background-size: contain;

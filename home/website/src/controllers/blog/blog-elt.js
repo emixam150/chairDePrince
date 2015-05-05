@@ -2,31 +2,23 @@
  *Blog Controller
  */
 var paths = require($.paths),
-    commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
-    tempModel = require(paths.models + '/template.js'),
-    Blog = require(paths.models + '/blog.js'),
-    LeadIn = require(paths.models + '/leadin.js');
+commonTreeTemplate = require( paths.models + '/commonTreeTemplate.js'),
+tempModel = require(paths.models + '/template.js'),
+Blog = require(paths.models + '/blog.js'),
+LeadIn = require(paths.models + '/leadin.js');
 
 exports.exec = function(support) {
 
+    console.log("blog-elt",support.path);
     var lead = new LeadIn();
 
     lead.getRandom('blog',function(){
 	var blogPage = new Blog();	
 
-		blogPage.getByName(support.page.query.articleName, function(err,result){
-		    next(support,lead,blogPage,result,err);
-		})
+	blogPage.getByName(support.page.query.articleName, function(err,result){
+	    next(support,lead,blogPage,result,err);
+	})
 	
-	// blogPage.findPlus({},{name:1},{bornDate: -1}, 1000,function(docs){
-	//     if(support.page.query.articleName == ""){
-	// 	publishedOrNot(support,lead,blogPage,docs,0);		
-	//     }else{
-	// 	blogPage.getByName(support.page.query.articleName, function(err,result){
-	// 	    next(support,lead,blogPage,docs,err);
-	// 	})
-	//     } //end of if articleName
-	// })//end of findPlus
     });
 } ;
 
@@ -43,24 +35,19 @@ var next = function(support,lead,blogPage,docs,err){
 	    cssLinked:[],//[{path:'math-elt.css'}],
 	    jsLinked: [],//[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
 	    jsSpe:false,
-	    bannierePath:  "images/bannieres/blog/petite_introduction.png"
+	    bannierePath:  "images/bannieres/blog/petite_introduction.png",
+	    stat: blogPage.published
 	};
-/*
-
-	var currentPosition = 
-
-	var following = 
-*/
 
 	var section ={
 	    id: "section",
 	    type: "part",
 	    children: (typeof blogPage.content.tree != 'undefined')? blogPage.content.tree.children: {},
 	    queries: {
-		    banniereHeader: {
-			link: blogPage.banniere.url,
-			alt: blogPage.banniere.alt
-		    },
+		banniereHeader: {
+		    link: blogPage.banniere.url,
+		    alt: blogPage.banniere.alt
+		},
 		jsSpe: false,
 		title: blogPage.content.title
 	    },

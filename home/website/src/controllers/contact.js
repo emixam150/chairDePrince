@@ -20,6 +20,8 @@ exports.exec = function(support) {
 
 function get(support){
 
+        console.log("contact");
+
     var leadIn = new LeadIn();
 
     leadIn.getRandom('accueil', function(){
@@ -32,9 +34,10 @@ function get(support){
 	    sessionDisplay: typeof support.session.user != "undefined",
 	    userName:  (typeof support.session.user != "undefined")? support.session.user.name : '',
 	    cssLinked:[],
-	    jsLinked: false,//[{path: /path.js}],
+	    jsLinked: false,//[{path: /path.js}]
 	    cssSpe: false, //support.file.css.indexSpe
-	    bannierePath :  "images/bannieres/contact.png"
+	    bannierePath :  "images/bannieres/contact.png",
+	    stat: true
 	};
 	
 	var section ={

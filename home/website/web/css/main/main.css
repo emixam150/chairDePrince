@@ -1,13 +1,13 @@
 *{
-    font-size: 1em;
-    margin:0;
-    padding: 0;
     border: none;
+}
+footer,div,body{
+margin: 0;
+padding:0;
 }
 
 body{
     font-family: "Playfair Display", serif;
-
 }
 
 
@@ -167,7 +167,7 @@ overflow-x: hidden;
     display: block;
     text-align: center;
     font-size: 1.7em;
-    margin-bottom: 0.5em;
+    margin: 0 0 0.5em 0;
 }
 
 .section-header h1::first-letter{
@@ -201,11 +201,6 @@ h2{
     text-indent: 3%;
 }
 
-.column p{
-    margin-top: 0.9em;
-    font-size: 0.9em;
-}
-
 .two-column{
     display: block;
 }
@@ -220,6 +215,7 @@ h2{
 }
 
 .page-footer p {
+    margin:0;
     text-align: center;
     color: black;
 }
@@ -383,10 +379,19 @@ figcaption{
     }
 
 .info-blog-p{
+    margin:0;
 }
 
 .info-blog{
     clear: both;
+}
+
+
+/*figure img*/
+
+figure img{
+display:block;
+margin: 0 auto;
 }
 
 @media screen and (min-width: 360px){
@@ -429,7 +434,7 @@ figcaption{
 	position: absolute;
 	top: 18px;
 	margin: 0 0 0 23.0769% ; /* 10/13 */
-	width: 75%;
+	width: 73%;
     }
 
     nav ul{
@@ -535,7 +540,8 @@ figcaption{
     .mini-sigma{
     height: 350px;
 }
-  
+
+
     
 }
 
@@ -590,7 +596,12 @@ figcaption{
 .bd img:last-child{
     border-bottom: none;
 }
-   
+
+/* info-blog*/
+
+    .two-column .info-blog{
+	width:100%;
+    }   
     
 }
 

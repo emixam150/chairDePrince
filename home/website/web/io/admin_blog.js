@@ -47,7 +47,7 @@ exports.exec = function(socket){
  		})
  		current = loadingElt;
 // 		refreshDisplay()
-		console.log(current.advert,'ad');
+
  		    socket.emit('new', {
 			title : current.content.title,
 			published : current.published,

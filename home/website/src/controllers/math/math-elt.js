@@ -10,11 +10,13 @@ var paths = require($.paths),
 
 exports.exec = function(support) {
 
+    console.log('math-elt',support.path);
+
     var lead = new LeadIn();
 
-    lead.getRandom('blog',function(){
+    lead.getRandom('math',function(){
 
-	console.log('outLead')
+
 
 	var mathElt = new Math();
 	mathElt.getByName(support.page.query.eltName, function(err,result){
@@ -30,7 +32,8 @@ exports.exec = function(support) {
 			cssLinked:[{path:'math-elt.css'}],
 			jsLinked:[{path:'http://cdn.mathjax.org/mathjax/latest/MathJax.js'}],
 			jsSpe:false,
-			bannierePath :  "images/bannieres/math.png"
+			bannierePath :  "images/bannieres/math.png",
+			stat: true
 		    };
 
 

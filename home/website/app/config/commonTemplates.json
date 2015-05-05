@@ -13,7 +13,8 @@
 	    ],
 	    "jsSpe": "",
 	    "cssSpe": "",
-	    "bannierePath": false
+	    "bannierePath": false,
+	    "stat": false
 	}
     },
     "header": {
