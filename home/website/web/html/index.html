@@ -36,7 +36,7 @@
       </div>
       <div class="two-column">
 	<h2>Blog bécasseux</h2>
-      	{{#listOfArticle}}
+      	 {{#listOfArticle}}
 	<div class="info-blog">
 	  <div class="info-blog-header">
 	    <div class="date-blog">
@@ -52,7 +52,7 @@
 	    </div>
 	    <a href="/blog/{{{nameOfArticle}}}">
 	      <h3>
-		{{titleOfArticle}}
+		{{{titleOfArticle}}}
 	      </h3>
 	    </a>
 	  </div>
@@ -62,8 +62,9 @@
 	    </a>
 	    {{{advertOfArticle}}}
 	  </p>
+	  <div style="clear:both"></div>
 	</div>
-	{{/listOfArticle}}
+	 {{/listOfArticle}}
 	
       </div>
     </div>
