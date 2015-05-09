@@ -111,7 +111,7 @@
 	    "file":"$1"
 	},
 	"preloading": false,
-	"maxAge": 3600
+	"maxAge": 864000
     },
     "favicon":{
 	"type":"image",
@@ -122,7 +122,7 @@
 	"controller":"image.js",
 	"url":"/favicon.ico",
 	"preloading": true,
-	"maxAge": 86400
+	"maxAge": 864000
     },
     "contact":{
 	"type":"html",
@@ -207,7 +207,7 @@
 	"query":{
 	},
 	"preloading":false,
-	"maxAge": 86400
+	"maxAge": 864000
     },
     "xyjax":{
 	"type":"js",
@@ -220,7 +220,7 @@
 	"query":{
 	},
 	"preloading":false,
-	"maxAge": 86400
+	"maxAge": 864000
     },
     "mainCss":{
 	"type":"css",
@@ -233,7 +233,7 @@
 	"query":{
 	},
 	"preloading": true,
-	"maxAge": -1
+	"maxAge": 864000
     },
     "math-eltCss":{
 	"type":"css",
@@ -246,7 +246,7 @@
 	"query":{
 	},
 	"preloading":true,
-	"maxAge": -1
+	"maxAge": 864000
     },
     "error404":{
 	"type":"html",
@@ -255,7 +255,7 @@
 	"ressource":"error404.html",
 	"controller":"error404.js",
 	"preloading": true,
-	"maxAge" : 86400
+	"maxAge" : 864000
     },
     "admin":{
 	"type":"html",

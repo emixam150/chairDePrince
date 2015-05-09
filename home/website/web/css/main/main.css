@@ -383,6 +383,7 @@ figcaption{
 }
 
 .info-blog{
+    margin: 5px 0 0 0;
     clear: both;
 }
 
@@ -533,7 +534,7 @@ margin: 0 auto;
     
     .info-blog{
        width: 576px;
-        margin: 0 auto;
+        margin: 30px auto 0 auto;
     }
     
 }
