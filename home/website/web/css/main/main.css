@@ -383,10 +383,12 @@ figcaption{
 }
 
 .info-blog{
-    margin: 5px 0 0 0;
+    margin: 20px 0 0 0;
     clear: both;
 }
-
+.info-blog:first-child{
+    margin: 0;
+}
 
 /*figure img*/
 
@@ -409,6 +411,19 @@ margin: 0 auto;
     width: 10%;
     height: auto;
 }
+
+.small-column{
+    font-size: 0;
+    display: block;
+    margin: 20px 0 0 0 ;
+}
+.small-column svg{
+    display: inline-block;
+    width: 26.33333%;
+    height: auto;
+    margin: 0 3.5% ;
+}
+
 
 
 @media screen and (min-width: 360px){
@@ -536,7 +551,14 @@ margin: 0 auto;
        width: 576px;
         margin: 30px auto 0 auto;
     }
+    .info-blog:first-child{
+    margin: 0 auto;
+    }  
     
+    .small-column{
+        margin: 20px auto 0 auto;
+        width: 576px;
+    }
 }
 
 
@@ -582,11 +604,27 @@ margin: 0 auto;
     .column,.two-column p {
         font-size: 1em;
     }
-    
+    .column-large{
+        font-size:0;
+    }
     .two-column{
-     display: inline-block;
-      vertical-align: top;
       width: 49%;
+    }
+    .big-column,.small-column,.two-column{
+        display: inline-block;
+        vertical-align: top;
+        font-size:1.2rem;
+    }
+    .big-column{
+        width: 691.2px;
+    }
+    .small-column{
+        width: 230.4px;
+    }
+    .small-column svg{
+        width:75%;
+        display: block;
+        margin: 20px auto 0 auto;
     }
         /*bd*/
     
